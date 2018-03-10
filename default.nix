@@ -1,19 +1,29 @@
 let
   pkgs = import <nixpkgs> {};
 
+  vim = import ./vim (with pkgs;
+    {inherit
+        symlinkJoin
+        makeWrapper
+        vim_configurable
+        vimUtils
+        vimPlugins
+        haskellPackages;
+    });
   homies = with pkgs;
     [
-      # vim
-      curl
-      git
-      htop
-      nix
-      tmux
-      tree
-      xclip
+      vim
+      pkgs.curl
+      pkgs.git
+      pkgs.htop
+      pkgs.nix
+      pkgs.tmux
+      pkgs.tree
+      pkgs.xclip
     ];
 
-  homiesPaths = map (homie: (pkgs.lib.getOutput "bin" homie) + "/bin/*") homies;
+  homiesPaths =
+    map (homie: (pkgs.lib.getOutput "bin" homie) + "/bin/*") homies;
 
 in pkgs.stdenv.mkDerivation
   { name = "home-sweet-home";
