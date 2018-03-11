@@ -1,5 +1,5 @@
 let
-  pkgs = import <nixpkgs> {};
+  pkgs = import (import ./nixpkgs) {};
 
   # bashrc should be evaluated from your actual .bashrc:
   #   if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi
