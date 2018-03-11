@@ -39,4 +39,3 @@ Deleting old configurations:
 ``` shell
 $ nix-env --delete-generations [3 4 9 | old | 30d]
 ```
-
