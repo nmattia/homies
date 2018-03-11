@@ -39,6 +39,7 @@ let
       pkgs.git
       pkgs.htop
       pkgs.nix
+      pkgs.pass
       pkgs.tree
       pkgs.xclip
     ];
