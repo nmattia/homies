@@ -2,4 +2,5 @@
 stty -ixon
 
 alias gd="git diff"
+alias t="tmux -2"
 alias xo="xdg-open"
