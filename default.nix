@@ -9,6 +9,7 @@ let
         ;
     });
 
+  # Git with config baked in
   git = import ./git (with pkgs;
     { inherit
         makeWrapper
@@ -17,6 +18,7 @@ let
       git = pkgs.git;
     });
 
+  # Tmux with tmux.conf baked in
   tmux = import ./tmux (with pkgs;
     { inherit
         makeWrapper
@@ -26,6 +28,8 @@ let
       tmux = pkgs.tmux;
     });
 
+
+  # Vim with a custom set of packages
   vim = import ./vim (with pkgs;
     {inherit
         symlinkJoin
