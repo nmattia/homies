@@ -4,10 +4,10 @@ Reproducible set of dotfiles and packages for Linux and macOS
 
 ## How-to
 
-Building the package set:
+Trying out the package set:
 
 ``` shell
-$ nix-build --no-out-link
+$ nix-shell --pure
 ```
 
 Installing the package set:

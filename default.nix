@@ -43,4 +43,12 @@ let
       pkgs.xclip
     ];
 
-in homies
+in
+  if pkgs.lib.inNixShell
+  then pkgs.mkShell
+    { buildInputs = homies;
+      shellHook = ''
+        $(bashrc)
+        '';
+    }
+  else homies
