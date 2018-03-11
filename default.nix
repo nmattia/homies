@@ -1,6 +1,14 @@
 let
   pkgs = import <nixpkgs> {};
 
+  # bashrc should be evaluated from your actual .bashrc:
+  #   if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi
+  bashrc = import ./bashrc (with pkgs;
+    { inherit
+        writeScriptBin
+        ;
+    });
+
   tmux = import ./tmux (with pkgs;
     { inherit
         makeWrapper
@@ -25,6 +33,7 @@ let
       # Customized packages
       tmux
       vim
+      bashrc
 
       pkgs.curl
       pkgs.git

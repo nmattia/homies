@@ -1,0 +1,5 @@
+# No locking on Ctrl-S
+stty -ixon
+
+alias gd="git diff"
+alias xo="xdg-open"
