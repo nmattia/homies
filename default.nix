@@ -9,6 +9,14 @@ let
         ;
     });
 
+  git = import ./git (with pkgs;
+    { inherit
+        makeWrapper
+        symlinkJoin
+        ;
+      git = pkgs.git;
+    });
+
   tmux = import ./tmux (with pkgs;
     { inherit
         makeWrapper
@@ -31,12 +39,12 @@ let
   homies = with pkgs;
     [
       # Customized packages
+      bashrc
+      git
       tmux
       vim
-      bashrc
 
       pkgs.curl
-      pkgs.git
       pkgs.htop
       pkgs.nix
       pkgs.pass
