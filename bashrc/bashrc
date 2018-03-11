@@ -4,3 +4,15 @@ stty -ixon
 alias gd="git diff"
 alias t="tmux -2"
 alias xo="xdg-open"
+
+# GHC(i) with custom set of packages
+
+ghc-shell() {
+  nix-shell -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])"
+}
+
+ghci-with() {
+  nix-shell \
+    -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])" \
+    --run ghci
+}
