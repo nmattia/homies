@@ -1,5 +1,7 @@
 # Homies
 
+<img src="homies.png" alt="homies" style="width: 200px;"/>
+
 Reproducible set of dotfiles and packages for Linux and macOS
 
 ## How-to
