@@ -1,4 +1,4 @@
-# Bake our git config in git
+# Git, with a git config baked in (see ./config)
 { git, symlinkJoin, makeWrapper }:
 symlinkJoin {
   paths = [ git ];

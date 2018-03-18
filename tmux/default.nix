@@ -1,4 +1,4 @@
-# Bake our tmux.conf in tmux
+# Tmux with ./tmux.conf baked in
 { tmux, writeText, symlinkJoin, makeWrapper }:
 symlinkJoin {
   paths = [ tmux ];
