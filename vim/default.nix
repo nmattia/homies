@@ -24,18 +24,18 @@ let
       vimproc
       youcompleteme
     ];
-  customRC = builtins.readFile ./vimrc ;
+  customRC = vimUtils.vimrcFile
+    { customRC = builtins.readFile ./vimrc;
+      packages.mvc.start = extraPackages;
+    };
 in
 symlinkJoin {
-  paths = [ vim_configurable ];
-  postBuild = ''
-    wrapProgram "$out/bin/vim" \
-    --add-flags "-u ${vimUtils.vimrcFile {
-      packages.mvc.start = extraPackages;
-      inherit customRC;
-    }}" \
-      --prefix PATH : ${haskellPackages.hasktags}/bin
-  '';
   name = "vim";
   buildInputs = [makeWrapper];
+  postBuild = ''
+    wrapProgram "$out/bin/vim" \
+    --add-flags "-u ${customRC}" \
+      --prefix PATH : ${haskellPackages.hasktags}/bin
+  '';
+  paths = [ vim_configurable ];
 }
