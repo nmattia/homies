@@ -25,7 +25,9 @@ $ echo 'if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi' >> .bashrc
 
 The homies will be available in all subsequent shells, including the
 customizations (vim with my favorite plugins, tmux with my customized
-configuration, etc).
+configuration, etc). See the [introduction blog post][post] for an overview.
+
+[post]: http://nmattia.com/posts/2018-03-21-nix-reproducible-setup-linux-macos.html
 
 ## How-To
 
