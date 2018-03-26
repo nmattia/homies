@@ -4,6 +4,7 @@ stty -ixon
 alias gd="git diff"
 alias t="tmux -2"
 alias xo="xdg-open"
+alias grephs="grep --exclude-dir .stack-work --include '*.hs'"
 
 # GHC(i) with custom set of packages
 
@@ -16,3 +17,4 @@ ghci-with() {
     -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])" \
     --run ghci
 }
+
