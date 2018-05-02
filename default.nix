@@ -16,6 +16,7 @@ let
 
       pkgs.curl
       pkgs.htop
+      pkgs.jq
       pkgs.nix
       pkgs.pass
       pkgs.tree
