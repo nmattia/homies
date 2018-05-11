@@ -17,4 +17,3 @@ ghci-with() {
     -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])" \
     --run ghci
 }
-
