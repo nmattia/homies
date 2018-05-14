@@ -460,4 +460,4 @@ let g:syntastic_check_on_wq = 0
 
 vnoremap <C-s> :sort<CR>
 " setlocal spell spelllang=en_us TODO: this confuses code and comments
-colorscheme darkblue2
+colorscheme ChocolateLiquor
