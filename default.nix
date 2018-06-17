@@ -15,6 +15,7 @@ let
       vim
 
       pkgs.curl
+      pkgs.gitAndTools.gitAnnex
       pkgs.htop
       pkgs.jq
       pkgs.less
