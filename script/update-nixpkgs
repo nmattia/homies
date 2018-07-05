@@ -8,9 +8,9 @@
 # See https://gist.github.com/zimbatm/de5350245874361762b6a4dfe5366530
 set -euo pipefail
 
-branch=master
+branch=nixos-18.03
 owner=NixOS
-repo=nixpkgs
+repo=nixpkgs-channels
 
 rev=$(curl -sfL https://api.github.com/repos/$owner/$repo/git/refs/heads/$branch | jq -r .object.sha)
 url=https://github.com/$owner/$repo/archive/$rev.tar.gz
