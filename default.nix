@@ -11,6 +11,7 @@ let
       # Customized packages
       bashrc
       git
+      snack
       tmux
       vim
 
@@ -53,6 +54,7 @@ let
       tmux = pkgs.tmux;
     });
 
+  snack = (import ./snack).snack-exe;
 
   # Vim with a custom vimrc and set of packages
   vim = import ./vim (with pkgs;
