@@ -16,6 +16,7 @@ let
       syntastic
       tmux-navigator
       vim-airline
+      vim-easymotion
       vim-indent-guides
       vim-markdown
       vim-multiple-cursors

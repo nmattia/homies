@@ -348,16 +348,6 @@ nnoremap <C-h> :wincmd h <CR>
 nnoremap <C-j> :wincmd j <CR>
 
 map <Bslash> <Leader><Leader>
-map <Leader>t :GhcModType<CR>
-map <Leader>i :GhcModInfo<CR>
-map <Leader>C :GhcModCheck!<CR>
-
-" *G*enerate function body
-map <Leader>g :GhcModSigCodegen<CR>
-
-" *L*ist constructors
-map <Leader>l :GhcModSplitFunCase<CR>
-
 
 au FileType haskell nmap <silent><buffer> <leader>gg :call RunGhci(1)<CR>
 au FileType haskell nmap <silent><buffer> <leader>gs :call RunGhci(0)<CR>
@@ -414,6 +404,11 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
+
+" <Leader>l{char} to move to {char}
+map  <Leader>l <Plug>(easymotion-bd-f)
+nmap <Leader>l <Plug>(easymotion-overwin-f)
+
 
 nnoremap <silent> <Leader>= :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
