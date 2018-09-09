@@ -4,8 +4,18 @@
 #
 # The bashrc script should be evaluated from the actual ~/.bashrc:
 #   if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi
-{writeScriptBin}:
-writeScriptBin "bashrc"
+{ lib, writeText, writeScriptBin, fzf }:
+let
+  bashrc = writeText "bashrc"
+    (lib.concatStringsSep "\n"
+    [ (builtins.readFile ./bashrc)
+      ''
+      source ${fzf}/share/fzf/completion.bash
+      source ${fzf}/share/fzf/key-bindings.bash
+      ''
+    ]
+    );
+in writeScriptBin "bashrc"
   ''
-    echo ". ${./bashrc}"
+    echo ". ${bashrc}"
   ''

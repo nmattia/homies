@@ -24,23 +24,17 @@ let
       pkgs.pass
       pkgs.tree
       pkgs.xclip
+      pkgs.fzf
     ];
 
   ## Some cunstomizations
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
-  bashrc = import ./bashrc (with pkgs;
-    { inherit
-        writeScriptBin
-        ;
-    });
+  bashrc = pkgs.callPackage ./bashrc {};
 
   # Git with config baked in
-  git = import ./git (with pkgs;
-    { inherit
-        makeWrapper
-        symlinkJoin
-        ;
+  git = import ./git (
+    { inherit (pkgs) makeWrapper symlinkJoin;
       git = pkgs.git;
     });
 
