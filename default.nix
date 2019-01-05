@@ -55,6 +55,7 @@ let
   # Vim with a custom vimrc and set of packages
   vim = import ./vim (with pkgs;
     {inherit
+        git
         symlinkJoin
         makeWrapper
         vim_configurable
