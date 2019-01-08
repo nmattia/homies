@@ -300,15 +300,6 @@ function! SetCursorPosition()
     end
 endfunction
 
-" Open GHCi in a new pane
-function! RunGhci(type)
-    call VimuxRunCommand(" stack ghci && exit")
-    if a:type
-        call VimuxSendText(":l " . bufname("%"))
-        call VimuxSendKeys("Enter")
-    endif
-endfunction
-
 "spell check when writing commit logs
 autocmd filetype svn,*commit* setlocal spell
 autocmd filetype go set tabstop=4
@@ -341,16 +332,7 @@ noremap T :Tab/
 noremap <S-j> :bn<CR>
 noremap <S-k> :bp<CR>
 
-" move around panes with h,j,k,l
-nnoremap <C-k> :wincmd k <CR>
-nnoremap <C-l> :wincmd l <CR>
-nnoremap <C-h> :wincmd h <CR>
-nnoremap <C-j> :wincmd j <CR>
-
 map <Bslash> <Leader><Leader>
-
-au FileType haskell nmap <silent><buffer> <leader>gg :call RunGhci(1)<CR>
-au FileType haskell nmap <silent><buffer> <leader>gs :call RunGhci(0)<CR>
 
 map <Leader>f :CtrlP<CR>
 map <Leader>p :CtrlPTag<CR>

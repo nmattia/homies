@@ -53,16 +53,18 @@ let
   snack = (import (fetch "snack")).snack-exe;
 
   # Vim with a custom vimrc and set of packages
-  vim = import ./vim (with pkgs;
-    {inherit
-        git
-        symlinkJoin
+  vim = import ./vim
+    { inherit (pkgs)
+        haskellPackages
         makeWrapper
-        vim_configurable
-        vimUtils
+        symlinkJoin
         vimPlugins
-        haskellPackages;
-    });
+        vimUtils
+        vim_configurable;
+      inherit
+        git
+        tmux;
+    };
 
 in
   if pkgs.lib.inNixShell
