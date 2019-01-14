@@ -4,7 +4,7 @@ with { fetch = import ./nix/fetch.nix; };
 let
 
   # The (pinned) Nixpkgs where the original packages are sourced from
-  pkgs = import (fetch "nixpkgs") {};
+  pkgs = import fetch.nixpkgs {};
 
   # The list of packages to be installed
   homies = with pkgs;
@@ -50,7 +50,7 @@ let
       tmux = pkgs.tmux;
     });
 
-  snack = (import (fetch "snack")).snack-exe;
+  snack = (import fetch.snack).snack-exe;
 
   # Vim with a custom vimrc and set of packages
   vim = import ./vim
