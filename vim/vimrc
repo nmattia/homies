@@ -409,7 +409,7 @@ autocmd FileType haskell
 " Run hasktags on buffer write
 :autocmd BufWritePost *.hs
     \ silent!
-    \ !(hasktags --ignore-close-implementation --ctags . ; sort tags)
+    \ !(hasktags --ctags . ; sort tags)
     \ &> /dev/null &
 
 " Jump between haskell functions
