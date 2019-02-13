@@ -3,14 +3,14 @@
     "owner": "NixOS",
     "repo": "nixpkgs-channels",
     "branch": "nixos-18.09",
-    "rev": "d4a1e8975a63edaddf1ccfa9dd7dd6ac0b5f6a47",
-    "sha256": "17lpy99pmrvn6sgqq1aas67q7ik4pvi1agw6wflpv6jkvk41y8lv"
+    "rev": "168cbb39691cca2822ce1fdb3e8c0183af5c6d0d",
+    "sha256": "0fqasswfqrz2rbag9bz17j8y7615s0p9l23cw4sk2f384gk0zf6c"
   },
   "snack": {
     "owner": "nmattia",
     "repo": "snack",
     "branch": "master",
-    "rev": "a4b7401cd3f7468cc3a8af1067466a96ef259d8b",
-    "sha256": "1sywnk19pdj8acq9gb3sy959s55gn66x4s8z038ifimvk6xpyl50"
+    "rev": "08861356442d867d3bdcd217c4521c53264388c0",
+    "sha256": "0jmdsz44s2a0x7nlm03phkswp5gvk95vdgqq294rwn93n0ssyz6r"
   }
 }
