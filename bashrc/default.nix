@@ -4,10 +4,9 @@
 #
 # The bashrc script should be evaluated from the actual ~/.bashrc:
 #   if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi
-{ lib, writeText, writeScriptBin, fzf }:
+{ lib, writeText, writeScriptBin, fzf, sources }:
 let
-  nixpkgsSpec =
-    (builtins.fromJSON (builtins.readFile ../nix/versions.json)).nixpkgs;
+  nixpkgsSpec = sources.nixpkgs;
   bashrc = writeText "bashrc"
     (lib.concatStringsSep "\n"
     [ (builtins.readFile ./bashrc)

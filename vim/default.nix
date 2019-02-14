@@ -7,7 +7,9 @@ let
     [
       # TODO: setup ultisnips
       # ghcmod # NOTE: the haskell package for ghc-mod is broken
+
       ctrlp
+      elm-vim
       fugitive
       gitgutter
       nerdcommenter
@@ -24,6 +26,7 @@ let
       vim-trailing-whitespace
       vimproc
       youcompleteme
+
     ];
   customRC = vimUtils.vimrcFile
     { customRC = builtins.readFile ./vimrc;

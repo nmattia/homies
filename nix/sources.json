@@ -1,0 +1,34 @@
+{
+    "snack": {
+        "homepage": "",
+        "url": "https://github.com/nmattia/snack/archive/9968fd3a7266758435492cfdf2432f7509dcb0ec.tar.gz",
+        "owner": "nmattia",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "snack",
+        "sha256": "0im4kiz7am3jrskzqpf8w0lzjn4mdd9s26sg6d4v91c1p8y44f58",
+        "description": "Nix-based incremental build tool for Haskell projects",
+        "rev": "9968fd3a7266758435492cfdf2432f7509dcb0ec"
+    },
+    "nixpkgs": {
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/168cbb39691cca2822ce1fdb3e8c0183af5c6d0d.tar.gz",
+        "owner": "NixOS",
+        "branch": "nixos-18.09",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "nixpkgs-channels",
+        "sha256": "0fqasswfqrz2rbag9bz17j8y7615s0p9l23cw4sk2f384gk0zf6c",
+        "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
+        "rev": "168cbb39691cca2822ce1fdb3e8c0183af5c6d0d"
+    },
+    "niv": {
+        "homepage": "https://github.com/nmattia/niv",
+        "url": "https://github.com/nmattia/niv/archive/cdfa7b9a27a92b0892f1286de529dc25b653f5f0.tar.gz",
+        "owner": "nmattia",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "niv",
+        "sha256": "1qsm2f6znkxqw2nvxhfyrx43c0h1ppnvxnbbd9738vbh8dw105cx",
+        "description": "Easy dependency management for Nix projects",
+        "rev": "cdfa7b9a27a92b0892f1286de529dc25b653f5f0"
+    }
+}

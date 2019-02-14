@@ -1,10 +1,7 @@
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
-with { fetch = import ./nix/fetch.nix; };
+with { pkgs = import ./nix {}; };
 let
-
-  # The (pinned) Nixpkgs where the original packages are sourced from
-  pkgs = import fetch.nixpkgs {};
 
   # The list of packages to be installed
   homies = with pkgs;
@@ -23,6 +20,7 @@ let
       pkgs.htop
       pkgs.jq
       pkgs.less
+      pkgs.niv
       pkgs.nix
       pkgs.pass
       pkgs.tree
@@ -50,7 +48,7 @@ let
       tmux = pkgs.tmux;
     });
 
-  snack = (import fetch.snack).snack-exe;
+  snack = (import pkgs.sources.snack).snack-exe;
 
   # Vim with a custom vimrc and set of packages
   vim = import ./vim
