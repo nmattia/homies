@@ -12,6 +12,7 @@ let
       snack
       tmux
       vim
+      python
 
       pkgs.curl
       pkgs.fzf
@@ -28,6 +29,7 @@ let
     ];
 
   ## Some cunstomizations
+  python = pkgs.python.withPackages (ps: [ ps.grip ]);
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc {};
