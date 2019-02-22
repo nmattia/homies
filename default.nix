@@ -16,7 +16,6 @@ let
 
       pkgs.curl
       pkgs.fzf
-      pkgs.gitAndTools.gitAnnex
       pkgs.gnupg
       pkgs.htop
       pkgs.jq
