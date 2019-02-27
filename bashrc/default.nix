@@ -13,7 +13,7 @@ let
       ''
       source ${fzf}/share/fzf/completion.bash
       source ${fzf}/share/fzf/key-bindings.bash
-      NIX_PATH=nixpkgs=https://api.github.com/repos/${nixpkgsSpec.owner}/${nixpkgsSpec.repo}/tarball/${nixpkgsSpec.rev}
+      NIX_PATH=nixpkgs=${sources.nixpkgs}
       ''
     ]
     );
