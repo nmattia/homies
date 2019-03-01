@@ -1,34 +1,34 @@
 {
     "snack": {
         "homepage": "",
-        "url": "https://github.com/nmattia/snack/archive/1834e8de8c8a34a8af30b266edaa1b6e1c971fb2.tar.gz",
+        "url": "https://github.com/nmattia/snack/archive/90938d85dfdd0716ce05ef6820b7036301182ea4.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "snack",
-        "sha256": "10s7p8f94md416d228vfkvrfw6d7sdkrj05srqhqv108g81jw0vy",
+        "sha256": "1hp8qg855psbym2aji8p8qapadwai54r2vj2is76p66kn60g1mca",
         "description": "Nix-based incremental build tool for Haskell projects",
-        "rev": "1834e8de8c8a34a8af30b266edaa1b6e1c971fb2"
+        "rev": "90938d85dfdd0716ce05ef6820b7036301182ea4"
     },
     "nixpkgs": {
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/3276e04a39ed6ecf8fc3d2d73fda80781449f92e.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/060bcd6df50bf2e61efe7b14b0458e83d72adc87.tar.gz",
         "owner": "NixOS",
         "branch": "nixos-18.09",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "nixpkgs-channels",
-        "sha256": "1kimplgz5n7l22z5fc6aqdbfx22pbld13jzyg87p5cv3gj86lij3",
+        "sha256": "08654rnh9rnprvlyhn0s8kkwj0wq7rbg8iw4021n3nl1gd47rrx3",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
-        "rev": "3276e04a39ed6ecf8fc3d2d73fda80781449f92e"
+        "rev": "060bcd6df50bf2e61efe7b14b0458e83d72adc87"
     },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",
-        "url": "https://github.com/nmattia/niv/archive/cdfa7b9a27a92b0892f1286de529dc25b653f5f0.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/7f72d723d00fcc3f177138acbfcf9d581beee9e1.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "niv",
-        "sha256": "1qsm2f6znkxqw2nvxhfyrx43c0h1ppnvxnbbd9738vbh8dw105cx",
+        "sha256": "0177xhz55519xrak1fmv3gilbg8330lmbfkbizkc8zgp58skcmjw",
         "description": "Easy dependency management for Nix projects",
-        "rev": "cdfa7b9a27a92b0892f1286de529dc25b653f5f0"
+        "rev": "7f72d723d00fcc3f177138acbfcf9d581beee9e1"
     }
 }
