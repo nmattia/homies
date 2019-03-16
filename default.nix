@@ -59,7 +59,8 @@ let
         symlinkJoin
         vimPlugins
         vimUtils
-        vim_configurable;
+        vim_configurable
+        sources;
       inherit
         git
         tmux;

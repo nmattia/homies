@@ -20,6 +20,18 @@
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
         "rev": "fef0aaaaab477a24fcf557d22b4a135317bb5ae6"
     },
+    "vim-terraform": {
+        "homepage": "http://hashivim.github.io/vim-terraform",
+        "url": "https://github.com/hashivim/vim-terraform/archive/e7cd4746946205ab03039f2d0d0af3c0d55d4c4d.tar.gz",
+        "owner": "hashivim",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "vim-terraform",
+        "type": "tarball",
+        "sha256": "0fv9w5hadyzp871p739mrjsfj0m4xang3lkz3gsv1cxw3iglkfld",
+        "description": "basic vim/terraform integration",
+        "rev": "e7cd4746946205ab03039f2d0d0af3c0d55d4c4d"
+    },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",
         "url": "https://github.com/nmattia/niv/archive/82bd4999de0215d4de8e5b845d338f8114c590c5.tar.gz",
