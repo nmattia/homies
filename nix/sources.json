@@ -6,19 +6,21 @@
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "snack",
+        "type": "tarball",
         "sha256": "1hp8qg855psbym2aji8p8qapadwai54r2vj2is76p66kn60g1mca",
         "description": "Nix-based incremental build tool for Haskell projects",
         "rev": "90938d85dfdd0716ce05ef6820b7036301182ea4"
     },
     "nixpkgs": {
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/fef0aaaaab477a24fcf557d22b4a135317bb5ae6.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/5d972dd2c94e1a9b0a051d8a280f57905e492120.tar.gz",
         "owner": "NixOS",
         "branch": "nixos-18.09",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "nixpkgs-channels",
-        "sha256": "121s2gynhnici9sx1nwhbagaq1xmkq7hc7c2ch8i8ypg35qximxv",
+        "type": "tarball",
+        "sha256": "0zalscv8lpnhzysiwx2as353gdlkfik8pw75x8s97l847k700wy8",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
-        "rev": "fef0aaaaab477a24fcf557d22b4a135317bb5ae6"
+        "rev": "5d972dd2c94e1a9b0a051d8a280f57905e492120"
     },
     "vim-terraform": {
         "homepage": "http://hashivim.github.io/vim-terraform",
@@ -34,13 +36,14 @@
     },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",
-        "url": "https://github.com/nmattia/niv/archive/82bd4999de0215d4de8e5b845d338f8114c590c5.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/fc58efb5ed80b0a5bc997db53748c70d62c27603.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "niv",
-        "sha256": "11gys7rrj1jspibbi5gvdb9liq8n18mrdfvk4r1mmi20zana27ar",
+        "type": "tarball",
+        "sha256": "1yn1pxi5izs3ivfg0i2qj2jrrnw0y8ymhczl9992b0vkckapj9xn",
         "description": "Easy dependency management for Nix projects",
-        "rev": "82bd4999de0215d4de8e5b845d338f8114c590c5"
+        "rev": "fc58efb5ed80b0a5bc997db53748c70d62c27603"
     }
 }
