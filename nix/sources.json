@@ -1,26 +1,26 @@
 {
     "snack": {
         "homepage": "",
-        "url": "https://github.com/nmattia/snack/archive/90938d85dfdd0716ce05ef6820b7036301182ea4.tar.gz",
+        "url": "https://github.com/nmattia/snack/archive/846e5a808e11cf900bede2c394523c71987f41ad.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "snack",
         "type": "tarball",
-        "sha256": "1hp8qg855psbym2aji8p8qapadwai54r2vj2is76p66kn60g1mca",
+        "sha256": "116yrpbkn9pbn35cs4vgdwncz0qgaf0ynnnwfdj268w97qv03f9r",
         "description": "Nix-based incremental build tool for Haskell projects",
-        "rev": "90938d85dfdd0716ce05ef6820b7036301182ea4"
+        "rev": "846e5a808e11cf900bede2c394523c71987f41ad"
     },
     "nixpkgs": {
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/222950952f15f6b1e9f036b80440b597f23e652d.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/2aa505b77c04bfd8bb702cbf261f1141a3fe55c2.tar.gz",
         "owner": "NixOS",
         "branch": "nixos-18.09",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "nixpkgs-channels",
         "type": "tarball",
-        "sha256": "1hfchhy8vlc333sglabk1glkcnv4mrnarm9j4havqn7g5ri68vrd",
+        "sha256": "14lp7lcwfy6zs2xlhmc71dbq767inz6rp9v2wcma3lf3jf46acvl",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
-        "rev": "222950952f15f6b1e9f036b80440b597f23e652d"
+        "rev": "2aa505b77c04bfd8bb702cbf261f1141a3fe55c2"
     },
     "vim-terraform": {
         "homepage": "http://hashivim.github.io/vim-terraform",
@@ -36,14 +36,14 @@
     },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",
-        "url": "https://github.com/nmattia/niv/archive/af92a311c9920bae44bd7fd485d1cb0e819141e5.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/a489b65a5c3a29983701069d1ce395b23d9bde64.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "niv",
         "type": "tarball",
-        "sha256": "14dvs65791fvvfzxy66a7jq3sh0hf5dkb0ld4cp1higz41svg4i9",
+        "sha256": "0mvh2x4l4f3nbgzzygk317nkzbyj3xgnczivgdra4q82dg8x77ka",
         "description": "Easy dependency management for Nix projects",
-        "rev": "af92a311c9920bae44bd7fd485d1cb0e819141e5"
+        "rev": "a489b65a5c3a29983701069d1ce395b23d9bde64"
     }
 }
