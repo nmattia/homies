@@ -17,6 +17,7 @@ let
       pkgs.curl
       pkgs.fzf
       pkgs.gnupg
+      pkgs.haskellPackages.wai-app-static
       pkgs.htop
       pkgs.jq
       pkgs.less
