@@ -347,9 +347,6 @@ let g:ctrlp_working_path_mode = 'ra'
 let g:ycm_key_list_select_completion = ['<C-j>']
 let g:ycm_key_list_previous_completion = ['<C-k>']
 
-" set python2 interpreter path
-let g:ycm_server_python_interpreter = '/usr/bin/python'
-
 "" better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<C-l>"
 let g:UltiSnipsJumpForwardTrigger = "<C-l>"

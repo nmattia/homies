@@ -18,6 +18,7 @@ let
       syntastic
       tmux-navigator
       vim-airline
+      vim-colorschemes
       vim-easymotion
       vim-indent-guides
       vim-markdown
