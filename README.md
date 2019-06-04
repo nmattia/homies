@@ -12,15 +12,10 @@ seconds. The following is run on a pristine Ubuntu machine with `curl`
 available:
 
 ``` shell
-$ # install Nix
-$ curl https://nixos.org/nix/install | sh
-$ echo ". $HOME/.nix-profile/etc/profile.d/nix.sh" >> .bashrc # optional
-$ . $HOME/.nix-profile/etc/profile.d/nix.sh
-$ # pull the homies
-$ nix-shell -p git --run 'git clone http://github.com/nmattia/homies'
-$ # applying the config
-$ cd homies; nix-env -f default.nix -i --remove-all
-$ echo 'if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi' >> .bashrc
+$ # install from the latest master
+$ nix-env -if https://github.com/nmattia/homies/tarball/master --remove-all
+$ # make sure that the .bashrc is sourced
+$ echo 'if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi' >> ~/.bashrc
 ```
 
 The homies will be available in all subsequent shells, including the
