@@ -1,11 +1,41 @@
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
 # No locking on Ctrl-S
 stty -ixon
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 alias gd="git diff"
 alias t="tmux -2"
 alias xo="xdg-open"
 alias grephs="grep --exclude-dir .stack-work --include '*.hs'"
 alias tmp='cd $(mktemp -d)'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
 
 # GHC(i) with custom set of packages
 
@@ -19,16 +49,41 @@ ghci-with() {
     --run ghci
 }
 
-# Eternal bash history, found here: https://stackoverflow.com/questions/9457233/unlimited-bash-history
-# ---------------------
-# Undocumented feature which sets the size to "unlimited".
-# http://stackoverflow.com/questions/9457233/unlimited-bash-history
-export HISTFILESIZE=-1
-export HISTSIZE=-1
-export HISTTIMEFORMAT="%d/%m/%y %T "
-# Change the file location because certain bash sessions truncate .bash_history file upon close.
-# http://superuser.com/questions/575479/bash-history-truncated-to-500-lines-on-each-login
-export HISTFILE=~/.bash_eternal_history
-# Force prompt to write history after every command.
-# http://superuser.com/questions/20900/bash-history-loss
-PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+##
+## history: http://mywiki.wooledge.org/BashFAQ/088
+##
+
+# Big history
+HISTFILESIZE=10000
+HISTSIZE=10000
+
+# history -a causes an immediate write of all new history lines
+# (instead of upon shell exit)
+PROMPT_COMMAND="history -a"
+
+# histappend which causes all new history lines to be appended, and ensures
+# that multiple logins do not overwrite each other's history
+shopt -s histappend
+
+##
+## prompt
+##
+
+PS1='\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+##
+## completion
+##
+
+# Copied over from the default Ubuntu config
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+for bcfile in ~/.nix-profile/etc/bash_completion.d/* ; do
+  . $bcfile
+done
