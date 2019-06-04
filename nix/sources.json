@@ -12,15 +12,15 @@
         "rev": "846e5a808e11cf900bede2c394523c71987f41ad"
     },
     "nixpkgs": {
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/2aa505b77c04bfd8bb702cbf261f1141a3fe55c2.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/06602f4bc76e46fe25e4c6e6e3db3f62714451d7.tar.gz",
         "owner": "NixOS",
-        "branch": "nixos-18.09",
+        "branch": "nixos-19.03",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "nixpkgs-channels",
         "type": "tarball",
-        "sha256": "14lp7lcwfy6zs2xlhmc71dbq767inz6rp9v2wcma3lf3jf46acvl",
+        "sha256": "0a2pqnfk6m5ys2z47n463f86kqzk1g4527vib8fj9yagir4c1ph4",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
-        "rev": "2aa505b77c04bfd8bb702cbf261f1141a3fe55c2"
+        "rev": "06602f4bc76e46fe25e4c6e6e3db3f62714451d7"
     },
     "vim-terraform": {
         "homepage": "http://hashivim.github.io/vim-terraform",
