@@ -36,7 +36,7 @@ let
 
   # Git with config baked in
   git = import ./git (
-    { inherit (pkgs) makeWrapper symlinkJoin;
+    { inherit (pkgs) makeWrapper symlinkJoin writeTextFile;
       git = pkgs.git;
     });
 
