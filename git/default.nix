@@ -3,7 +3,10 @@
 with
   { gitHome = writeTextFile
       { name = "git-config";
-        text = builtins.readFile ./config;
+        text =
+          builtins.replaceStrings
+          ["SUBSTITUTE_GITIGNORE"] ["${./gitignore}"]
+          (builtins.readFile ./config);
         destination = "/.gitconfig";
       };
   };

@@ -1,3 +1,5 @@
+[core]
+    excludesfile = SUBSTITUTE_GITIGNORE
 [user]
     name = Nicolas Mattia
 [alias]
