@@ -11,6 +11,18 @@
         "description": "Nix-based incremental build tool for Haskell projects",
         "rev": "846e5a808e11cf900bede2c394523c71987f41ad"
     },
+    "bitwarden-jslib": {
+        "homepage": "https://bitwarden.com",
+        "url": "https://github.com/bitwarden/jslib/archive/8375f7381ad1d113fbf2fe2bd65e90ec4a1631b7.tar.gz",
+        "owner": "bitwarden",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "jslib",
+        "type": "tarball",
+        "sha256": "0m6ihff06r577icbjc4vx864vzmyfvzlahpg0fg86kdz8ri3djv7",
+        "description": "Common code referenced across Bitwarden JavaScript projects.",
+        "rev": "8375f7381ad1d113fbf2fe2bd65e90ec4a1631b7"
+    },
     "nixpkgs": {
         "url": "https://github.com/NixOS/nixpkgs-channels/archive/06602f4bc76e46fe25e4c6e6e3db3f62714451d7.tar.gz",
         "owner": "NixOS",
@@ -33,6 +45,30 @@
         "sha256": "12wyjfmwz3lsd45vv4ava361ph6gravggi9vvvr9qgf5zc1shd3b",
         "description": "basic vim/terraform integration",
         "rev": "a44bf0b1a142bb39e84e5d525f7d98b5d3a66057"
+    },
+    "bitwarden-cli": {
+        "homepage": "https://bitwarden.com",
+        "url": "https://github.com/bitwarden/cli/archive/f6bb228249319d8a40dd33aa40734733e931e2c7.tar.gz",
+        "owner": "bitwarden",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "cli",
+        "type": "tarball",
+        "sha256": "0xacbj6pw0nnlfpq4990zrxh6gycd0qql8hnlvnvfnbvrk5g2dfz",
+        "description": "The command line vault (Windows, macOS, & Linux).",
+        "rev": "f6bb228249319d8a40dd33aa40734733e931e2c7"
+    },
+    "napalm": {
+        "homepage": "",
+        "url": "https://github.com/nmattia/napalm/archive/5349edf12b2a34ed0a943a47cafafefdadd95be8.tar.gz",
+        "owner": "nmattia",
+        "branch": "master",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
+        "repo": "napalm",
+        "type": "tarball",
+        "sha256": "197z3ji853ym4jad7ayvgccc538nc58l73vsid91qvs4m55kmxb7",
+        "description": "Support for building npm packages in Nix and lightweight npm registry",
+        "rev": "5349edf12b2a34ed0a943a47cafafefdadd95be8"
     },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",

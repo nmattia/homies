@@ -13,6 +13,7 @@ let
       tmux
       vim
       python
+      bitwarden-cli
 
       pkgs.curl
       pkgs.fzf
@@ -28,8 +29,10 @@ let
       pkgs.xclip
     ];
 
-  ## Some cunstomizations
+  ## Some customizations
   python = pkgs.python.withPackages (ps: [ ps.grip ]);
+
+  bitwarden-cli = pkgs.callPackage ./bitwarden-cli {};
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc {};
