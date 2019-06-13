@@ -1,15 +1,15 @@
 {
     "snack": {
         "homepage": "",
-        "url": "https://github.com/nmattia/snack/archive/846e5a808e11cf900bede2c394523c71987f41ad.tar.gz",
+        "url": "https://github.com/nmattia/snack/archive/b14d64f6a3b919042279fe635cdfffebcabf443c.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "snack",
         "type": "tarball",
-        "sha256": "116yrpbkn9pbn35cs4vgdwncz0qgaf0ynnnwfdj268w97qv03f9r",
+        "sha256": "10ik2jmi63mj3zhcbx932rzb3q32xydfslych927yhnhb9mkb2vw",
         "description": "Nix-based incremental build tool for Haskell projects",
-        "rev": "846e5a808e11cf900bede2c394523c71987f41ad"
+        "rev": "b14d64f6a3b919042279fe635cdfffebcabf443c"
     },
     "bitwarden-jslib": {
         "homepage": "https://bitwarden.com",
@@ -24,27 +24,27 @@
         "rev": "8375f7381ad1d113fbf2fe2bd65e90ec4a1631b7"
     },
     "nixpkgs": {
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/06602f4bc76e46fe25e4c6e6e3db3f62714451d7.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/49dc8087a20e0d742d38be5f13333a03d171006a.tar.gz",
         "owner": "NixOS",
         "branch": "nixos-19.03",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "nixpkgs-channels",
         "type": "tarball",
-        "sha256": "0a2pqnfk6m5ys2z47n463f86kqzk1g4527vib8fj9yagir4c1ph4",
+        "sha256": "1fdnqm4vyj50jb2ydcc0nldxwn6wm7qakxfhmpf72pz2y2ld55i6",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
-        "rev": "06602f4bc76e46fe25e4c6e6e3db3f62714451d7"
+        "rev": "49dc8087a20e0d742d38be5f13333a03d171006a"
     },
     "vim-terraform": {
         "homepage": "http://hashivim.github.io/vim-terraform",
-        "url": "https://github.com/hashivim/vim-terraform/archive/a44bf0b1a142bb39e84e5d525f7d98b5d3a66057.tar.gz",
+        "url": "https://github.com/hashivim/vim-terraform/archive/ffdee14ef1babdb45acf0710e0aaf54fcfc65de0.tar.gz",
         "owner": "hashivim",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "vim-terraform",
         "type": "tarball",
-        "sha256": "12wyjfmwz3lsd45vv4ava361ph6gravggi9vvvr9qgf5zc1shd3b",
+        "sha256": "1l5ywl3rkhxvzhdks9f4pllfhlm8pws6rdb6j3sdhf6jfh2w8lcy",
         "description": "basic vim/terraform integration",
-        "rev": "a44bf0b1a142bb39e84e5d525f7d98b5d3a66057"
+        "rev": "ffdee14ef1babdb45acf0710e0aaf54fcfc65de0"
     },
     "bitwarden-cli": {
         "homepage": "https://bitwarden.com",
@@ -72,14 +72,14 @@
     },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",
-        "url": "https://github.com/nmattia/niv/archive/a489b65a5c3a29983701069d1ce395b23d9bde64.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/13e316e6153df2695b76b3a449a1fded5764d5ae.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "niv",
         "type": "tarball",
-        "sha256": "0mvh2x4l4f3nbgzzygk317nkzbyj3xgnczivgdra4q82dg8x77ka",
+        "sha256": "11cnhj62ah38f079694n4pkvfbv82qj92l2qd2hil24qq3gjw591",
         "description": "Easy dependency management for Nix projects",
-        "rev": "a489b65a5c3a29983701069d1ce395b23d9bde64"
+        "rev": "13e316e6153df2695b76b3a449a1fded5764d5ae"
     }
 }
