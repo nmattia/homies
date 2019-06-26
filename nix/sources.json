@@ -1,16 +1,4 @@
 {
-    "bitwarden-jslib": {
-        "homepage": "https://bitwarden.com",
-        "url": "https://github.com/bitwarden/jslib/archive/8375f7381ad1d113fbf2fe2bd65e90ec4a1631b7.tar.gz",
-        "owner": "bitwarden",
-        "branch": "master",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "repo": "jslib",
-        "type": "tarball",
-        "sha256": "0m6ihff06r577icbjc4vx864vzmyfvzlahpg0fg86kdz8ri3djv7",
-        "description": "Common code referenced across Bitwarden JavaScript projects.",
-        "rev": "8375f7381ad1d113fbf2fe2bd65e90ec4a1631b7"
-    },
     "nixpkgs": {
         "url": "https://github.com/NixOS/nixpkgs-channels/archive/49dc8087a20e0d742d38be5f13333a03d171006a.tar.gz",
         "owner": "NixOS",
@@ -34,40 +22,16 @@
         "description": "basic vim/terraform integration",
         "rev": "ffdee14ef1babdb45acf0710e0aaf54fcfc65de0"
     },
-    "bitwarden-cli": {
-        "homepage": "https://bitwarden.com",
-        "url": "https://github.com/bitwarden/cli/archive/f6bb228249319d8a40dd33aa40734733e931e2c7.tar.gz",
-        "owner": "bitwarden",
-        "branch": "master",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "repo": "cli",
-        "type": "tarball",
-        "sha256": "0xacbj6pw0nnlfpq4990zrxh6gycd0qql8hnlvnvfnbvrk5g2dfz",
-        "description": "The command line vault (Windows, macOS, & Linux).",
-        "rev": "f6bb228249319d8a40dd33aa40734733e931e2c7"
-    },
-    "napalm": {
-        "homepage": "",
-        "url": "https://github.com/nmattia/napalm/archive/5349edf12b2a34ed0a943a47cafafefdadd95be8.tar.gz",
-        "owner": "nmattia",
-        "branch": "master",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "repo": "napalm",
-        "type": "tarball",
-        "sha256": "197z3ji853ym4jad7ayvgccc538nc58l73vsid91qvs4m55kmxb7",
-        "description": "Support for building npm packages in Nix and lightweight npm registry",
-        "rev": "5349edf12b2a34ed0a943a47cafafefdadd95be8"
-    },
     "niv": {
         "homepage": "https://github.com/nmattia/niv",
-        "url": "https://github.com/nmattia/niv/archive/13e316e6153df2695b76b3a449a1fded5764d5ae.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/099f9ea92169c2edbc3ca33313b68f5e9686e800.tar.gz",
         "owner": "nmattia",
         "branch": "master",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
         "repo": "niv",
         "type": "tarball",
-        "sha256": "11cnhj62ah38f079694n4pkvfbv82qj92l2qd2hil24qq3gjw591",
+        "sha256": "1rqaw2r5wbbfpbxjgwrwzf619la1iqvzp3mhq1mfz9vk4hjd3335",
         "description": "Easy dependency management for Nix projects",
-        "rev": "13e316e6153df2695b76b3a449a1fded5764d5ae"
+        "rev": "099f9ea92169c2edbc3ca33313b68f5e9686e800"
     }
 }

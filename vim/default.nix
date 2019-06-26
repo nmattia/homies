@@ -21,6 +21,7 @@ let
       vim-indent-guides
       vim-markdown
       vim-multiple-cursors
+      vim-nix
       vim-tmux-navigator
       vim-trailing-whitespace
       vimproc
