@@ -1,7 +1,7 @@
 { sources ? import ./sources.nix }:
 with
   { overlay = _: pkgs:
-      { inherit (import sources.niv {}) niv;
+      { niv = pkgs.haskell.lib.justStaticExecutables (import sources.niv {}).niv;
         sources = sources;
       };
   };
