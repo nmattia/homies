@@ -22,6 +22,7 @@ let
       vim-markdown
       vim-multiple-cursors
       vim-nix
+      vim-toml
       vim-tmux-navigator
       vim-trailing-whitespace
       vimproc
