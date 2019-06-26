@@ -5,8 +5,6 @@
 let
   extraPackages = with vimPlugins;
     [
-      # TODO: setup ultisnips
-      # ghcmod # NOTE: the haskell package for ghc-mod is broken
 
       ctrlp
       elm-vim

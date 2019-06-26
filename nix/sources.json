@@ -1,16 +1,4 @@
 {
-    "snack": {
-        "homepage": "",
-        "url": "https://github.com/nmattia/snack/archive/b14d64f6a3b919042279fe635cdfffebcabf443c.tar.gz",
-        "owner": "nmattia",
-        "branch": "master",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "repo": "snack",
-        "type": "tarball",
-        "sha256": "10ik2jmi63mj3zhcbx932rzb3q32xydfslych927yhnhb9mkb2vw",
-        "description": "Nix-based incremental build tool for Haskell projects",
-        "rev": "b14d64f6a3b919042279fe635cdfffebcabf443c"
-    },
     "bitwarden-jslib": {
         "homepage": "https://bitwarden.com",
         "url": "https://github.com/bitwarden/jslib/archive/8375f7381ad1d113fbf2fe2bd65e90ec4a1631b7.tar.gz",

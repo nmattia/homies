@@ -9,11 +9,9 @@ let
       # Customized packages
       bashrc
       git
-      snack
       tmux
       vim
       python
-      bitwarden-cli
 
       pkgs.curl
       pkgs.fzf
@@ -31,8 +29,6 @@ let
 
   ## Some customizations
   python = pkgs.python.withPackages (ps: [ ps.grip ]);
-
-  bitwarden-cli = pkgs.callPackage ./bitwarden-cli {};
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc {};
@@ -52,8 +48,6 @@ let
         ;
       tmux = pkgs.tmux;
     });
-
-  snack = (import pkgs.sources.snack).snack-exe;
 
   # Vim with a custom vimrc and set of packages
   vim = import ./vim
