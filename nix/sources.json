@@ -1,37 +1,38 @@
 {
-    "nixpkgs": {
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/49dc8087a20e0d742d38be5f13333a03d171006a.tar.gz",
-        "owner": "NixOS",
-        "branch": "nixos-19.03",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "repo": "nixpkgs-channels",
+    "niv": {
+        "branch": "master",
+        "description": "Easy dependency management for Nix projects",
+        "homepage": "https://github.com/nmattia/niv",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "6822e75b2a7e0b051571c8ba461e9c9f2fdc2e93",
+        "sha256": "0x0yxvz1yb69paqb0nzpkvzdmlvy12ldcg92g2pdkrcddqpbkh9j",
         "type": "tarball",
-        "sha256": "1fdnqm4vyj50jb2ydcc0nldxwn6wm7qakxfhmpf72pz2y2ld55i6",
+        "url": "https://github.com/nmattia/niv/archive/6822e75b2a7e0b051571c8ba461e9c9f2fdc2e93.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs": {
+        "branch": "nixos-19.03",
         "description": "Nixpkgs/NixOS branches that track the Nixpkgs/NixOS channels",
-        "rev": "49dc8087a20e0d742d38be5f13333a03d171006a"
+        "homepage": null,
+        "owner": "NixOS",
+        "repo": "nixpkgs-channels",
+        "rev": "e0c7712eac67c6b820d9d1020f46bac96fd8cede",
+        "sha256": "08rcnqxkninl5a560ss39s4nbqf0a677q6qh1fh7i0lr9pxf6aan",
+        "type": "tarball",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/e0c7712eac67c6b820d9d1020f46bac96fd8cede.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-terraform": {
-        "homepage": "http://hashivim.github.io/vim-terraform",
-        "url": "https://github.com/hashivim/vim-terraform/archive/ffdee14ef1babdb45acf0710e0aaf54fcfc65de0.tar.gz",
-        "owner": "hashivim",
         "branch": "master",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "repo": "vim-terraform",
-        "type": "tarball",
-        "sha256": "1l5ywl3rkhxvzhdks9f4pllfhlm8pws6rdb6j3sdhf6jfh2w8lcy",
         "description": "basic vim/terraform integration",
-        "rev": "ffdee14ef1babdb45acf0710e0aaf54fcfc65de0"
-    },
-    "niv": {
-        "homepage": "https://github.com/nmattia/niv",
-        "url": "https://github.com/nmattia/niv/archive/099f9ea92169c2edbc3ca33313b68f5e9686e800.tar.gz",
-        "owner": "nmattia",
-        "branch": "master",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz",
-        "repo": "niv",
+        "homepage": "http://hashivim.github.io/vim-terraform",
+        "owner": "hashivim",
+        "repo": "vim-terraform",
+        "rev": "996917464cd6b6fd7f11905ac4d77314fcac5593",
+        "sha256": "1bqqizqsn1nzqg02vis9v0rndkw24n3dkvrd799s04818rncm84m",
         "type": "tarball",
-        "sha256": "1rqaw2r5wbbfpbxjgwrwzf619la1iqvzp3mhq1mfz9vk4hjd3335",
-        "description": "Easy dependency management for Nix projects",
-        "rev": "099f9ea92169c2edbc3ca33313b68f5e9686e800"
+        "url": "https://github.com/hashivim/vim-terraform/archive/996917464cd6b6fd7f11905ac4d77314fcac5593.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
