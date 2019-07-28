@@ -5,10 +5,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "6822e75b2a7e0b051571c8ba461e9c9f2fdc2e93",
-        "sha256": "0x0yxvz1yb69paqb0nzpkvzdmlvy12ldcg92g2pdkrcddqpbkh9j",
+        "rev": "8b7b70465c130d8d7a98fba1396ad1481daee518",
+        "sha256": "0fgdrxn2vzpnzr6pxaiyn5zzbd812c6f7xjjhfir0kpzamjnxwwl",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/6822e75b2a7e0b051571c8ba461e9c9f2fdc2e93.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/8b7b70465c130d8d7a98fba1396ad1481daee518.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
@@ -17,10 +17,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs-channels",
-        "rev": "e0c7712eac67c6b820d9d1020f46bac96fd8cede",
-        "sha256": "08rcnqxkninl5a560ss39s4nbqf0a677q6qh1fh7i0lr9pxf6aan",
+        "rev": "112f522d48c51b6c9b785f0d975eb1f7694dc42a",
+        "sha256": "0p42yv8ycli3ipri2sa7szcmjby261jx3751rk3hf8nn1v2wrdl3",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs-channels/archive/e0c7712eac67c6b820d9d1020f46bac96fd8cede.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs-channels/archive/112f522d48c51b6c9b785f0d975eb1f7694dc42a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-terraform": {
@@ -29,10 +29,10 @@
         "homepage": "http://hashivim.github.io/vim-terraform",
         "owner": "hashivim",
         "repo": "vim-terraform",
-        "rev": "996917464cd6b6fd7f11905ac4d77314fcac5593",
-        "sha256": "1bqqizqsn1nzqg02vis9v0rndkw24n3dkvrd799s04818rncm84m",
+        "rev": "6ee2aab70d8cd3d2405b3042141c94766ea461b0",
+        "sha256": "1zld21a0l94hg3qvpb6rzi8kvv9f86mn7pl95rjvs022vfprry05",
         "type": "tarball",
-        "url": "https://github.com/hashivim/vim-terraform/archive/996917464cd6b6fd7f11905ac4d77314fcac5593.tar.gz",
+        "url": "https://github.com/hashivim/vim-terraform/archive/6ee2aab70d8cd3d2405b3042141c94766ea461b0.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
