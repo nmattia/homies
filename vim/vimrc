@@ -408,6 +408,11 @@ autocmd FileType haskell
     \ !(hasktags --ctags . ; sort tags)
     \ &> /dev/null &
 
+" Run rust-tags on buffer write
+autocmd BufRead *.rs :setlocal tags=./rusty-tags.vi;/
+autocmd BufWritePost *.rs :silent! exec "!rusty-tags vi --quiet --start-dir=" . expand('%:p:h') . "&" | redraw!
+
+
 " Jump between haskell functions
 function! JumpHaskellFunction(reverse)
     call search('\C[[:alnum:]]*\s*::', a:reverse ? 'bW' : 'W')

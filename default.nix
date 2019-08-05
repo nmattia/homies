@@ -52,13 +52,17 @@ let
   # Vim with a custom vimrc and set of packages
   vim = import ./vim
     { inherit (pkgs)
+        cargo
+        coreutils
+        ctags
         haskellPackages
         makeWrapper
+        rusty-tags
+        sources
         symlinkJoin
         vimPlugins
         vimUtils
-        vim_configurable
-        sources;
+        vim_configurable;
       inherit
         git
         tmux;

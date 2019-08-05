@@ -1,4 +1,16 @@
 {
+    "naersk": {
+        "branch": "master",
+        "description": "Fast, flexible and eco-friendly Nix shipping of cargo crates since 2019",
+        "homepage": null,
+        "owner": "nmattia",
+        "repo": "naersk",
+        "rev": "5834403f4f4b3152b379b19cec9bdb5889ca9791",
+        "sha256": "0iad4lc49m34niiljzwzf85kr006f2r3bi9khr23m0my7awqss1s",
+        "type": "tarball",
+        "url": "https://github.com/nmattia/naersk/archive/5834403f4f4b3152b379b19cec9bdb5889ca9791.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
@@ -21,6 +33,18 @@
         "sha256": "0p42yv8ycli3ipri2sa7szcmjby261jx3751rk3hf8nn1v2wrdl3",
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs-channels/archive/112f522d48c51b6c9b785f0d975eb1f7694dc42a.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "rusty-tags": {
+        "branch": "master",
+        "description": "Create ctags/etags for a cargo project",
+        "homepage": "",
+        "owner": "dan-t",
+        "repo": "rusty-tags",
+        "rev": "c5a88e102e3e65b55ef15624e4c724ce9039690d",
+        "sha256": "03pza329wz4fnfgd2ahlamrsp9799ich6769vj2sg1ymlyhxh3dz",
+        "type": "tarball",
+        "url": "https://github.com/dan-t/rusty-tags/archive/c5a88e102e3e65b55ef15624e4c724ce9039690d.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-terraform": {
