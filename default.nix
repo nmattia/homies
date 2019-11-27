@@ -22,6 +22,7 @@ let
       pkgs.less
       pkgs.niv
       pkgs.nix
+      pkgs.nix-diff
       pkgs.pass
       pkgs.tree
       pkgs.xclip
