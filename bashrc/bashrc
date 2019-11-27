@@ -16,6 +16,7 @@ stty -ixon
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
+alias gti="git"
 alias gd="git diff"
 alias xo="xdg-open"
 alias grephs="grep --exclude-dir .stack-work --include '*.hs'"
