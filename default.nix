@@ -50,23 +50,19 @@ let
       tmux = pkgs.tmux;
     });
 
+  rusty-tags =
+    let naersk = pkgs.callPackage pkgs.sources.naersk {}; in
+    naersk.buildPackage
+      { src = pkgs.sources.rusty-tags;
+        doDoc = false;
+      };
+
   # Vim with a custom vimrc and set of packages
-  vim = import ./vim
-    { inherit (pkgs)
-        cargo
-        coreutils
-        ctags
-        haskellPackages
-        makeWrapper
-        rusty-tags
-        sources
-        symlinkJoin
-        vimPlugins
-        vimUtils
-        vim_configurable;
-      inherit
+  vim = pkgs.callPackage ./vim
+    { inherit
         git
-        tmux;
+        tmux
+        rusty-tags;
     };
 
 in

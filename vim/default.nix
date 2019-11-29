@@ -13,9 +13,17 @@
 , vimPlugins
 , haskellPackages
 , rusty-tags
+, lib
 , ctags
+, python37
 }:
 let
+  vim = vim_configurable.overrideAttrs (oa:
+    {
+      configureFlags = lib.filter
+        (f: ! lib.hasPrefix "--enable-gui" f) oa.configureFlags;
+    });
+
   extraPackages = with vimPlugins;
     [
 
@@ -59,7 +67,7 @@ symlinkJoin {
   postBuild = ''
     wrapProgram "$out/bin/vim" \
     --add-flags "-u ${customRC}" \
-      --set PATH '${coreutils}/bin:${cargo}/bin:${ctags}/bin:${rusty-tags}/bin:${haskellPackages.hasktags}/bin:${git}/bin:${tmux}/bin'
+      --set PATH '${python37}/bin:${coreutils}/bin:${cargo}/bin:${ctags}/bin:${rusty-tags}/bin:${haskellPackages.hasktags}/bin:${git}/bin:${tmux}/bin'
   '';
-  paths = [ vim_configurable ];
+  paths = [ vim ];
 }

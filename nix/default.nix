@@ -1,12 +1,17 @@
 { sources ? import ./sources.nix }:
 
 let
-  overlay = super: pkgs:
-      { niv = pkgs.haskell.lib.justStaticExecutables (import sources.niv {}).niv;
+  overlay = self: super:
+      { niv = self.haskell.lib.justStaticExecutables (import sources.niv {}).niv;
         sources = sources;
-        rusty-tags =
-          let naersk = super.callPackage sources.naersk {}; in
-          naersk.buildPackage sources.rusty-tags { doDoc = false; };
+        # This is used by ycmd -> youcompleteme -> vim and the fix wasn't
+        # backported to 19.09
+        rustracerd = super.rustracerd.overrideAttrs (oa:
+          {
+            nativeBuildInputs = (oa.nativeBuildInputs or []) ++ [ self.makeWrapper ];
+            buildInputs = (oa.buildInputs or []) ++ self.stdenv.lib.optional self.stdenv.isDarwin self.darwin.Security;
+          }
+          );
       };
 in
 import sources.nixpkgs
