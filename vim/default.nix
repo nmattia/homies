@@ -30,12 +30,11 @@ let
       ctrlp
       elm-vim
       fugitive
-      gitgutter
       nerdcommenter
       nerdtree
       surround
       syntastic
-      tmux-navigator
+      #tmux-navigator
       vim-airline
       vim-colorschemes
       vim-easymotion
