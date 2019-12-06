@@ -17,10 +17,10 @@
         "homepage": "https://github.com/nmattia/niv",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "d9f62fdcb7f009e916a4377388316e8d4718173f",
-        "sha256": "0z55171x705sxlndzkq5ysy7pr1m2s4m5k741kz5mbk1mnp8nrkd",
+        "rev": "444c1ad4896ace10b97ab5becede1ceeced0a90c",
+        "sha256": "199nhdwlnk4wn4kgqyjq9z5cwlajjq7j3i4f54ihc1l9b9rggfd8",
         "type": "tarball",
-        "url": "https://github.com/nmattia/niv/archive/d9f62fdcb7f009e916a4377388316e8d4718173f.tar.gz",
+        "url": "https://github.com/nmattia/niv/archive/444c1ad4896ace10b97ab5becede1ceeced0a90c.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
