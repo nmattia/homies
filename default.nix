@@ -20,6 +20,7 @@ let
       pkgs.htop
       pkgs.jq
       pkgs.less
+      pkgs.moreutils
       pkgs.niv
       pkgs.nix
       pkgs.nix-diff
