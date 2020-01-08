@@ -5,10 +5,10 @@
         "homepage": null,
         "owner": "nmattia",
         "repo": "naersk",
-        "rev": "7f30aa64ce25959b0872012d990060016ae64f88",
-        "sha256": "1p6xkdqsxd9jp4amccfjyiv9jhxy2ixvd8855h2r47mhk3fimbv1",
+        "rev": "548f0aa93620975f97a4cd74c98ffe2897c185e5",
+        "sha256": "0bllrrig90mjb79z3bkbk5r9lxi12382vhigg0094bkxnzb3r3az",
         "type": "tarball",
-        "url": "https://github.com/nmattia/naersk/archive/7f30aa64ce25959b0872012d990060016ae64f88.tar.gz",
+        "url": "https://github.com/nmattia/naersk/archive/548f0aa93620975f97a4cd74c98ffe2897c185e5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "niv": {
@@ -33,6 +33,18 @@
         "sha256": "1al06125rqip36p3jb72s23abz58qy7dc9bj611sigp9qy6x4g61",
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/6e966de055edb820e455cffc7e07bf66aa3dda78.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
+    "nixpkgs-fmt": {
+        "branch": "master",
+        "description": "Nix code formatter for nixpkgs [maintainer=@zimbatm]",
+        "homepage": "https://nix-community.github.io/nixpkgs-fmt/",
+        "owner": "nix-community",
+        "repo": "nixpkgs-fmt",
+        "rev": "2015c9142d4093486a764c0dbcc12798c37b40e9",
+        "sha256": "0nq6m8b6qw0hhgf81i2y3gdz2dl3kvsd67fi60f3ab9xcfk1x3c2",
+        "type": "tarball",
+        "url": "https://github.com/nix-community/nixpkgs-fmt/archive/2015c9142d4093486a764c0dbcc12798c37b40e9.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rusty-tags": {

@@ -9,9 +9,10 @@ let
       # Customized packages
       bashrc
       git
+      nixpkgs-fmt
+      python
       tmux
       vim
-      python
 
       pkgs.curl
       pkgs.fzf
@@ -51,12 +52,10 @@ let
       tmux = pkgs.tmux;
     });
 
-  rusty-tags =
-    let naersk = pkgs.callPackage pkgs.sources.naersk {}; in
-    naersk.buildPackage
-      { src = pkgs.sources.rusty-tags;
-        doDoc = false;
-      };
+  naersk = pkgs.callPackage pkgs.sources.naersk {};
+
+  rusty-tags = naersk.buildPackage pkgs.sources.rusty-tags;
+  nixpkgs-fmt = naersk.buildPackage pkgs.sources.nixpkgs-fmt;
 
   # Vim with a custom vimrc and set of packages
   vim = pkgs.callPackage ./vim
