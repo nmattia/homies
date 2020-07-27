@@ -18,11 +18,7 @@
 , python37
 }:
 let
-  vim = vim_configurable.overrideAttrs (oa:
-    {
-      configureFlags = lib.filter
-        (f: ! lib.hasPrefix "--enable-gui" f) oa.configureFlags;
-    });
+  vim = vim_configurable;
 
   extraPackages = with vimPlugins;
     [
