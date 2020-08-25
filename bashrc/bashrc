@@ -97,3 +97,6 @@ fi
 for bcfile in ~/.nix-profile/etc/bash_completion.d/* ; do
   . $bcfile
 done
+
+# Set up direnv
+eval "$(direnv hook bash)"

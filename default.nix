@@ -15,6 +15,7 @@ let
       vim
 
       pkgs.curl
+      pkgs.direnv
       pkgs.fzf
       pkgs.gnupg
       pkgs.haskellPackages.wai-app-static
