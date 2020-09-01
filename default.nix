@@ -25,7 +25,7 @@ let
       pkgs.less
       pkgs.moreutils
       pkgs.niv
-      pkgs.nixFlakes
+      pkgs.nix
       pkgs.nix-diff
       pkgs.pass
       pkgs.tree
