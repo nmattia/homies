@@ -19,8 +19,8 @@ let
       pkgs.fzf
       pkgs.gnupg
       pkgs.haskellPackages.wai-app-static
-      pkgs.httpie
       pkgs.htop
+      pkgs.httpie
       pkgs.jq
       pkgs.less
       pkgs.moreutils
@@ -28,6 +28,7 @@ let
       pkgs.nix
       pkgs.nix-diff
       pkgs.pass
+      pkgs.shellcheck
       pkgs.tree
       pkgs.xclip
     ];

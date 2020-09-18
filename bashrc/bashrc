@@ -27,7 +27,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 function t {
-    if [ -n "$1" ]; then
+    if [ -n "$1" ] && [ -d "$1" ]; then
         # On Ubuntu, sets the window title
         printf "\e]2;${1%/}\a"
         cd "$1"
