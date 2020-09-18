@@ -16,9 +16,16 @@
 , lib
 , ctags
 , python37
+, stdenv
 }:
 let
-  vim = vim_configurable;
+  vim = if stdenv.isDarwin then vim_configurable.overrideAttrs (
+    oa:
+      {
+        configureFlags = lib.filter
+          (f: ! lib.hasPrefix "--enable-gui" f) oa.configureFlags;
+      }
+  ) else vim_configurable;
 
   extraPackages = with vimPlugins;
     [
@@ -43,22 +50,25 @@ let
       vim-trailing-whitespace
       vimproc
       youcompleteme
-      (vimUtils.buildVimPlugin
-        { name = "vim-terraform";
-          src = sources.vim-terraform;
-          buildPhase = ":";
-        }
+      (
+        vimUtils.buildVimPlugin
+          {
+            name = "vim-terraform";
+            src = sources.vim-terraform;
+            buildPhase = ":";
+          }
       )
 
     ];
   customRC = vimUtils.vimrcFile
-    { customRC = builtins.readFile ./vimrc;
+    {
+      customRC = builtins.readFile ./vimrc;
       packages.mvc.start = extraPackages;
     };
 in
 symlinkJoin {
   name = "vim";
-  buildInputs = [makeWrapper];
+  buildInputs = [ makeWrapper ];
   postBuild = ''
     wrapProgram "$out/bin/vim" \
     --add-flags "-u ${customRC}" \
