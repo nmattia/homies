@@ -1,4 +1,10 @@
 {
+    "git-completion": {
+        "sha256": "04vn7yhqvr29wrv7rcb89n4vmmxsk0p2bnvki3rr187x473k4jzb",
+        "type": "file",
+        "url": "https://raw.githubusercontent.com/git/git/e6362826a0409539642a5738db61827e5978e2e4/contrib/completion/git-completion.bash",
+        "url_template": "https://raw.githubusercontent.com/git/git/e6362826a0409539642a5738db61827e5978e2e4/contrib/completion/git-completion.bash"
+    },
     "naersk": {
         "branch": "master",
         "description": "Fast, flexible and eco-friendly Nix shipping of cargo crates since 2019",

@@ -1,7 +1,7 @@
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
-with { pkgs = import ./nix {}; };
 let
+  pkgs = import ./nix {};
 
   # The list of packages to be installed
   homies = with pkgs;
@@ -41,7 +41,7 @@ let
 
   # Git with config baked in
   git = import ./git (
-    { inherit (pkgs) makeWrapper symlinkJoin writeTextFile;
+    { inherit (pkgs) sources runCommand makeWrapper symlinkJoin writeTextFile;
       git = pkgs.git;
     });
 
