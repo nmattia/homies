@@ -35,6 +35,7 @@ let
       fugitive
       nerdcommenter
       nerdtree
+      purescript-vim
       surround
       syntastic
       #tmux-navigator
@@ -72,7 +73,7 @@ symlinkJoin {
   postBuild = ''
     wrapProgram "$out/bin/vim" \
     --add-flags "-u ${customRC}" \
-      --set PATH '${python37}/bin:${coreutils}/bin:${cargo}/bin:${ctags}/bin:${rusty-tags}/bin:${haskellPackages.hasktags}/bin:${git}/bin:${tmux}/bin'
+      --prefix PATH ':' '${python37}/bin:${coreutils}/bin:${cargo}/bin:${ctags}/bin:${rusty-tags}/bin:${haskellPackages.hasktags}/bin:${git}/bin:${tmux}/bin'
   '';
   paths = [ vim ];
 }
