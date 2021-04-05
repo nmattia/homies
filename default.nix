@@ -58,7 +58,6 @@ let
   naersk = pkgs.callPackage pkgs.sources.naersk {};
 
   rusty-tags = naersk.buildPackage pkgs.sources.rusty-tags;
-  nixpkgs-fmt = naersk.buildPackage pkgs.sources.nixpkgs-fmt;
 
   # Vim with a custom vimrc and set of packages
   vim = pkgs.callPackage ./vim

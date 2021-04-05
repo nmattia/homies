@@ -22,8 +22,10 @@ let
   vim = if stdenv.isDarwin then vim_configurable.overrideAttrs (
     oa:
       {
-        configureFlags = lib.filter
-          (f: ! lib.hasPrefix "--enable-gui" f) oa.configureFlags;
+        configureFlags =
+        #lib.filter
+        #(f: ! lib.hasPrefix "--enable-gui" f)
+        oa.configureFlags;
       }
   ) else vim_configurable;
 
@@ -38,7 +40,6 @@ let
       purescript-vim
       surround
       syntastic
-      #tmux-navigator
       vim-airline
       vim-colorschemes
       vim-easymotion
@@ -50,7 +51,7 @@ let
       vim-tmux-navigator
       vim-trailing-whitespace
       vimproc
-      youcompleteme
+      YouCompleteMe
       (
         vimUtils.buildVimPlugin
           {
