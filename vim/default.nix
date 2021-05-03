@@ -50,7 +50,7 @@ let
       vim-tmux-navigator
       vim-trailing-whitespace
       vimproc
-      youcompleteme
+      YouCompleteMe
       (
         vimUtils.buildVimPlugin
           {
