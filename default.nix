@@ -65,7 +65,7 @@ let
     { inherit
         git
         tmux
-        rusty-tags;
+        #rusty-tags;
     };
 
 in
