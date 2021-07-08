@@ -34,7 +34,7 @@ let
     ];
 
   ## Some customizations
-  python = pkgs.python.withPackages (ps: [ ps.grip ]);
+  python = pkgs.python37.withPackages (ps: [ ps.grip ]);
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc {};
