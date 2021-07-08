@@ -59,10 +59,10 @@ let
     );
 
   # The set of packages used when specs are fetched using non-builtins.
-  mkPkgs = sources:
+  mkPkgs = sources: system:
     let
       sourcesNixpkgs =
-        import (builtins_fetchTarball { inherit (sources.nixpkgs) url sha256; }) {};
+        import (builtins_fetchTarball { inherit (sources.nixpkgs) url sha256; }) { inherit system; };
       hasNixpkgsPath = builtins.any (x: x.prefix == "nixpkgs") builtins.nixPath;
       hasThisAsNixpkgsPath = <nixpkgs> == ./.;
     in
@@ -98,7 +98,10 @@ let
       saneName = stringAsChars (c: if isNull (builtins.match "[a-zA-Z0-9]" c) then "_" else c) name;
       ersatz = builtins.getEnv "NIV_OVERRIDE_${saneName}";
     in
-      if ersatz == "" then drv else ersatz;
+      if ersatz == "" then drv else
+        # this turns the string into an actual Nix path (for both absolute and
+        # relative paths)
+        if builtins.substring 0 1 ersatz == "/" then /. + ersatz else /. + builtins.getEnv "PWD" + "/${ersatz}";
 
   # Ports of functions for older nix versions
 
@@ -157,7 +160,8 @@ let
   mkConfig =
     { sourcesFile ? if builtins.pathExists ./sources.json then ./sources.json else null
     , sources ? if isNull sourcesFile then {} else builtins.fromJSON (builtins.readFile sourcesFile)
-    , pkgs ? mkPkgs sources
+    , system ? builtins.currentSystem
+    , pkgs ? mkPkgs sources system
     }: rec {
       # The sources, i.e. the attribute set of spec name to spec
       inherit sources;
