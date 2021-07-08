@@ -64,7 +64,7 @@ let
   vim = pkgs.callPackage ./vim
     { inherit
         git
-        tmux
+        tmux;
         #rusty-tags;
     };
 
