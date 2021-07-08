@@ -18,17 +18,17 @@ let
       pkgs.direnv
       pkgs.fzf
       pkgs.gnupg
-      pkgs.haskellPackages.wai-app-static
+      #pkgs.haskellPackages.wai-app-static
       pkgs.htop
       pkgs.httpie
       pkgs.jq
       pkgs.less
       pkgs.moreutils
-      pkgs.niv
+      #pkgs.niv
       pkgs.nix
-      pkgs.nix-diff
+      #pkgs.nix-diff
       pkgs.pass
-      pkgs.shellcheck
+      #pkgs.shellcheck
       pkgs.tree
       pkgs.xclip
     ];
