@@ -25,12 +25,11 @@ let
       pkgs.less
       pkgs.moreutils
       #pkgs.niv
-      #pkgs.nix
+      pkgs.nix
       #pkgs.nix-diff
       #pkgs.pass
       #pkgs.shellcheck
       pkgs.tree
-      #pkgs.xclip
     ];
 
   ## Some customizations
