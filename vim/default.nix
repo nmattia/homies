@@ -12,7 +12,7 @@
 , vimUtils
 , vimPlugins
 , haskellPackages
-, rusty-tags
+#, rusty-tags
 , lib
 , ctags
 , python37
@@ -73,7 +73,7 @@ symlinkJoin {
   postBuild = ''
     wrapProgram "$out/bin/vim" \
     --add-flags "-u ${customRC}" \
-      --prefix PATH ':' '${python37}/bin:${coreutils}/bin:${cargo}/bin:${ctags}/bin:${rusty-tags}/bin:${haskellPackages.hasktags}/bin:${git}/bin:${tmux}/bin'
+      --prefix PATH ':' '${python37}/bin:${coreutils}/bin:${cargo}/bin:${ctags}/bin:${git}/bin:${tmux}/bin'
   '';
   paths = [ vim ];
 }
