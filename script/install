@@ -1,1 +1,1 @@
-nix-env -if default.nix --remove-all --max-jobs 20
+nix-env -if default.nix --remove-all --max-jobs 8
