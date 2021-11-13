@@ -28,7 +28,6 @@ let
       pkgs.nix
       pkgs.nix-diff
       pkgs.shellcheck
-      # pkgs.tree
     ];
 
   ## Some customizations
