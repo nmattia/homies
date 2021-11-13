@@ -27,14 +27,12 @@ let
       pkgs.niv
       pkgs.nix
       pkgs.nix-diff
-      pkgs.pass
       pkgs.shellcheck
-      pkgs.tree
-      pkgs.xclip
+      # pkgs.tree
     ];
 
   ## Some customizations
-  python = pkgs.python.withPackages (ps: [ ps.grip ]);
+  python = pkgs.python37.withPackages (ps: [ ps.grip ]);
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc {};
@@ -55,17 +53,17 @@ let
       tmux = pkgs.tmux;
     });
 
-  naersk = pkgs.callPackage pkgs.sources.naersk {};
+  #naersk = pkgs.callPackage pkgs.sources.naersk {};
 
-  rusty-tags = naersk.buildPackage pkgs.sources.rusty-tags;
-  nixpkgs-fmt = naersk.buildPackage pkgs.sources.nixpkgs-fmt;
+  #rusty-tags = naersk.buildPackage pkgs.sources.rusty-tags;
+  #nixpkgs-fmt = naersk.buildPackage pkgs.sources.nixpkgs-fmt;
 
   # Vim with a custom vimrc and set of packages
   vim = pkgs.callPackage ./vim
     { inherit
         git
-        tmux
-        rusty-tags;
+        tmux;
+        #rusty-tags;
     };
 
 in
