@@ -47,10 +47,10 @@
         "homepage": "https://nix-community.github.io/nixpkgs-fmt/",
         "owner": "nix-community",
         "repo": "nixpkgs-fmt",
-        "rev": "2015c9142d4093486a764c0dbcc12798c37b40e9",
-        "sha256": "0nq6m8b6qw0hhgf81i2y3gdz2dl3kvsd67fi60f3ab9xcfk1x3c2",
+        "rev": "c7f66ec1b969ed118231fdf7f596c5ed2c2cfe49",
+        "sha256": "0cnd8ml3qd6bqak6k3gbd6wfsys9a3y4mkafpx9ir1fd3flxwlz5",
         "type": "tarball",
-        "url": "https://github.com/nix-community/nixpkgs-fmt/archive/2015c9142d4093486a764c0dbcc12798c37b40e9.tar.gz",
+        "url": "https://github.com/nix-community/nixpkgs-fmt/archive/c7f66ec1b969ed118231fdf7f596c5ed2c2cfe49.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "rusty-tags": {

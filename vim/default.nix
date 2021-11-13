@@ -30,7 +30,7 @@ let
   extraPackages = with vimPlugins;
     [
 
-      # ctrlp
+      ctrlp
       elm-vim
       fugitive
       nerdcommenter
