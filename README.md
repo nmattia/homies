@@ -26,12 +26,6 @@ configuration, etc). See the [introduction blog post][post] for an overview.
 
 ## How-To
 
-Trying out the package set:
-
-``` shell
-$ nix-shell --pure
-```
-
 Installing the package set:
 
 ``` shell

@@ -10,7 +10,6 @@ let
       bashrc
       git
       nixpkgs-fmt
-      python
       tmux
       vim
 
@@ -20,18 +19,15 @@ let
       pkgs.gnupg
       pkgs.haskellPackages.wai-app-static
       pkgs.htop
-      pkgs.httpie
       pkgs.jq
       pkgs.less
       pkgs.moreutils
       pkgs.niv
       pkgs.nix
       pkgs.nix-diff
+      pkgs.python
       pkgs.shellcheck
     ];
-
-  ## Some customizations
-  python = pkgs.python37.withPackages (ps: [ ps.grip ]);
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc {};
@@ -63,12 +59,4 @@ let
         tmux;
     };
 
-in
-  if pkgs.lib.inNixShell
-  then pkgs.mkShell
-    { buildInputs = homies;
-      shellHook = ''
-        $(bashrc)
-        '';
-    }
-  else homies
+in homies

@@ -4,7 +4,6 @@
 { sources
 , git
 , coreutils
-, cargo
 , tmux
 , symlinkJoin
 , makeWrapper
@@ -17,13 +16,6 @@
 , stdenv
 }:
 let
-  vim = if stdenv.isDarwin then vim_configurable.overrideAttrs (
-    oa:
-      {
-        configureFlags = lib.filter
-          (f: ! lib.hasPrefix "--enable-gui" f) oa.configureFlags;
-      }
-  ) else vim_configurable;
 
   extraPackages = with vimPlugins;
     [
@@ -36,7 +28,6 @@ let
       purescript-vim
       surround
       syntastic
-      #tmux-navigator
       vim-airline
       vim-colorschemes
       vim-easymotion
@@ -71,7 +62,7 @@ symlinkJoin {
   postBuild = ''
     wrapProgram "$out/bin/vim" \
     --add-flags "-u ${customRC}" \
-      --prefix PATH ':' '${python37}/bin:${coreutils}/bin:${cargo}/bin:${ctags}/bin:${git}/bin:${tmux}/bin'
+      --prefix PATH ':' '${coreutils}/bin:${ctags}/bin:${git}/bin:${tmux}/bin'
   '';
-  paths = [ vim ];
+  paths = [ vim_configurable ];
 }
