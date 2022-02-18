@@ -20,7 +20,6 @@ alias gti="git"
 alias :e="vim"
 alias gd="git diff"
 alias xo="xdg-open"
-alias grephs="grep --exclude-dir .stack-work --include '*.hs'"
 alias tmp='cd $(mktemp -d)'
 alias ll='ls -alF'
 alias la='ls -A'

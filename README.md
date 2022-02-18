@@ -55,3 +55,6 @@ Deleting old configurations:
 ``` shell
 $ nix-env --delete-generations [3 4 9 | old | 30d]
 ```
+
+TODO: Add Inconsolata to iterm2 fonts https://www.nerdfonts.com/font-downloads
+TODO: Add powerline (iterm2)

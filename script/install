@@ -1,1 +1,2 @@
-nix-env -if default.nix --remove-all --max-jobs 8
+#!/usr/bin/env bash
+nix-env -if default.nix --remove-all --max-jobs 8 --no-link
