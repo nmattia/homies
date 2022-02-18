@@ -8,30 +8,33 @@ let vim-tmux-navigator = builtins.fetchTarball https://github.com/christoomey/vi
 
 let vim-nix = builtins.fetchTarball https://github.com/LnL7/vim-nix/archive/refs/heads/master.zip; in
 
-let pluginsDir = runCommand "mk-plugins" {}
-''
-mkdir -p $out/pack/nix-is-an-addiction/start
+let
+  pluginsDir = runCommand "mk-plugins" { }
+    ''
+      mkdir -p $out/pack/nix-is-an-addiction/start
 
-cp -a ${nvimtree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
-cp -a ${nvimtreeicons}/. $out/pack/nix-is-an-addiction/start/nvim-web-devicons
-cp -a ${vim-tmux-navigator}/. $out/pack/nix-is-an-addiction/start/vim-tmux-navigator
-cp -a ${vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
+      cp -a ${nvimtree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
+      cp -a ${nvimtreeicons}/. $out/pack/nix-is-an-addiction/start/nvim-web-devicons
+      cp -a ${vim-tmux-navigator}/. $out/pack/nix-is-an-addiction/start/vim-tmux-navigator
+      cp -a ${vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
 
-''; in
+    '';
+in
 
 # neovim will load plugins from `plugin/` of any dir specified on
-# `runtimepath`.
-let rc = ''
-let mapleader=","
-set packpath+=${pluginsDir} " TODO: set through env var
-lua require'nvim-tree'.setup{}
-nnoremap <Leader>o :NvimTreeToggle<CR>
+  # `runtimepath`.
+let
+  rc = ''
+    let mapleader=","
+    set packpath+=${pluginsDir} " TODO: set through env var
+    lua require'nvim-tree'.setup{}
+    nnoremap <Leader>o :NvimTreeToggle<CR>
 
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-'';
+    nnoremap <C-J> <C-W><C-J>
+    nnoremap <C-K> <C-W><C-K>
+    nnoremap <C-L> <C-W><C-L>
+    nnoremap <C-H> <C-W><C-H>
+  '';
 in
 
 symlinkJoin {

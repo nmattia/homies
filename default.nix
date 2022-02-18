@@ -27,7 +27,7 @@ let
       pkgs.python
     ];
 
-  neovim = pkgs.callPackage ./neovim {};
+  neovim = pkgs.callPackage ./neovim { };
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc { };

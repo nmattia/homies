@@ -9,16 +9,18 @@ let
   nixpkgsSpec = sources.nixpkgs;
   bashrc = writeText "bashrc"
     (lib.concatStringsSep "\n"
-    [ (builtins.readFile ./bashrc)
-      ''
-      source ${fzf}/share/fzf/completion.bash
-      source ${fzf}/share/fzf/key-bindings.bash
-      NIX_PATH=nixpkgs=${sources.nixpkgs}
-      export SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
-      ''
-    ]
+      [
+        (builtins.readFile ./bashrc)
+        ''
+          source ${fzf}/share/fzf/completion.bash
+          source ${fzf}/share/fzf/key-bindings.bash
+          NIX_PATH=nixpkgs=${sources.nixpkgs}
+          export SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
+        ''
+      ]
     );
-in writeScriptBin "bashrc"
+in
+writeScriptBin "bashrc"
   ''
     echo ". ${bashrc}"
   ''
