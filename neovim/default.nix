@@ -14,7 +14,6 @@ let
       mkdir -p $out/pack/nix-is-an-addiction/start
 
       cp -a ${nvimtree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
-      cp -a ${nvimtreeicons}/. $out/pack/nix-is-an-addiction/start/nvim-web-devicons
       cp -a ${vim-tmux-navigator}/. $out/pack/nix-is-an-addiction/start/vim-tmux-navigator
       cp -a ${vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
     '';
