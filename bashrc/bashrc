@@ -34,6 +34,27 @@ function t {
     tmux -2 new-session \; split-window -h \; attach
 }
 
+function n {
+    if [ "$#" -eq 0 ]
+    then
+        nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen'
+    elif [ "$#" -eq 1 ]
+    then
+        local dest="$1"
+        if [ -d "$dest" ]
+        then
+            cd "$dest" || exit
+            nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen'
+        else
+            cd "$(dirname "$dest")" || exit
+            nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen' "$(basename "$dest")"
+        fi
+    else
+        echo "expected 0 or 1 arguments, got $#"
+        exit 1
+    fi
+}
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
