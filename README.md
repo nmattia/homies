@@ -24,6 +24,11 @@ configuration, etc). See the [introduction blog post][post] for an overview.
 
 [post]: http://nmattia.com/posts/2018-03-21-nix-reproducible-setup-linux-macos.html
 
+## Fonts
+
+Make sure to [install](https://www.nerdfonts.com/font-downloads) a font with
+icons (e.g. Inconsolata) in iterm2 and tell iterm2 to "Use powerline glyphs".
+
 ## How-To
 
 Installing the package set:
@@ -56,5 +61,3 @@ Deleting old configurations:
 $ nix-env --delete-generations [3 4 9 | old | 30d]
 ```
 
-TODO: Add Inconsolata to iterm2 fonts https://www.nerdfonts.com/font-downloads
-TODO: Add powerline (iterm2)
