@@ -11,7 +11,7 @@ let vim-nix = builtins.fetchTarball https://github.com/LnL7/vim-nix/archive/refs
 let fzf-vim = builtins.fetchTarball https://github.com/junegunn/fzf.vim/archive/refs/heads/master.zip; in
 
 let
-  pluginsDir = runCommand "mk-plugins" { }
+  pluginsDir = runCommand "mk-plugins" { nativeBuildInputs = [ neovim-unwrapped ]; }
     ''
       mkdir -p $out/pack/nix-is-an-addiction/start
 
@@ -22,6 +22,16 @@ let
 
       mkdir -p $out/pack/fzf/start
       ln -s ${fzf}/share/vim-plugins/fzf $out/pack/fzf/start/fzf
+
+      for plugin in $out/pack/nix-is-an-addiction/start/*
+      do
+        cd "$plugin"
+        if [ -d doc ]
+        then
+          chmod -R +w .
+          XDG_DATA_HOME=$PWD nvim -u NONE -c ":helptags doc" -c q
+        fi
+      done
     '';
 in
 
