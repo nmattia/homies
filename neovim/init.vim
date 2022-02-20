@@ -32,7 +32,13 @@ inoremap <C-H> <C-O><C-W><C-H>
 " Save buffer on ,w
 nnoremap <Leader>w :write<CR>
 
-" TERMINAL
+
+" Open file picker (FZF) on ,f
+nnoremap <Leader>f :FZF<CR>
+
+""""""""""""
+" TERMINAL "
+""""""""""""
 
 " Create a new pane and open terminal
 nnoremap <C-W>ws :new<CR>:terminal<CR>
@@ -45,9 +51,6 @@ nnoremap <C-W>wv :vnew<CR>:terminal<CR>
 
 " Open new terminals in insert mode
 autocmd TermOpen * startinsert
-
-" Open new terminals in insert mode
-autocmd TermClose * echomsg(v:event)
 
 " Exit terminal through Ctrl+hjkl
 tnoremap <C-H> <C-\><C-N><C-W><C-H>

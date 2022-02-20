@@ -1,4 +1,4 @@
-{ runCommand, writeText, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin }:
+{ runCommand, writeText, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf }:
 
 let nvimtree = builtins.fetchTarball https://github.com/kyazdani42/nvim-tree.lua/archive/refs/heads/master.zip; in
 
@@ -16,6 +16,9 @@ let
       cp -a ${nvimtree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
       cp -a ${vim-tmux-navigator}/. $out/pack/nix-is-an-addiction/start/vim-tmux-navigator
       cp -a ${vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
+
+      mkdir -p $out/pack/fzf/start
+      ln -s ${fzf}/share/vim-plugins/fzf $out/pack/fzf/start/fzf
     '';
 in
 
