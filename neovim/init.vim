@@ -35,11 +35,19 @@ nnoremap <Leader>w :write<CR>
 " TERMINAL
 
 " Create a new pane and open terminal
-nnoremap <C-W>ts :new<CR>:terminal<CR>
-nnoremap <C-W>tv :vnew<CR>:terminal<CR>
+nnoremap <C-W>ws :new<CR>:terminal<CR>
+
+" Open a terminal in the current window
+nnoremap <Leader>t :terminal<CR>
+
+" or this? nnoremap <C-W>ws :new<CR>:terminal<CR>
+nnoremap <C-W>wv :vnew<CR>:terminal<CR>
 
 " Open new terminals in insert mode
 autocmd TermOpen * startinsert
+
+" Open new terminals in insert mode
+autocmd TermClose * echomsg(v:event)
 
 " Exit terminal through Ctrl+hjkl
 tnoremap <C-H> <C-\><C-N><C-W><C-H>
@@ -47,8 +55,11 @@ tnoremap <C-J> <C-\><C-N><C-W><C-J>
 tnoremap <C-K> <C-\><C-N><C-W><C-K>
 tnoremap <C-L> <C-\><C-N><C-W><C-L>
 
-" Exit terminal through Esc
+" Exit terminal with <C-\>
 tnoremap <C-\> <C-\><C-N>
+
+" Close the terminal buffer if the terminal exits with 0
+autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
 
 " Make sure :terminal loads bash profile
 set shell=bash\ -l
