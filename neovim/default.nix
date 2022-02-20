@@ -8,6 +8,8 @@ let vim-tmux-navigator = builtins.fetchTarball https://github.com/christoomey/vi
 
 let vim-nix = builtins.fetchTarball https://github.com/LnL7/vim-nix/archive/refs/heads/master.zip; in
 
+let fzf-vim = builtins.fetchTarball https://github.com/junegunn/fzf.vim/archive/refs/heads/master.zip; in
+
 let
   pluginsDir = runCommand "mk-plugins" { }
     ''
@@ -16,6 +18,7 @@ let
       cp -a ${nvimtree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
       cp -a ${vim-tmux-navigator}/. $out/pack/nix-is-an-addiction/start/vim-tmux-navigator
       cp -a ${vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
+      cp -a ${fzf-vim}/. $out/pack/nix-is-an-addiction/start/fzf.vim
 
       mkdir -p $out/pack/fzf/start
       ln -s ${fzf}/share/vim-plugins/fzf $out/pack/fzf/start/fzf

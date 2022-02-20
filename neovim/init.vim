@@ -13,6 +13,9 @@ lua require'nvim-tree'.setup({git = { ignore = false }})
 " Toggle filetree on ,o
 nnoremap <Leader>o :NvimTreeToggle<CR>
 
+" Toggle Buffers on ,b
+nnoremap <Leader>b :Buffers<CR>
+
 " don't wrap lines
 set nowrap
 
