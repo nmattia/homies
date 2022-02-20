@@ -4,6 +4,29 @@ let mapleader=","
 set splitright
 set splitbelow
 
+" Show line numbers
+set number
+" ... except in terminal
+autocmd TermOpen * setlocal nonumber norelativenumber
+
+" Display tabs and trailing spaces
+set list
+set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
+
+" Wrap lines
+set wrap
+
+" Default indent settings
+set shiftwidth=4
+set softtabstop=4
+
+" Set the width of \t to 4. It's still a TAB, but displayed as wide as 4
+" chars.
+set tabstop=4
+
+" In insert mode, hitting TAB will insert N spaces instead.
+set expandtab
+
 " NEOVIM_PLUGINS_PATH should be set to a dir containing plugins
 set packpath+=$NEOVIM_PLUGINS_PATH
 
@@ -16,8 +39,6 @@ nnoremap <Leader>o :NvimTreeToggle<CR>
 " Toggle Buffers on ,b
 nnoremap <Leader>b :Buffers<CR>
 
-" don't wrap lines
-set nowrap
 
 " Simplify navigation across windows
 nnoremap <C-J> <C-W><C-J>
