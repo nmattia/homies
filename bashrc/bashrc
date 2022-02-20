@@ -17,9 +17,8 @@ stty -ixon
 shopt -s checkwinsize
 
 alias gti="git"
-alias :e="vim"
+alias :e="nvim"
 alias gd="git diff"
-alias xo="xdg-open"
 alias tmp='cd $(mktemp -d)'
 alias ll='ls -alF'
 alias la='ls -A'
@@ -34,6 +33,13 @@ function t {
     tmux -2 new-session \; split-window -h \; attach
 }
 
+# Clear the screen in an nvim-friendly way where we can scroll back
+function c {
+    for i in $(seq 0 $LINES); do echo; done
+    clear
+}
+
+# Open nvim, do different things depending on the dest
 function n {
     if [ "$#" -eq 0 ]
     then
@@ -54,18 +60,6 @@ function n {
         exit 1
     fi
 }
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
 
 # GHC(i) with custom set of packages
 

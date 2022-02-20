@@ -49,6 +49,15 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 
+" search
+
+" Stop showing search highlight with C-/ (yes, slash)
+nnoremap <C-_> :noh<CR>
+
+" Case insentitive search with ,/
+nnoremap <Leader>/ /\c
+
+" navigation across panes
 
 " Simplify navigation across windows
 nnoremap <C-J> <C-W><C-J>
@@ -78,9 +87,6 @@ nnoremap <Leader>t :terminal<CR>
 
 " or this? nnoremap <C-W>ws :new<CR>:terminal<CR>
 nnoremap <C-W>wv :vnew<CR>:terminal<CR>
-
-" Open new terminals in insert mode
-autocmd TermOpen * startinsert
 
 " Exit terminal through Ctrl+hjkl
 tnoremap <C-H> <C-\><C-N><C-W><C-H>
