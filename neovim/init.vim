@@ -34,10 +34,9 @@ nnoremap <Leader>w :write<CR>
 
 " TERMINAL
 
-" Create a new pane and open terminal on ,t
-" nnoremap <Leader>t <C-W><C-V><C-W><C-L>:terminal<CR>
-nnoremap <Leader>t :new<CR>:terminal<CR>
-nnoremap <Leader>T :vnew<CR>:terminal<CR>
+" Create a new pane and open terminal
+nnoremap <C-W>ts :new<CR>:terminal<CR>
+nnoremap <C-W>tv :vnew<CR>:terminal<CR>
 
 " Open new terminals in insert mode
 autocmd TermOpen * startinsert
@@ -47,6 +46,9 @@ tnoremap <C-H> <C-\><C-N><C-W><C-H>
 tnoremap <C-J> <C-\><C-N><C-W><C-J>
 tnoremap <C-K> <C-\><C-N><C-W><C-K>
 tnoremap <C-L> <C-\><C-N><C-W><C-L>
+
+" Exit terminal through Esc
+tnoremap <C-\> <C-\><C-N>
 
 " Make sure :terminal loads bash profile
 set shell=bash\ -l
