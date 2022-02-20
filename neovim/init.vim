@@ -39,6 +39,16 @@ nnoremap <Leader>o :NvimTreeToggle<CR>
 " Toggle Buffers on ,b
 nnoremap <Leader>b :Buffers<CR>
 
+" Remove trailing whitespaces
+nnoremap <Leader>w :call TrimWhitespace()<CR>
+fun! TrimWhitespace()
+    " by saving/restoring the view we make sure the cursor doesn't appear to
+    " have moved
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
 
 " Simplify navigation across windows
 nnoremap <C-J> <C-W><C-J>
@@ -52,10 +62,6 @@ inoremap <C-J> <C-O><C-W><C-J>
 inoremap <C-K> <C-O><C-W><C-K>
 inoremap <C-L> <C-O><C-W><C-L>
 inoremap <C-H> <C-O><C-W><C-H>
-
-" Save buffer on ,w
-nnoremap <Leader>w :write<CR>
-
 
 " Open file picker (FZF) on ,f
 nnoremap <Leader>f :FZF<CR>
