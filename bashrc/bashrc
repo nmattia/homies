@@ -20,7 +20,6 @@ alias gti="git"
 alias :e="vim"
 alias gd="git diff"
 alias xo="xdg-open"
-alias grephs="grep --exclude-dir .stack-work --include '*.hs'"
 alias tmp='cd $(mktemp -d)'
 alias ll='ls -alF'
 alias la='ls -A'
@@ -33,6 +32,27 @@ function t {
         cd "$1"
     fi
     tmux -2 new-session \; split-window -h \; attach
+}
+
+function n {
+    if [ "$#" -eq 0 ]
+    then
+        nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen'
+    elif [ "$#" -eq 1 ]
+    then
+        local dest="$1"
+        if [ -d "$dest" ]
+        then
+            cd "$dest" || exit
+            nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen'
+        else
+            cd "$(dirname "$dest")" || exit
+            nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen' "$(basename "$dest")"
+        fi
+    else
+        echo "expected 0 or 1 arguments, got $#"
+        exit 1
+    fi
 }
 
 # enable color support of ls and also add handy aliases

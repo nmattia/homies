@@ -1,7 +1,7 @@
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
-  pkgs = import ./nix {};
+  pkgs = import ./nix { };
 
   # The list of packages to be installed
   homies = with pkgs;
@@ -11,36 +11,38 @@ let
       git
       nixpkgs-fmt
       tmux
+      neovim
       vim
 
       pkgs.curl
+      pkgs.inconsolata-nerdfont
       pkgs.direnv
       pkgs.fzf
-      pkgs.gnupg
       pkgs.haskellPackages.wai-app-static
       pkgs.htop
       pkgs.jq
       pkgs.less
-      pkgs.moreutils
       pkgs.niv
       pkgs.nix
-      pkgs.nix-diff
       pkgs.python
-      pkgs.shellcheck
     ];
 
+  neovim = pkgs.callPackage ./neovim { };
+
   # A custom '.bashrc' (see bashrc/default.nix for details)
-  bashrc = pkgs.callPackage ./bashrc {};
+  bashrc = pkgs.callPackage ./bashrc { };
 
   # Git with config baked in
   git = import ./git (
-    { inherit (pkgs) sources runCommand makeWrapper symlinkJoin writeTextFile;
+    {
+      inherit (pkgs) sources runCommand makeWrapper symlinkJoin writeTextFile;
       git = pkgs.git;
     });
 
   # Tmux with a custom tmux.conf baked in
   tmux = import ./tmux (with pkgs;
-    { inherit
+    {
+      inherit
         makeWrapper
         symlinkJoin
         writeText
@@ -48,15 +50,24 @@ let
       tmux = pkgs.tmux;
     });
 
-  naersk = pkgs.callPackage pkgs.sources.naersk {};
+  naersk = pkgs.callPackage pkgs.sources.naersk { };
 
   nixpkgs-fmt = naersk.buildPackage pkgs.sources.nixpkgs-fmt;
 
   # Vim with a custom vimrc and set of packages
   vim = pkgs.callPackage ./vim
-    { inherit
+    {
+      inherit
         git
         tmux;
     };
-
-in homies
+in
+if
+  builtins.getEnv "IN_NIX_SHELL" == "impure"
+then
+  pkgs.mkShell
+  {
+    nativeBuildInputs = [ homies ];
+    shellHook = "$(bashrc)";
+  }
+else homies

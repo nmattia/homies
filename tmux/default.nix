@@ -2,7 +2,7 @@
 { tmux, writeText, symlinkJoin, makeWrapper }:
 symlinkJoin {
   name = "tmux";
-  buildInputs = [makeWrapper];
+  buildInputs = [ makeWrapper ];
   paths = [ tmux ];
   postBuild = ''
     wrapProgram "$out/bin/tmux" \
