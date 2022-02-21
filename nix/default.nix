@@ -1,4 +1,4 @@
-{ sources ? import ./sources.nix }:
+{ system ? builtins.currentSystem, sources ? import ./sources.nix { inherit system; } }:
 
 let
   overlay = self: super:
@@ -8,4 +8,4 @@ let
     };
 in
 import sources.nixpkgs
-{ overlays = [ overlay ]; config = { }; }
+{ overlays = [ overlay ]; config = { }; inherit system; }

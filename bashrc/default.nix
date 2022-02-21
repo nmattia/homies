@@ -4,7 +4,7 @@
 #
 # The bashrc script should be evaluated from the actual ~/.bashrc:
 #   if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi
-{ lib, writeText, writeScriptBin, fzf, sources, cacert }:
+{ homies, lib, writeText, writeScriptBin, fzf, sources, cacert }:
 let
   nixpkgsSpec = sources.nixpkgs;
   bashrc = writeText "bashrc"

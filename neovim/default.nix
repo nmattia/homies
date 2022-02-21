@@ -1,24 +1,13 @@
-{ runCommand, writeText, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf }:
-
-let nvimtree = builtins.fetchTarball https://github.com/kyazdani42/nvim-tree.lua/archive/refs/heads/master.zip; in
-
-let nvimtreeicons = builtins.fetchTarball https://github.com/kyazdani42/nvim-web-devicons/archive/refs/heads/master.zip; in
-
-let vim-tmux-navigator = builtins.fetchTarball https://github.com/christoomey/vim-tmux-navigator/archive/refs/heads/master.zip; in
-
-let vim-nix = builtins.fetchTarball https://github.com/LnL7/vim-nix/archive/refs/heads/master.zip; in
-
-let fzf-vim = builtins.fetchTarball https://github.com/junegunn/fzf.vim/archive/refs/heads/master.zip; in
+{ lib, runCommand, writeText, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, vimPlugins }:
 
 let
   pluginsDir = runCommand "mk-plugins" { nativeBuildInputs = [ neovim-unwrapped ]; }
     ''
       mkdir -p $out/pack/nix-is-an-addiction/start
 
-      cp -a ${nvimtree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
-      cp -a ${vim-tmux-navigator}/. $out/pack/nix-is-an-addiction/start/vim-tmux-navigator
-      cp -a ${vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
-      cp -a ${fzf-vim}/. $out/pack/nix-is-an-addiction/start/fzf.vim
+      cp -a ${vimPlugins.nvim-tree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
+      cp -a ${vimPlugins.vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
+      cp -a ${vimPlugins.fzf-vim}/. $out/pack/nix-is-an-addiction/start/fzf.vim
 
       mkdir -p $out/pack/fzf/start
       ln -s ${fzf}/share/vim-plugins/fzf $out/pack/fzf/start/fzf
