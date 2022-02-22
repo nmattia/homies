@@ -1,4 +1,4 @@
-{ system ? builtins.currentSystem, vimPlugins }:
+{ system ? builtins.currentSystem, vimPlugins, git-src }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
@@ -12,8 +12,8 @@ let
   # Git with config baked in
   git = import ./git (
     {
-      inherit (pkgs) sources runCommand makeWrapper symlinkJoin writeTextFile;
-      git = pkgs.git;
+      inherit (pkgs) sources runCommand makeWrapper symlinkJoin writeTextFile git;
+      inherit git-src;
     });
 
   # Tmux with a custom tmux.conf baked in

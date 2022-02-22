@@ -1,5 +1,5 @@
 # Git, with a git config baked in (see ./config)
-{ sources, runCommand, git, symlinkJoin, makeWrapper, writeTextFile }:
+{ sources, runCommand, git, symlinkJoin, makeWrapper, writeTextFile, git-src }:
 let
   gitHome = writeTextFile
     {
@@ -13,7 +13,7 @@ let
   completion = runCommand "git-completion" { }
     ''
       mkdir -p $out/etc/bash_completion.d/
-      cp ${sources.git-completion} $out/etc/bash_completion.d/git-completion.sh
+      cp ${git-src}/contrib/completion/git-completion.bash $out/etc/bash_completion.d/git-completion.sh
     '';
 in
 

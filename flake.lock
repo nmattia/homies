@@ -47,6 +47,22 @@
         "type": "github"
       }
     },
+    "git-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1645221210,
+        "narHash": "sha256-zs8dx3d0URD9XErrK3FjBowjQEc0gyTbkrFWwT+I6Sw=",
+        "owner": "git",
+        "repo": "git",
+        "rev": "e6ebfd0e8cbbd10878070c8a356b5ad1b3ca464e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "git",
+        "repo": "git",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1645013224,
@@ -82,6 +98,7 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "fzf-vim": "fzf-vim",
+        "git-src": "git-src",
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
         "vim-nix": "vim-nix"
