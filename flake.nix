@@ -23,12 +23,30 @@
   inputs.niv-src.url = "github:nmattia/niv";
   inputs.niv-src.flake = false;
 
-  outputs = { self, nixpkgs, flake-compat, flake-utils, vim-nix, nvim-tree, fzf-vim, git-src, niv-src }:
+  outputs =
+    { self
+    , nixpkgs
+    , flake-compat
+    , flake-utils
+    , vim-nix
+    , nvim-tree
+    , fzf-vim
+    , git-src
+    , niv-src
+    }:
     let
       pkgs = nixpkgs.legacyPackages.${system};
       system = "aarch64-darwin";
       vimPlugins = { inherit vim-nix nvim-tree fzf-vim; };
-      packages = import ./packages.nix { inherit pkgs nixpkgs vimPlugins system git-src niv-src; };
+      packages = import ./packages.nix {
+        inherit
+          pkgs
+          nixpkgs
+          vimPlugins
+          system
+          git-src
+          niv-src;
+      };
     in
     {
       devShell.${system} = pkgs.mkShell {

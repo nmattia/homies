@@ -2,6 +2,32 @@
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
+  # The "homies", which is a buildEnv where bin/ contains all the executables.
+  # The manpages are in share/man, which are auto-discovered by man (because
+  # it's close to bin/ which is on the PATH).
+  homies = pkgs.buildEnv {
+    name = "homies";
+    paths =
+      [
+        bashrc
+        git
+        tmux
+        neovim
+        vim
+        pkgs.curl
+        pkgs.direnv
+        pkgs.nixpkgs-fmt
+        pkgs.niv
+        pkgs.fzf
+        pkgs.htop
+        pkgs.jq
+        pkgs.less
+        pkgs.nix
+        pkgs.python
+        pkgs.haskellPackages.wai-app-static
+      ];
+  };
+
   neovim = pkgs.callPackage ./neovim { inherit vimPlugins; };
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
@@ -32,19 +58,5 @@ let
         git
         tmux;
     };
-
-  # The "homies", which is a buildEnv where bin/ contains all the executables.
-  # The manpages are in share/man, which are auto-discovered by man (because
-  # it's close to bin/ which is on the PATH).
-  homies = pkgs.buildEnv {
-    name = "homies";
-    paths = builtins.attrValues homiesList;
-  };
-
-  homiesList =
-    # All packages to be installed
-    { inherit bashrc git tmux neovim vim; } //
-    { inherit (pkgs) curl direnv nixpkgs-fmt niv fzf htop jq less nix python; } //
-    { warp = pkgs.haskellPackages.wai-app-static; };
 in
 { inherit homies bashrc; }
