@@ -33,9 +33,13 @@ let
         tmux;
     };
 
-    homies = pkgs.hiPrio (pkgs.buildEnv {
-      name = "homies"; paths = builtins.attrValues homiesList;
-    });
+  # The "homies", which is a buildEnv where bin/ contains all the executables.
+  # The manpages are in share/man, which are auto-discovered by man (because
+  # it's close to bin/ which is on the PATH).
+  homies = pkgs.buildEnv {
+    name = "homies";
+    paths = builtins.attrValues homiesList;
+  };
 
   homiesList =
     # All packages to be installed
@@ -43,4 +47,4 @@ let
     { inherit (pkgs) curl direnv nixpkgs-fmt niv fzf htop jq less nix python; } //
     { warp = pkgs.haskellPackages.wai-app-static; };
 in
-  { inherit homies bashrc; }
+{ inherit homies bashrc; }
