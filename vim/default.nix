@@ -40,15 +40,6 @@ let
       vim-trailing-whitespace
       vimproc
       YouCompleteMe
-      (
-        vimUtils.buildVimPlugin
-          {
-            name = "vim-terraform";
-            src = sources.vim-terraform;
-            buildPhase = ":";
-          }
-      )
-
     ];
   customRC = vimUtils.vimrcFile
     {
