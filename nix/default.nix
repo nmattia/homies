@@ -1,9 +1,9 @@
-{ system ? builtins.currentSystem, sources ? import ./sources.nix { inherit system; } }:
+{ system ? builtins.currentSystem, sources ? import ./sources.nix { inherit system; } , niv-src }:
 
 let
   overlay = self: super:
     {
-      niv = self.haskell.lib.justStaticExecutables (import sources.niv { pkgs = self; }).niv;
+      niv = self.haskell.lib.justStaticExecutables (import niv-src { pkgs = self; }).niv;
       inherit sources;
     };
 in

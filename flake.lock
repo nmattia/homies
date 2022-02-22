@@ -63,6 +63,22 @@
         "type": "github"
       }
     },
+    "niv-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1644256724,
+        "narHash": "sha256-8FuM1BFQmRZp36GufIdvFf+hfSc7dFnEoj+o+VHGXqo=",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "9cb7ef336bb71fd1ca84fc7f2dff15ef4b033f2a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nmattia",
+        "repo": "niv",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1645013224,
@@ -99,6 +115,7 @@
         "flake-utils": "flake-utils",
         "fzf-vim": "fzf-vim",
         "git-src": "git-src",
+        "niv-src": "niv-src",
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
         "vim-nix": "vim-nix"

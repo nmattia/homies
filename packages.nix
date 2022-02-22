@@ -1,8 +1,8 @@
-{ system ? builtins.currentSystem, vimPlugins, git-src }:
+{ system ? builtins.currentSystem, vimPlugins, git-src, niv-src }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
-  pkgs = import ./nix { inherit system; };
+  pkgs = import ./nix { inherit system niv-src; };
 
   neovim = pkgs.callPackage ./neovim { inherit vimPlugins; };
 
@@ -42,7 +42,7 @@ let
   homiesList =
     # All packages to be installed
     { inherit bashrc git tmux neovim vim; } //
-    { inherit (pkgs) curl direnv nixpkgs-fmt fzf htop jq less niv nix python; } //
+    { inherit (pkgs) curl direnv nixpkgs-fmt niv fzf htop jq less nix python; } //
     { warp = pkgs.haskellPackages.wai-app-static; };
 in
   { inherit homies bashrc; }
