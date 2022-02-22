@@ -53,18 +53,6 @@
         "url": "https://github.com/nix-community/nixpkgs-fmt/archive/c7f66ec1b969ed118231fdf7f596c5ed2c2cfe49.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "rusty-tags": {
-        "branch": "master",
-        "description": "Create ctags/etags for a cargo project",
-        "homepage": "",
-        "owner": "dan-t",
-        "repo": "rusty-tags",
-        "rev": "c5a88e102e3e65b55ef15624e4c724ce9039690d",
-        "sha256": "03pza329wz4fnfgd2ahlamrsp9799ich6769vj2sg1ymlyhxh3dz",
-        "type": "tarball",
-        "url": "https://github.com/dan-t/rusty-tags/archive/c5a88e102e3e65b55ef15624e4c724ce9039690d.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "vim-terraform": {
         "branch": "master",
         "description": "basic vim/terraform integration",
