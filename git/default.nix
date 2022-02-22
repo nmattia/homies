@@ -1,15 +1,25 @@
 # Git, with a git config baked in (see ./config)
 { runCommand, git, symlinkJoin, makeWrapper, writeTextFile, git-src }:
 let
-  gitHome = writeTextFile
+  myGit = git.overrideAttrs (old: {
+
+    # git has three levels of config: system, global, and local. The nixpkgs build
+    # of git already writes some stuff to the system config, so we just append our
+    # own config. The big drawback is that we need to build git from scratch.
+    postInstall = old.postInstall + ''
+      cat ${gitconfig} >> $out/etc/gitconfig
+    '';
+  });
+
+  gitconfig = writeTextFile
     {
       name = "git-config";
       text =
         builtins.replaceStrings
           [ "SUBSTITUTE_GITIGNORE" ] [ "${./gitignore}" ]
-          (builtins.readFile ./config);
-      destination = "/.gitconfig";
+          (builtins.readFile ./gitconfig);
     };
+
   completion = runCommand "git-completion" { }
     ''
       mkdir -p $out/etc/bash_completion.d/
@@ -19,10 +29,5 @@ in
 
 symlinkJoin {
   name = "git";
-  buildInputs = [ makeWrapper ];
-  paths = [ git completion ];
-  postBuild = ''
-    wrapProgram "$out/bin/git" \
-    --set HOME "${gitHome}"
-  '';
+  paths = [ myGit completion ];
 }
