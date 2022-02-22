@@ -42,15 +42,7 @@ let
     });
 
   # Tmux with a custom tmux.conf baked in
-  tmux = import ./tmux (with pkgs;
-    {
-      inherit
-        makeWrapper
-        symlinkJoin
-        writeText
-        ;
-      tmux = pkgs.tmux;
-    });
+  tmux = pkgs.callPackage ./tmux {};
 
   # Vim with a custom vimrc and set of packages
   vim = pkgs.callPackage ./vim

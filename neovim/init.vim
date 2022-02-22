@@ -1,43 +1,88 @@
-let mapleader=","
+lua << EOF
+-- Set the mapleader
+vim.g.mapleader = ","
 
-" Open new splits on the right
-set splitright
-set splitbelow
+-- Open new splits on the right/below
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+-- Display tabs and trailing spaces
+vim.opt.list = true
+vim.opt.listchars = { tab = "▷⋅", trail = "⋅", nbsp = "⋅" }
+
+-- Wrap lines
+vim.opt.wrap = true
+
+-- Default indent settings
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+
+-- Set the width of \t to 4. It's still a TAB, but displayed as wide as 4
+-- chars.
+vim.opt.tabstop = 4
+
+-- In insert mode, hitting TAB will insert N spaces instead.
+vim.opt.expandtab = true
+
+-- NEOVIM_PLUGINS_PATH should be set to a dir containing plugins
+vim.opt.packpath =
+    vim.opt.packpath ~= ""
+    and vim.env.NEOVIM_PLUGINS_PATH
+    or vim.env.NEOVIM_PLUGINS_PATH .. "," .. vim.opt.packpath
+
+-- git = ignore = false: make sure nvim-tree shows gitignored files
+require'nvim-tree'.setup({ git = { ignore = false }})
+
+
+
+-- Toggle filetree on ,o
+vim.api.nvim_set_keymap('n', '<Leader>o', ':NvimTreeToggle<CR>', { noremap = true })
+
+-- Toggle Buffers on ,b
+vim.api.nvim_set_keymap('n', '<Leader>b', ':Buffers<CR>', { noremap = true })
+
+-- search
+
+-- Stop highlighting search on C-/
+vim.api.nvim_set_keymap('n', '<C-_>', ':noh<CR>', { noremap = true })
+
+-- Case insensitive search with ,/
+vim.api.nvim_set_keymap('n', '<Leader>/', '/\\c', { noremap = true })
+
+-- Navigation across windows
+
+-- Simplify navigator across windows; C-{hjkl} moves to other window
+for _,key in pairs{ 'H', 'J', 'K', 'L' } do
+    vim.api.nvim_set_keymap('n', '<C-'..key..'>', '<C-W><C-'..key..'>', { noremap = true })
+end
+
+-- Same, in insert mode (uses C-O which runs a command and then re-enters
+-- insert mode)
+for _,key in pairs{ 'H', 'J', 'K', 'L' } do
+    vim.api.nvim_set_keymap('i', '<C-'..key..'>', '<C-O><C-W><C-'..key..'>', { noremap = true })
+end
+
+-- Misc
+
+-- Open file picker (FZF) on ,f
+vim.api.nvim_set_keymap('n', '<Leader>f', ':FZF<CR>', { noremap = true })
+
+-- Wrap selected lines with Q
+vim.api.nvim_set_keymap('n', 'Q', 'gq', { noremap = true })
+
+-- Yank til end of line (consistent with C and D)
+vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
+
+-- Select the whole file with <C-G>
+vim.api.nvim_set_keymap('n', '<C-G>', 'ggVG<CR>', { noremap = true })
+EOF
+
+" Some things that Lua doesn't support (yet)
 
 " Show line numbers
 set number
 " ... except in terminal
 autocmd TermOpen * setlocal nonumber norelativenumber
-
-" Display tabs and trailing spaces
-set list
-set listchars=tab:▷⋅,trail:⋅,nbsp:⋅
-
-" Wrap lines
-set wrap
-
-" Default indent settings
-set shiftwidth=4
-set softtabstop=4
-
-" Set the width of \t to 4. It's still a TAB, but displayed as wide as 4
-" chars.
-set tabstop=4
-
-" In insert mode, hitting TAB will insert N spaces instead.
-set expandtab
-
-" NEOVIM_PLUGINS_PATH should be set to a dir containing plugins
-set packpath+=$NEOVIM_PLUGINS_PATH
-
-" git = ignore = false: make sure nvim-tree shows gitignored files
-lua require'nvim-tree'.setup({git = { ignore = false }})
-
-" Toggle filetree on ,o
-nnoremap <Leader>o :NvimTreeToggle<CR>
-
-" Toggle Buffers on ,b
-nnoremap <Leader>b :Buffers<CR>
 
 " Remove trailing whitespaces
 nnoremap <Leader>w :call TrimWhitespace()<CR>
@@ -48,43 +93,6 @@ fun! TrimWhitespace()
     keeppatterns %s/\s\+$//e
     call winrestview(l:save)
 endfun
-
-" search
-
-" Stop showing search highlight with C-/ (yes, slash)
-nnoremap <C-_> :noh<CR>
-
-" Case insentitive search with ,/
-nnoremap <Leader>/ /\c
-
-" navigation across panes
-
-" Simplify navigation across windows
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Same, in insert mode (uses C-O which runs a command and then re-enters
-" insert mode)
-inoremap <C-J> <C-O><C-W><C-J>
-inoremap <C-K> <C-O><C-W><C-K>
-inoremap <C-L> <C-O><C-W><C-L>
-inoremap <C-H> <C-O><C-W><C-H>
-
-" Open file picker (FZF) on ,f
-nnoremap <Leader>f :FZF<CR>
-
-" Misc
-
-" Wrap selected lines with Q
-noremap Q gq
-
-" Yank til end of line (consistent with C and D)
-nnoremap Y y$
-
-" Select the whole file with <C-G>
-nnoremap <C-G> ggVG<CR>
 
 """"""""""""
 " TERMINAL "

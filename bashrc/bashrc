@@ -53,7 +53,7 @@ function n {
             nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen'
         else
             cd "$(dirname "$dest")" || exit
-            nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen' "$(basename "$dest")"
+            nvim "$(basename "$dest")"
         fi
     else
         echo "expected 0 or 1 arguments, got $#"

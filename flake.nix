@@ -51,7 +51,10 @@
     {
       devShell.${system} = pkgs.mkShell {
         nativeBuildInputs = [ packages.homies ];
-        shellHook = "$(bashrc)";
+        shellHook = ''
+          $(bashrc)
+          PS1=" $PS1"
+          '';
       };
 
       defaultPackage.${system} = packages.homies;
