@@ -1,16 +1,4 @@
 {
-    "naersk": {
-        "branch": "master",
-        "description": "Fast, flexible and eco-friendly Nix shipping of cargo crates since 2019",
-        "homepage": null,
-        "owner": "nmattia",
-        "repo": "naersk",
-        "rev": "e09c320446c5c2516d430803f7b19f5833781337",
-        "sha256": "0k1pk2ixnxl6njjrgy750gm6m1nkkdsah383n3wp4ybrzacnav5h",
-        "type": "tarball",
-        "url": "https://github.com/nmattia/naersk/archive/e09c320446c5c2516d430803f7b19f5833781337.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
     "niv": {
         "branch": "master",
         "description": "Easy dependency management for Nix projects",
@@ -33,18 +21,6 @@
         "sha256": "1wiwynblp7aiw2hknwc3yyas86vwvs0ci41qsfq1454jljy0lcg7",
         "type": "tarball",
         "url": "https://github.com/NixOS/nixpkgs/archive/da210873dbb76e13c088c621f41253a32efee4f6.tar.gz",
-        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
-    },
-    "nixpkgs-fmt": {
-        "branch": "master",
-        "description": "Nix code formatter for nixpkgs [maintainer=@zimbatm]",
-        "homepage": "https://nix-community.github.io/nixpkgs-fmt/",
-        "owner": "nix-community",
-        "repo": "nixpkgs-fmt",
-        "rev": "c7f66ec1b969ed118231fdf7f596c5ed2c2cfe49",
-        "sha256": "0cnd8ml3qd6bqak6k3gbd6wfsys9a3y4mkafpx9ir1fd3flxwlz5",
-        "type": "tarball",
-        "url": "https://github.com/nix-community/nixpkgs-fmt/archive/c7f66ec1b969ed118231fdf7f596c5ed2c2cfe49.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "vim-terraform": {

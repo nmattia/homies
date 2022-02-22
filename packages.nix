@@ -27,10 +27,6 @@ let
       tmux = pkgs.tmux;
     });
 
-  naersk = pkgs.callPackage pkgs.sources.naersk { };
-
-  nixpkgs-fmt = naersk.buildPackage pkgs.sources.nixpkgs-fmt;
-
   # Vim with a custom vimrc and set of packages
   vim = pkgs.callPackage ./vim
     {
@@ -45,8 +41,8 @@ let
 
   homiesList =
     # All packages to be installed
-    { inherit bashrc git nixpkgs-fmt tmux neovim vim; } //
-    { inherit (pkgs) curl direnv fzf htop jq less niv nix python; } //
+    { inherit bashrc git tmux neovim vim; } //
+    { inherit (pkgs) curl direnv nixpkgs-fmt fzf htop jq less niv nix python; } //
     { warp = pkgs.haskellPackages.wai-app-static; };
 in
   { inherit homies bashrc; }
