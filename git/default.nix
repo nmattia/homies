@@ -1,5 +1,5 @@
 # Git, with a git config baked in (see ./config)
-{ sources, runCommand, git, symlinkJoin, makeWrapper, writeTextFile, git-src }:
+{ runCommand, git, symlinkJoin, makeWrapper, writeTextFile, git-src }:
 let
   gitHome = writeTextFile
     {

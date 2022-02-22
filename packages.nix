@@ -1,18 +1,16 @@
-{ system ? builtins.currentSystem, vimPlugins, git-src, niv-src }:
+{ pkgs, system ? builtins.currentSystem, nixpkgs, vimPlugins, git-src, niv-src }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
-  pkgs = import ./nix { inherit system niv-src; };
-
   neovim = pkgs.callPackage ./neovim { inherit vimPlugins; };
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
-  bashrc = pkgs.callPackage ./bashrc { inherit homies; };
+  bashrc = pkgs.callPackage ./bashrc { inherit nixpkgs; };
 
   # Git with config baked in
   git = import ./git (
     {
-      inherit (pkgs) sources runCommand makeWrapper symlinkJoin writeTextFile git;
+      inherit (pkgs) runCommand makeWrapper symlinkJoin writeTextFile git;
       inherit git-src;
     });
 
