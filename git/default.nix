@@ -1,5 +1,5 @@
 # Git, with a git config baked in (see ./config)
-{ runCommand, git, symlinkJoin, makeWrapper, writeTextFile, git-src }:
+{ runCommand, git, symlinkJoin, writeTextFile, git-src }:
 let
   myGit = git.overrideAttrs (old: {
 

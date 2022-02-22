@@ -1,4 +1,4 @@
-{ lib, runCommand, writeText, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, vimPlugins }:
+{ runCommand, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, vimPlugins }:
 
 let
   pluginsDir = runCommand "mk-plugins" { nativeBuildInputs = [ neovim-unwrapped ]; }

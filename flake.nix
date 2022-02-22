@@ -55,7 +55,5 @@
       };
 
       defaultPackage.${system} = packages.homies;
-
-      packages.${system} = packages;
     };
 }

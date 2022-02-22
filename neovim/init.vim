@@ -75,6 +75,17 @@ inoremap <C-H> <C-O><C-W><C-H>
 " Open file picker (FZF) on ,f
 nnoremap <Leader>f :FZF<CR>
 
+" Misc
+
+" Wrap selected lines with Q
+noremap Q gq
+
+" Yank til end of line (consistent with C and D)
+nnoremap Y y$
+
+" Select the whole file with <C-G>
+nnoremap <C-G> ggVG<CR>
+
 """"""""""""
 " TERMINAL "
 """"""""""""

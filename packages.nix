@@ -12,8 +12,9 @@ let
         bashrc
         git
         tmux
+        nix
         neovim
-        vim
+
         pkgs.curl
         pkgs.direnv
         pkgs.nixpkgs-fmt
@@ -22,11 +23,12 @@ let
         pkgs.htop
         pkgs.jq
         pkgs.less
-        pkgs.nix
         pkgs.python
         pkgs.haskellPackages.wai-app-static
       ];
   };
+
+  nix = pkgs.callPackage ./nix {};
 
   neovim = pkgs.callPackage ./neovim { inherit vimPlugins; };
 
@@ -34,9 +36,8 @@ let
   bashrc = pkgs.callPackage ./bashrc { inherit nixpkgs; };
 
   # Git with config baked in
-  git = import ./git (
+  git = pkgs.callPackage ./git (
     {
-      inherit (pkgs) runCommand makeWrapper symlinkJoin writeTextFile git;
       inherit git-src;
     });
 
