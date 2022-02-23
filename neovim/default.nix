@@ -29,7 +29,7 @@ symlinkJoin {
   buildInputs = [ makeWrapper ];
   postBuild = ''
     wrapProgram "$out/bin/nvim" \
-    --add-flags "-u ${./init.vim}" \
+    --add-flags "-u ${./init.lua}" \
       --set NEOVIM_PLUGINS_PATH '${pluginsDir}' \
       --prefix PATH ':' '${coreutils}/bin'
   '';

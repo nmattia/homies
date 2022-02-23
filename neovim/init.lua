@@ -1,4 +1,3 @@
-lua << EOF
 -- Set the mapleader
 vim.g.mapleader = ","
 
@@ -30,16 +29,34 @@ vim.opt.packpath =
     and vim.env.NEOVIM_PLUGINS_PATH
     or vim.env.NEOVIM_PLUGINS_PATH .. "," .. vim.opt.packpath
 
+-- Show line numbers
+vim.opt.number = true
+-- ... except in terminal
+vim.api.nvim_command([[
+autocmd TermOpen * setlocal nonumber norelativenumber
+]])
+
 -- git = ignore = false: make sure nvim-tree shows gitignored files
 require'nvim-tree'.setup({ git = { ignore = false }})
-
-
 
 -- Toggle filetree on ,o
 vim.api.nvim_set_keymap('n', '<Leader>o', ':NvimTreeToggle<CR>', { noremap = true })
 
 -- Toggle Buffers on ,b
 vim.api.nvim_set_keymap('n', '<Leader>b', ':Buffers<CR>', { noremap = true })
+
+
+-- Remove trailing whitespaces
+vim.api.nvim_command([[
+fun! TrimWhitespace()
+    " by saving/restoring the view we make sure the cursor doesn't appear to
+    " have moved
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+]])
+vim.api.nvim_set_keymap('n', '<Leader>w', ':call TrimWhitespace()<CR>', { noremap = true })
 
 -- search
 
@@ -89,32 +106,10 @@ end
 -- Exit terminal with <C-\>
 vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
 
-
-
 -- Make sure :terminal loads bash profile
 vim.opt.shell = "bash -l"
-EOF
 
-" Some things that Lua doesn't support (yet)
-
-" Show line numbers
-set number
-" ... except in terminal
-autocmd TermOpen * setlocal nonumber norelativenumber
-
-" Remove trailing whitespaces
-nnoremap <Leader>w :call TrimWhitespace()<CR>
-fun! TrimWhitespace()
-    " by saving/restoring the view we make sure the cursor doesn't appear to
-    " have moved
-    let l:save = winsaveview()
-    keeppatterns %s/\s\+$//e
-    call winrestview(l:save)
-endfun
-
-""""""""""""
-" TERMINAL "
-""""""""""""
-
-" Close the terminal buffer if the terminal exits with 0
+-- Close the terminal buffer if the terminal exits with 0
+vim.api.nvim_command([[
 autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
+]])
