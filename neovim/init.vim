@@ -75,6 +75,24 @@ vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
 -- Select the whole file with <C-G>
 vim.api.nvim_set_keymap('n', '<C-G>', 'ggVG<CR>', { noremap = true })
+
+-- TERMINAL
+
+-- Open a terminal in the current window
+vim.api.nvim_set_keymap('n', '<Leader>t', ':terminal<CR>', { noremap = true })
+
+-- Exit terminal through Ctrl+hjkl
+for _,key in pairs{ 'H', 'J', 'K', 'L' } do
+    vim.api.nvim_set_keymap('t', '<C-'..key..'>', '<C-\\><C-N><C-W><C-'..key..'>', { noremap = true })
+end
+
+-- Exit terminal with <C-\>
+vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
+
+
+
+-- Make sure :terminal loads bash profile
+vim.opt.shell = "bash -l"
 EOF
 
 " Some things that Lua doesn't support (yet)
@@ -98,26 +116,5 @@ endfun
 " TERMINAL "
 """"""""""""
 
-" Create a new pane and open terminal
-nnoremap <C-W>ws :new<CR>:terminal<CR>
-
-" Open a terminal in the current window
-nnoremap <Leader>t :terminal<CR>
-
-" or this? nnoremap <C-W>ws :new<CR>:terminal<CR>
-nnoremap <C-W>wv :vnew<CR>:terminal<CR>
-
-" Exit terminal through Ctrl+hjkl
-tnoremap <C-H> <C-\><C-N><C-W><C-H>
-tnoremap <C-J> <C-\><C-N><C-W><C-J>
-tnoremap <C-K> <C-\><C-N><C-W><C-K>
-tnoremap <C-L> <C-\><C-N><C-W><C-L>
-
-" Exit terminal with <C-\>
-tnoremap <C-\> <C-\><C-N>
-
 " Close the terminal buffer if the terminal exits with 0
 autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
-
-" Make sure :terminal loads bash profile
-set shell=bash\ -l
