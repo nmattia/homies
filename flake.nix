@@ -35,28 +35,32 @@
     , niv-src
     }:
     let
-      pkgs = nixpkgs.legacyPackages.${system};
-      system = "aarch64-darwin";
-      vimPlugins = { inherit vim-nix nvim-tree fzf-vim; };
-      packages = import ./packages.nix {
-        inherit
-          pkgs
-          nixpkgs
-          vimPlugins
-          system
-          git-src
-          niv-src;
-      };
-    in
-    {
-      devShell.${system} = pkgs.mkShell {
-        nativeBuildInputs = [ packages.homies ];
-        shellHook = ''
-          $(bashrc)
-          PS1=" $PS1"
-          '';
-      };
+      lib = nixpkgs.lib;
+      mkOutputsFor = system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+          vimPlugins = { inherit vim-nix nvim-tree fzf-vim; };
+          packages = import ./packages.nix {
+            nixpkgs-src = nixpkgs;
+            inherit
+              pkgs
+              vimPlugins
+              git-src
+              niv-src;
+          };
 
-      defaultPackage.${system} = packages.homies;
-    };
+        in
+        {
+          devShell = pkgs.mkShell {
+            nativeBuildInputs = [ packages.homies ];
+            shellHook = ''
+              $(bashrc)
+              PS1=" $PS1"
+            '';
+          };
+
+          defaultPackage = packages.homies;
+        };
+    in
+    flake-utils.lib.eachSystem [ "x86_64-darwin" ] mkOutputsFor;
 }
