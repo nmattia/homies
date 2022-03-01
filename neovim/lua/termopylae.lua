@@ -1,6 +1,7 @@
--- Move cursor to the first visible terminal found
-local get_term = function()
+local ret = {}
 
+-- Move cursor to the first visible terminal found
+local enter_term = function()
 
     -- Map windows to buffers
     local wins = vim.api.nvim_list_wins()
@@ -19,6 +20,11 @@ local get_term = function()
         local buf_nr = win_to_buf[win_nr]
         local buf_name = vim.api.nvim_buf_get_name(buf_nr)
         if(string.find(buf_name, "term://")) then
+
+            -- Before we move to the new window, we record the current window
+            -- so that we can come back to it
+            ret.previous_win_nr = vim.api.nvim_get_current_win()
+
             vim.api.nvim_set_current_win(win_nr)
             vim.cmd('startinsert')
             return
@@ -26,4 +32,15 @@ local get_term = function()
     end
 end
 
-return { get_term = get_term }
+-- If a previous window is recorded, go back to it
+local leave_term = function()
+    if(ret.previous_win_nr) then
+        vim.api.nvim_set_current_win(ret.previous_win_nr)
+        ret.previous_win_nr = nil
+    end
+end
+
+ret['enter_term'] = enter_term
+ret['leave_term'] = leave_term
+
+return ret

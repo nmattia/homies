@@ -124,14 +124,16 @@ for _,key in pairs{ 'H', 'J', 'K', 'L' } do
     vim.api.nvim_set_keymap('t', '<C-'..key..'>', '<C-\\><C-N><C-W><C-'..key..'>', { noremap = true })
 end
 
--- Exit terminal with <C-\>
-vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
-
 -- Close the terminal buffer if the terminal exits with 0
 vim.api.nvim_command([[
 autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
 ]])
 
 -- Go to terminal on C-\
-get_term = require'get_term'.get_term
-vim.api.nvim_set_keymap('n', '<C-\\>', ':lua get_term()<CR>', { noremap = true })
+termopylae = require'termopylae'
+termopylae_enter_term = termopylae.enter_term
+termopylae_leave_term = termopylae.leave_term
+vim.api.nvim_set_keymap('n', '<C-\\>', ':lua termopylae_enter_term()<CR>', { noremap = true })
+
+-- Exit terminal and go back to previous window with <C-\>
+vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>:lua termopylae_leave_term()<CR>', { noremap = true })
