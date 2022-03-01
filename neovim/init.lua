@@ -1,33 +1,51 @@
 -- Set the mapleader
 vim.g.mapleader = ","
 
--- Open new splits on the right/below
-vim.opt.splitright = true
-vim.opt.splitbelow = true
+local opts = {
 
--- Display tabs and trailing spaces
-vim.opt.list = true
-vim.opt.listchars = { tab = "▷⋅", trail = "⋅", nbsp = "⋅" }
+    -- Open new splits on the right/below
+    "splitright",
+    "splitbelow",
 
--- Wrap lines
-vim.opt.wrap = true
+    -- Display tabs and trailing spaces
+    list = true,
+    listchars = { tab = "▷⋅", trail = "⋅", nbsp = "⋅" },
 
--- Default indent settings
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+    -- Wrap lines
+    wrap = true,
 
--- Set the width of \t to 4. It's still a TAB, but displayed as wide as 4
--- chars.
-vim.opt.tabstop = 4
+    -- Default indent settings
+    shiftwidth = 4,
+    softtabstop = 4,
 
--- In insert mode, hitting TAB will insert N spaces instead.
-vim.opt.expandtab = true
+    -- Set the width of \t to 4. It's still a TAB, but displayed as wide as 4
+    -- chars.
+    tabstop = 4,
 
--- NEOVIM_PLUGINS_PATH should be set to a dir containing plugins
-vim.opt.packpath =
-    vim.opt.packpath ~= ""
-    and vim.env.NEOVIM_PLUGINS_PATH
-    or vim.env.NEOVIM_PLUGINS_PATH .. "," .. vim.opt.packpath
+    -- In insert mode, hitting TAB will insert N spaces instead.
+    expandtab = true,
+
+    -- NEOVIM_PLUGINS_PATH should be set to a dir containing plugins
+    packpath =
+        vim.opt.packpath ~= ""
+        and vim.env.NEOVIM_PLUGINS_PATH
+        or vim.env.NEOVIM_PLUGINS_PATH .. "," .. vim.opt.packpath,
+
+    -- Make sure :terminal loads bash profile
+    shell = "bash -l",
+}
+
+-- This reads all the "opts" and sets the corresponding vim opt. This takes
+-- advantage of the fact that Lua treats { "foo" } as an associative array with
+-- { 1 = "foo" }, thus, if a key is a "number", then we set the opt to "true".
+-- NOTE: this does not support "set nofoo"
+for opt_key in pairs(opts) do
+    if(type(opt_key) == "number") then
+        vim.opt[opts[opt_key]] = true
+    elseif (type(opt_key) == "string") then
+        vim.opt[opt_key] = opts[opt_key]
+    end
+end
 
 -- Show line numbers
 vim.opt.number = true
@@ -105,9 +123,6 @@ end
 
 -- Exit terminal with <C-\>
 vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
-
--- Make sure :terminal loads bash profile
-vim.opt.shell = "bash -l"
 
 -- Close the terminal buffer if the terminal exits with 0
 vim.api.nvim_command([[
