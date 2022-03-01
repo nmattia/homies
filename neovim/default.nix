@@ -31,6 +31,7 @@ symlinkJoin {
     wrapProgram "$out/bin/nvim" \
     --add-flags "-u ${./init.lua}" \
       --set NEOVIM_PLUGINS_PATH '${pluginsDir}' \
+      --set NEOVIM_LUA_PATH '${./lua}' \
       --prefix PATH ':' '${coreutils}/bin'
   '';
   paths = [ neovim-unwrapped ];

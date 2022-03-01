@@ -1,3 +1,6 @@
+-- First, make sure the Lua modules can be "require"d
+package.path = package.path .. ";" .. vim.env.NEOVIM_LUA_PATH .. "/?.lua"
+
 -- Set the mapleader
 vim.g.mapleader = ","
 
@@ -128,3 +131,7 @@ vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
 vim.api.nvim_command([[
 autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
 ]])
+
+-- Go to terminal on C-\
+get_term = require'get_term'.get_term
+vim.api.nvim_set_keymap('n', '<C-\\>', ':lua get_term()<CR>', { noremap = true })
