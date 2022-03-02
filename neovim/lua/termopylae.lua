@@ -1,4 +1,4 @@
-local ret = {}
+local M = {}
 
 -- Move cursor to the first visible terminal found
 local enter_term = function()
@@ -23,7 +23,7 @@ local enter_term = function()
 
             -- Before we move to the new window, we record the current window
             -- so that we can come back to it
-            ret.previous_win_nr = vim.api.nvim_get_current_win()
+            M.previous_win_nr = vim.api.nvim_get_current_win()
 
             vim.api.nvim_set_current_win(win_nr)
             vim.cmd('startinsert')
@@ -34,13 +34,13 @@ end
 
 -- If a previous window is recorded, go back to it
 local leave_term = function()
-    if(ret.previous_win_nr) then
-        vim.api.nvim_set_current_win(ret.previous_win_nr)
-        ret.previous_win_nr = nil
+    if(M.previous_win_nr) then
+        vim.api.nvim_set_current_win(M.previous_win_nr)
+        M.previous_win_nr = nil
     end
 end
 
-ret['enter_term'] = enter_term
-ret['leave_term'] = leave_term
+M['enter_term'] = enter_term
+M['leave_term'] = leave_term
 
-return ret
+return M
