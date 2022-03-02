@@ -62,5 +62,5 @@
           defaultPackage = packages.homies;
         };
     in
-    flake-utils.lib.eachSystem [ "x86_64-darwin" ] mkOutputsFor;
+    flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" ] mkOutputsFor;
 }
