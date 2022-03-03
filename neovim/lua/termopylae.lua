@@ -14,22 +14,40 @@ local enter_term = function()
         win_to_buf[win_nr] = buf_nr
     end
 
+    -- Before we move to the new window, we record the current window so that
+    -- we can come back to it
+    M.previous_win_nr = vim.api.nvim_get_current_win()
+
     -- Iterate over the windows and, if the buffer is a terminal,
     -- move cursor to window.
     for win_nr in pairs(win_to_buf) do
         local buf_nr = win_to_buf[win_nr]
         local buf_name = vim.api.nvim_buf_get_name(buf_nr)
         if(string.find(buf_name, "term://")) then
-
-            -- Before we move to the new window, we record the current window
-            -- so that we can come back to it
-            M.previous_win_nr = vim.api.nvim_get_current_win()
-
             vim.api.nvim_set_current_win(win_nr)
             vim.cmd('startinsert')
             return
         end
     end
+
+    -- If no open window contains a terminal, create a new window
+    vim.cmd('vnew')
+
+    -- If a buffer already contains a terminal, load that buffer
+    local bufs = vim.api.nvim_list_bufs()
+    for k in pairs(bufs) do
+        local buf_nr = bufs[k]
+        local buf_name = vim.api.nvim_buf_get_name(buf_nr)
+        if(string.find(buf_name, "term://")) then
+            vim.api.nvim_set_current_buf(buf_nr)
+            vim.cmd('startinsert')
+            return
+        end
+    end
+
+    -- Otherwise create a new terminal
+    vim.cmd('terminal')
+    vim.cmd('startinsert')
 end
 
 -- If a previous window is recorded, go back to it

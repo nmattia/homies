@@ -43,14 +43,14 @@ function c {
 function n {
     if [ "$#" -eq 0 ]
     then
-        nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen'
+        nvim
     elif [ "$#" -eq 1 ]
     then
         local dest="$1"
         if [ -d "$dest" ]
         then
             cd "$dest" || exit
-            nvim -c ':vnew' -c ':terminal' -c ':NvimTreeOpen'
+            nvim
         else
             cd "$(dirname "$dest")" || exit
             nvim "$(basename "$dest")"

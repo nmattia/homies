@@ -129,11 +129,13 @@ vim.api.nvim_command([[
 autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
 ]])
 
--- Go to terminal on C-\
+-- Go to terminal on <C-Space>
 termopylae = require'termopylae'
 termopylae_enter_term = termopylae.enter_term
 termopylae_leave_term = termopylae.leave_term
-vim.api.nvim_set_keymap('n', '<C-\\>', ':lua termopylae_enter_term()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-Space>', ':lua termopylae_enter_term()<CR>', { noremap = true })
 
--- Exit terminal and go back to previous window with <C-\>
-vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>:lua termopylae_leave_term()<CR>', { noremap = true })
+-- Exit terminal and go back to previous window with <C-Space>
+vim.api.nvim_set_keymap('t', '<C-Space>', '<C-\\><C-N>:lua termopylae_leave_term()<CR>', { noremap = true })
+-- Simply exit terminal with <C-\>
+vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
