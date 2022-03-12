@@ -25,6 +25,8 @@ let
         pkgs.less
         pkgs.python
         pkgs.haskellPackages.wai-app-static
+        pkgs.shellcheck
+        pkgs.shfmt
       ];
   };
 
