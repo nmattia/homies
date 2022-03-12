@@ -63,10 +63,6 @@ require'nvim-tree'.setup({ git = { ignore = false }})
 -- Toggle filetree on ,o
 vim.api.nvim_set_keymap('n', '<Leader>o', ':NvimTreeToggle<CR>', { noremap = true })
 
--- Toggle Buffers on ,b
-vim.api.nvim_set_keymap('n', '<Leader>b', ':Buffers<CR>', { noremap = true })
-
-
 -- Remove trailing whitespaces
 vim.api.nvim_command([[
 fun! TrimWhitespace()
@@ -102,8 +98,11 @@ end
 
 -- Misc
 
--- Open file picker (FZF) on ,f
-vim.api.nvim_set_keymap('n', '<Leader>f', ':FZF<CR>', { noremap = true })
+-- Open (git ls-files) file picker on ,f
+vim.api.nvim_set_keymap('n', '<Leader>f', ':GFiles<CR>', { noremap = true })
+-- Open custom FZF picker on ,F
+my_fzf = require'fzf'.fzf
+vim.api.nvim_set_keymap('n', '<Leader>F', ':lua my_fzf()<CR>', { noremap = true })
 
 -- Wrap selected lines with Q
 vim.api.nvim_set_keymap('n', 'Q', 'gq', { noremap = true })
