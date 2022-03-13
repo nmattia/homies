@@ -1,5 +1,4 @@
-{ runCommand, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, vimPlugins }:
-
+{ runCommand, lib, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, vimPlugins, ripgrep }:
 let
   pluginsDir = runCommand "mk-plugins" { nativeBuildInputs = [ neovim-unwrapped ]; }
     ''
@@ -22,6 +21,10 @@ let
         fi
       done
     '';
+  extraBins = [
+      ripgrep # used by fzf.vim for `:Rg`
+      coreutils
+    ];
 in
 
 symlinkJoin {
@@ -32,7 +35,7 @@ symlinkJoin {
     --add-flags "-u ${./init.lua}" \
       --set NEOVIM_PLUGINS_PATH '${pluginsDir}' \
       --set NEOVIM_LUA_PATH '${./lua}' \
-      --prefix PATH ':' '${coreutils}/bin'
+      --prefix PATH ':' '${lib.makeBinPath extraBins}'
   '';
   paths = [ neovim-unwrapped ];
 }
