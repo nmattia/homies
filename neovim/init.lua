@@ -96,13 +96,30 @@ for _,key in pairs{ 'H', 'J', 'K', 'L' } do
     vim.api.nvim_set_keymap('i', '<C-'..key..'>', '<C-O><C-W><C-'..key..'>', { noremap = true })
 end
 
--- Misc
+-- FZF and "Finding" in general
+--
+-- In general, all [f]inding commands are started with ,f. What comes next decides what exactly
+-- is to be found. In addition to that, we offer a friendly picker with ,F.
 
--- Open (git ls-files) file picker on ,f
-vim.api.nvim_set_keymap('n', '<Leader>f', ':GFiles<CR>', { noremap = true })
+-- The picker options
+local picker_options = {
+    a = { hint = "[a]ll files", cmd = ":Files"},
+    g = { hint = "[g]it ls-files", cmd = ":GFiles" },
+    b = { hint = "[b]uffers", cmd = ":Buffers" },
+    c = { hint = "[c]ommits", cmd = ":Commits" },
+    l = { hint = "[l]ines", cmd = ":Lines" },
+}
+
+for k,v in pairs(picker_options) do
+    vim.api.nvim_set_keymap('n', '<Leader>f'..k, v.cmd.."<CR>", { noremap = true })
+    v["action"] = function () vim.cmd(v.cmd) end
+end
+
 -- Open custom FZF picker on ,F
-my_fzf = require'fzf'.fzf
-vim.api.nvim_set_keymap('n', '<Leader>F', ':lua my_fzf()<CR>', { noremap = true })
+finder_picker = require'picker'.mk_picker(picker_options)
+vim.api.nvim_set_keymap('n', '<Leader>F', ':lua finder_picker()<CR>', { noremap = true })
+
+-- Misc
 
 -- Wrap selected lines with Q
 vim.api.nvim_set_keymap('n', 'Q', 'gq', { noremap = true })
