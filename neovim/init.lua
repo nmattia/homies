@@ -103,11 +103,14 @@ end
 
 -- The picker options
 local picker_options = {
+    G = { hint = "[G]it commits (ALL)", cmd = ":Commits" },
     a = { hint = "[a]ll files", cmd = ":Files"},
-    g = { hint = "[g]it ls-files", cmd = ":GFiles" },
     b = { hint = "[b]uffers", cmd = ":Buffers" },
     c = { hint = "[c]ommits", cmd = ":Commits" },
+    f = { hint = "git ls-[f]iles", cmd = ":GFiles" },
+    g = { hint = "[g]it commits (buffer)", cmd = ":BCommits" },
     l = { hint = "[l]ines", cmd = ":Lines" },
+    r = { hint = "[r]ipgrep", cmd = ":Rg" },
 }
 
 for k,v in pairs(picker_options) do
