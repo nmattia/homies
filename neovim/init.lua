@@ -155,3 +155,5 @@ vim.api.nvim_set_keymap('n', '<C-Space>', ':lua termopylae_enter_term()<CR>', { 
 vim.api.nvim_set_keymap('t', '<C-Space>', '<C-\\><C-N>:lua termopylae_leave_term()<CR>', { noremap = true })
 -- Simply exit terminal with <C-\>
 vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
+-- In general, go to normal mode with <C-\> (in addition to the default <C-[>)
+vim.api.nvim_set_keymap('i', '<C-\\>', '<Esc>', { noremap = true })
