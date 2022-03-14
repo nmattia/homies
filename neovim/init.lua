@@ -109,7 +109,8 @@ local picker_options = {
     c = { hint = "[c]ommits", cmd = ":Commits" },
     f = { hint = "git ls-[f]iles", cmd = ":GFiles" },
     g = { hint = "[g]it commits (buffer)", cmd = ":BCommits" },
-    l = { hint = "[l]ines", cmd = ":Lines" },
+    l = { hint = "[l]ines in this buffer", cmd = ":BLines" },
+    L = { hint = "lines in AL[L] buffers", cmd = ":Lines" },
     r = { hint = "[r]ipgrep", cmd = ":Rg" },
 }
 
