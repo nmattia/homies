@@ -83,6 +83,9 @@ vim.api.nvim_set_keymap('n', '<C-_>', ':noh<CR>', { noremap = true })
 -- Case insensitive search with ,/
 vim.api.nvim_set_keymap('n', '<Leader>/', '/\\c', { noremap = true })
 
+-- E[x]it with ,x
+vim.api.nvim_set_keymap('n', '<Leader>x', ':x<CR>', { noremap = true })
+
 -- Navigation across windows
 
 -- Simplify navigator across windows; C-{hjkl} moves to other window
