@@ -1,12 +1,12 @@
-{ runCommand, lib, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, vimPlugins, ripgrep }:
+{ runCommand, lib, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, inputs, ripgrep }:
 let
   pluginsDir = runCommand "mk-plugins" { nativeBuildInputs = [ neovim-unwrapped ]; }
     ''
       mkdir -p $out/pack/nix-is-an-addiction/start
 
-      cp -a ${vimPlugins.nvim-tree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
-      cp -a ${vimPlugins.vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
-      cp -a ${vimPlugins.fzf-vim}/. $out/pack/nix-is-an-addiction/start/fzf.vim
+      cp -a ${inputs.nvim-tree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
+      cp -a ${inputs.vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
+      cp -a ${inputs.fzf-vim}/. $out/pack/nix-is-an-addiction/start/fzf.vim
 
       mkdir -p $out/pack/fzf/start
       ln -s ${fzf}/share/vim-plugins/fzf $out/pack/fzf/start/fzf

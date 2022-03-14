@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-src, vimPlugins, git-src, niv-src }:
+{ pkgs, nixpkgs-src, inputs, git-src, niv-src }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
@@ -32,7 +32,7 @@ let
 
   nix = pkgs.callPackage ./nix {};
 
-  neovim = pkgs.callPackage ./neovim { inherit vimPlugins; };
+  neovim = pkgs.callPackage ./neovim { inherit inputs; };
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc { inherit nixpkgs-src; };

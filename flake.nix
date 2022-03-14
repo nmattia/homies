@@ -24,7 +24,7 @@
   inputs.niv-src.flake = false;
 
   outputs =
-    { self
+    inputs@{ self
     , nixpkgs
     , flake-compat
     , flake-utils
@@ -39,12 +39,11 @@
       mkOutputsFor = system:
         let
           pkgs = nixpkgs.legacyPackages.${system};
-          vimPlugins = { inherit vim-nix nvim-tree fzf-vim; };
           packages = import ./packages.nix {
             nixpkgs-src = nixpkgs;
             inherit
               pkgs
-              vimPlugins
+              inputs
               git-src
               niv-src;
           };
