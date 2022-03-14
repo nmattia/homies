@@ -24,15 +24,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
-function t {
-    if [ -n "$1" ] && [ -d "$1" ]; then
-        # On Ubuntu, sets the window title
-        printf "\e]2;${1%/}\a"
-        cd "$1"
-    fi
-    tmux -2 new-session \; split-window -h \; attach
-}
-
 # Clear the screen in an nvim-friendly way where we can scroll back
 function c {
     for i in $(seq 0 $LINES); do echo; done
