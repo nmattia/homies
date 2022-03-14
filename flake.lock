@@ -31,6 +31,22 @@
         "type": "github"
       }
     },
+    "fugitive": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1646841024,
+        "narHash": "sha256-0p0PloueKoysNvzunhMzhF1sDB8MsB4PjhW9iqmqmJw=",
+        "owner": "tpope",
+        "repo": "vim-fugitive",
+        "rev": "46652a304f0b89f36d70cee954d77e467ec0f6de",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-fugitive",
+        "type": "github"
+      }
+    },
     "fzf-vim": {
       "flake": false,
       "locked": {
@@ -113,6 +129,7 @@
       "inputs": {
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
+        "fugitive": "fugitive",
         "fzf-vim": "fzf-vim",
         "git-src": "git-src",
         "niv-src": "niv-src",

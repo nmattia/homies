@@ -23,16 +23,17 @@
   inputs.niv-src.url = "github:nmattia/niv";
   inputs.niv-src.flake = false;
 
+  inputs.fugitive.url = "github:tpope/vim-fugitive";
+  inputs.fugitive.flake = false;
+
   outputs =
     inputs@{ self
     , nixpkgs
     , flake-compat
     , flake-utils
-    , vim-nix
-    , nvim-tree
-    , fzf-vim
     , git-src
     , niv-src
+    , ...
     }:
     let
       lib = nixpkgs.lib;
