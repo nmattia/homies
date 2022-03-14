@@ -106,7 +106,7 @@ local picker_options = {
     G = { hint = "[G]it commits (ALL)", cmd = ":Commits" },
     a = { hint = "[a]ll files", cmd = ":Files"},
     b = { hint = "[b]uffers", cmd = ":Buffers" },
-    c = { hint = "[c]ommits", cmd = ":Commits" },
+    c = { hint = "[c]ommands", cmd = ":Commands" },
     f = { hint = "git ls-[f]iles", cmd = ":GFiles" },
     g = { hint = "[g]it commits (buffer)", cmd = ":BCommits" },
     l = { hint = "[l]ines in this buffer", cmd = ":BLines" },
