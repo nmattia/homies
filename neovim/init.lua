@@ -137,6 +137,9 @@ vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 -- Select the whole file with <C-G>
 vim.api.nvim_set_keymap('n', '<C-G>', 'ggVG<CR>', { noremap = true })
 
+-- Start a git command with ,g
+vim.api.nvim_set_keymap('n', '<Leader>g', ':G ', { noremap = true })
+
 -- TERMINAL
 
 -- Open a terminal in the current window
