@@ -140,6 +140,9 @@ vim.api.nvim_set_keymap('n', '<C-G>', 'ggVG<CR>', { noremap = true })
 -- Start a git command with ,g
 vim.api.nvim_set_keymap('n', '<Leader>g', ':G ', { noremap = true })
 
+-- In Visual, sort with <C-S>
+vim.api.nvim_set_keymap('v', '<C-S>', ':sort<CR>', { noremap = true })
+
 -- TERMINAL
 
 -- Open a terminal in the current window
