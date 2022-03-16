@@ -6,6 +6,8 @@
     flake = false;
   };
 
+  inputs.nixpkgs.url = "github:nmattia/nixpkgs";
+
   inputs.flake-utils.url = "github:numtide/flake-utils";
 
   inputs.vim-nix.url = "github:LnL7/vim-nix";

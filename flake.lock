@@ -97,16 +97,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1645013224,
-        "narHash": "sha256-b7OEC8vwzJv3rsz9pwnTX2LQDkeOWz2DbKypkVvNHXc=",
-        "owner": "NixOS",
+        "lastModified": 1647546862,
+        "narHash": "sha256-s7EM/in1nxs+0hSmHyaGxRY5Waufvfr2lIka0iYqHWY=",
+        "owner": "nmattia",
         "repo": "nixpkgs",
-        "rev": "b66b39216b1fef2d8c33cc7a5c72d8da80b79970",
+        "rev": "5dde14bc2e70f0532718256e45d48239bc55561d",
         "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
+        "owner": "nmattia",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nvim-tree": {
