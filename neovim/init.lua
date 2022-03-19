@@ -53,9 +53,12 @@ end
 -- Show line numbers
 vim.opt.number = true
 -- ... except in terminal
-vim.api.nvim_command([[
-autocmd TermOpen * setlocal nonumber norelativenumber
-]])
+vim.api.nvim_create_autocmd('TermOpen', {
+    callback = function ()
+        vim.wo.number = false
+        vim.wo.relativenumber = false
+    end
+})
 
 -- git = ignore = false: make sure nvim-tree shows gitignored files
 require'nvim-tree'.setup({ git = { ignore = false }})
@@ -154,9 +157,9 @@ for _,key in pairs{ 'H', 'J', 'K', 'L' } do
 end
 
 -- Close the terminal buffer if the terminal exits with 0
-vim.api.nvim_command([[
-autocmd TermClose * if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif
-]])
+vim.api.nvim_create_autocmd('TermClose', {
+    command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif"
+})
 
 -- Go to terminal on <C-Space>
 termopylae = require'termopylae'
