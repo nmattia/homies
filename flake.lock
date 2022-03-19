@@ -136,7 +136,8 @@
         "niv-src": "niv-src",
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
-        "vim-nix": "vim-nix"
+        "vim-nix": "vim-nix",
+        "vim-surround": "vim-surround"
       }
     },
     "vim-nix": {
@@ -152,6 +153,22 @@
       "original": {
         "owner": "LnL7",
         "repo": "vim-nix",
+        "type": "github"
+      }
+    },
+    "vim-surround": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1643508337,
+        "narHash": "sha256-KLZztzV/3zh52MZ9YG0F/wQnke4EorXOB1YJ/sUL908=",
+        "owner": "tpope",
+        "repo": "vim-surround",
+        "rev": "baf89ad26488f6a7665d51b986f5c7ad2d22b30b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-surround",
         "type": "github"
       }
     }
