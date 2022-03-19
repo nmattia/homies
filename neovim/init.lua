@@ -170,3 +170,5 @@ vim.api.nvim_set_keymap('t', '<C-Space>', '<C-\\><C-N>:lua termopylae_leave_term
 vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
 -- In general, go to normal mode with <C-\> (in addition to the default <C-[>)
 vim.api.nvim_set_keymap('i', '<C-\\>', '<Esc>', { noremap = true })
+-- Map it for normal mode as well, because of muscle memory. Otherwise vim expects other keys.
+vim.api.nvim_set_keymap('n', '<C-\\>', '<Esc>', { noremap = true })
