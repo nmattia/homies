@@ -41,7 +41,6 @@ local opts = {
 -- This reads all the "opts" and sets the corresponding vim opt. This takes
 -- advantage of the fact that Lua treats { "foo" } as an associative array with
 -- { 1 = "foo" }, thus, if a key is a "number", then we set the opt to "true".
--- NOTE: this does not support "set nofoo"
 for opt_key in pairs(opts) do
     if(type(opt_key) == "number") then
         vim.opt[opts[opt_key]] = true
