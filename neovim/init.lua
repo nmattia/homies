@@ -116,7 +116,7 @@ local picker_options = {
     g = { hint = "[g]it commits (buffer)", cmd = ":BCommits" },
     l = { hint = "[l]ines in this buffer", cmd = ":BLines" },
     L = { hint = "lines in AL[L] buffers", cmd = ":Lines" },
-    r = { hint = "[r]ipgrep", cmd = ":Rg" },
+    r = { hint = "[r]ipgrep", cmd = ":lua require'fzf'.rg()" },
 }
 
 for k,v in pairs(picker_options) do

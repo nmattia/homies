@@ -48,7 +48,7 @@ end
 
 
 
-local test = function()
+local rg = function()
 
     vim.cmd("new")
     local new_buf_nr = api.nvim_get_current_buf()
@@ -101,4 +101,4 @@ local rg_opts = {
 --     'ctrl-c' = "cancel",
 -- }
 
-test()
+return { rg = rg }
