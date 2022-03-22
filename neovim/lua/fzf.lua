@@ -46,25 +46,55 @@ local rg_filename_and_lineno = function(line)
     return filename, tonumber(lineno)
 end
 
+local mk_fzf_bindings = function(bindings)
+    local acc = {}
+    for k,v in pairs(bindings) do
+        acc[#acc +1] = k..":"..v
+    end
+    return table.concat(acc, ",")
+end
+
 local rg = function()
 
     vim.cmd("new")
     local new_buf_nr = api.nvim_get_current_buf()
     local stdout_filename = os.tmpname()
 
-    local nl = [[nl -b a -n ln | sed "s/^42\(.*\)/`tput bold`>>> 42\1`tput sgr0`/"]]
-
     local rg_opts = '--line-number --no-heading --smart-case --color=always'
     local rg = 'rg '..rg_opts..' .'
 
-    local preview_cmd = [[cat {1} | nl -b a -n ln | sed "s/^"{2}" \(.*\)""/"{2}" "`tput bold`"\1"`tput sgr0`"/"]]
-    local bindings = 'ctrl-p:toggle-preview,ctrl-c:cancel,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
-    local fzf_opts = [[--ansi --delimiter=':' --preview ']]..preview_cmd..[[' --preview-window=hidden --bind ']]..bindings..[[']]
-    local fzf = [[fzf ]]..fzf_opts..[[ >]]..stdout_filename
+    -- num[b]er all lines, and format is [l]eft justified
+    local add_linenos = 'nl -b all -n ln'
 
-    -- --color=always + --ansi = colors
-    -- TODO: document the hell out of this
-    vim.fn.termopen(rg..' | '..fzf, {
+    -- Match on 'start of line' + line number of selected line
+    -- Capture rest of line in \1
+    -- Replace everything with "line number" + <start highlight> + \1 + <stop highlight>
+    local highlight_line = [[sed "s/^"{2}" \(.*\)""/"{2}" "`tput bold`"\1"`tput sgr0`"/"]]
+
+    -- fzf's preview command, that shows the file (with the selected line highlighted)
+    local preview_cmd = 'cat {1} | '..add_linenos..' | '..highlight_line
+    local preview_opt = [[--preview ']]..preview_cmd..[[']]
+
+    local fzf_bindings = mk_fzf_bindings{
+        ['ctrl-p'] = 'toggle-preview',
+        ['ctrl-c'] = 'cancel',
+        ['ctrl-u'] = 'preview-half-page-up',
+        ['ctrl-d'] = 'preview-half-page-down',
+    }
+
+    local fzf_opts = {
+        "--ansi", -- works with --color=always in rg to show colors properly
+        "--delimiter=':'", -- used by fzf to split "FIELD INDEX EXPRESSIONS" (':' is the default rg delimited)
+        [[--preview ']]..preview_cmd..[[']], -- specify how the currently selected file should be previewed
+        "--preview-window=hidden", -- don't open preview unless asked to
+        [[--bind ']]..fzf_bindings..[[']],
+    }
+
+    -- Make the actual command
+    local fzf = [[fzf ]]..table.concat(fzf_opts, " ")..[[ >]]..stdout_filename
+    local term_cmd = rg..' | '..fzf
+
+    vim.fn.termopen(term_cmd, {
         on_exit = function()
 
             -- Avoid "Process exited with ..."
@@ -88,22 +118,5 @@ local rg = function()
     })
     vim.cmd("startinsert")
 end
-
-
-local rg_opts = {
-    -- show filename on each line, instead of grouping lines by filename
-    "--no-heading",
-
-    -- default to case insensivity, unless the pattern is mixed-case
-    "--smart-case",
-}
-
--- local fzf_bind = {
---     'ctrl-d' = "preview-half-page-down",
---     'ctrl-u' = "preview-half-page-up",
---
---     -- clear query string if not empty, abort fzf otherwise
---     'ctrl-c' = "cancel",
--- }
 
 return { rg = rg }
