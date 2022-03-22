@@ -46,8 +46,6 @@ local rg_filename_and_lineno = function(line)
     return filename, tonumber(lineno)
 end
 
-
-
 local rg = function()
 
     vim.cmd("new")
@@ -56,9 +54,17 @@ local rg = function()
 
     local nl = [[nl -b a -n ln | sed "s/^42\(.*\)/`tput bold`>>> 42\1`tput sgr0`/"]]
 
+    local rg_opts = '--line-number --no-heading --smart-case --color=always'
+    local rg = 'rg '..rg_opts..' .'
+
+    local preview_cmd = [[cat {1} | nl -b a -n ln | sed "s/^"{2}" \(.*\)""/"{2}" "`tput bold`"\1"`tput sgr0`"/"]]
+    local bindings = 'ctrl-p:toggle-preview,ctrl-c:cancel,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down'
+    local fzf_opts = [[--ansi --delimiter=':' --preview ']]..preview_cmd..[[' --preview-window=hidden --bind ']]..bindings..[[']]
+    local fzf = [[fzf ]]..fzf_opts..[[ >]]..stdout_filename
+
     -- --color=always + --ansi = colors
     -- TODO: document the hell out of this
-    vim.fn.termopen([[rg --line-number --no-heading --smart-case --color=always . | fzf --ansi --delimiter=':' --preview 'cat {1} | nl -b a -n ln | sed "s/^"{2}" \(.*\)""/"{2}" "`tput bold`"\1"`tput sgr0`"/"' --preview-window=hidden --bind 'ctrl-p:toggle-preview,ctrl-c:cancel,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down' >]]..stdout_filename, {
+    vim.fn.termopen(rg..' | '..fzf, {
         on_exit = function()
 
             -- Avoid "Process exited with ..."
@@ -81,7 +87,6 @@ local rg = function()
 
     })
     vim.cmd("startinsert")
-
 end
 
 
