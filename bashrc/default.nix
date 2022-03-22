@@ -13,7 +13,7 @@ let
         ''
           source ${fzf}/share/fzf/completion.bash
           source ${fzf}/share/fzf/key-bindings.bash
-          NIX_PATH=nixpkgs=${nixpkgs-src}
+          export NIX_PATH=nixpkgs=${nixpkgs-src}
           export SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
         ''
       ]
