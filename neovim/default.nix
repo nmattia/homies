@@ -9,6 +9,7 @@ let
       cp -a ${inputs.fzf-vim}/. $out/pack/nix-is-an-addiction/start/fzf.vim
       cp -a ${inputs.fugitive}/. $out/pack/nix-is-an-addiction/start/fugitive
       cp -a ${inputs.vim-surround}/. $out/pack/nix-is-an-addiction/start/vim-surround
+      cp -a ${inputs.vim-svelte}/. $out/pack/nix-is-an-addiction/start/vim-svelte
 
       mkdir -p $out/pack/fzf/start
       ln -s ${fzf}/share/vim-plugins/fzf $out/pack/fzf/start/fzf
