@@ -9,6 +9,10 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
 
+# Set sensible locale values
+export LC_ALL="en_US.UTF-8"
+export LANGUAGE="en_US"
+
 # No locking on Ctrl-S
 stty -ixon
 
