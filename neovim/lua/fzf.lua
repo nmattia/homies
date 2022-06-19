@@ -60,8 +60,12 @@ local rg = function()
     local new_buf_nr = api.nvim_get_current_buf()
     local stdout_filename = os.tmpname()
 
-    local rg_opts = '--line-number --no-heading --smart-case --color=always'
-    local rg = 'rg '..rg_opts..' .'
+    -- --line-number: show line numbers, useful when picking exact line
+    -- --no-heading: don't cluster by file name (file name is printed alone above matches)
+    -- '\S': print all lines that contain at least one non-space character
+    -- --hidden --glob '!.git': show hidden files like `.github/` but ignore `.git/`
+    local rg_opts = '--line-number --no-heading --color=always --hidden --glob "!.git"'
+    local rg = 'rg '..rg_opts..' -- "\\S"'
 
     -- num[b]er all lines, and format is [l]eft justified
     local add_linenos = 'nl -b all -n ln'
