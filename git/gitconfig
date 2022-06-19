@@ -1,3 +1,4 @@
+# vi: ft=gitconfig
 [core]
     excludesfile = SUBSTITUTE_GITIGNORE
     editor = nvim
@@ -8,8 +9,17 @@
     br = branch
     ci = commit
     st = status
-    graph = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-    infograph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+    # [r]e[b]ase: Fetch and rebase on default branch
+    rb = !git fetch && git rebase $(git rev-parse --abbrev-ref origin/HEAD)
+    # [d]i[f]f: Diff against last common ancestor with default branch
+    df = !git diff $(git merge-base HEAD $(git rev-parse --abbrev-ref origin/HEAD))
+
+    # Fast config setup
+    dfn = config user.email nicolas.mattia@dfinity.org
+    me = config user.email nicolas@nmattia.com
+
+    alias = config --get-regexp alias
+    head = rev-parse HEAD
 [push]
     default = simple
 [url "git@github.com:"]
