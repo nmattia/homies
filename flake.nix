@@ -16,9 +16,6 @@
   inputs.nvim-tree.url = "github:kyazdani42/nvim-tree.lua";
   inputs.nvim-tree.flake = false;
 
-  inputs.fzf-vim.url = "github:junegunn/fzf.vim";
-  inputs.fzf-vim.flake = false;
-
   inputs.git-src.url = "github:git/git";
   inputs.git-src.flake = false;
 

@@ -47,22 +47,6 @@
         "type": "github"
       }
     },
-    "fzf-vim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1649321274,
-        "narHash": "sha256-AuJvZAQiHQjNIdgtc1Jb+sDrA1gFt+2D9IFcvbxs0ac=",
-        "owner": "junegunn",
-        "repo": "fzf.vim",
-        "rev": "d5f1f8641b24c0fd5b10a299824362a2a1b20ae0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "junegunn",
-        "repo": "fzf.vim",
-        "type": "github"
-      }
-    },
     "git-src": {
       "flake": false,
       "locked": {
@@ -131,7 +115,6 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "fugitive": "fugitive",
-        "fzf-vim": "fzf-vim",
         "git-src": "git-src",
         "niv-src": "niv-src",
         "nixpkgs": "nixpkgs",

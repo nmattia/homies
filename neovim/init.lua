@@ -101,32 +101,9 @@ for _,key in pairs{ 'H', 'J', 'K', 'L' } do
     vim.api.nvim_set_keymap('i', '<C-'..key..'>', '<C-O><C-W><C-'..key..'>', { noremap = true })
 end
 
--- FZF and "Finding" in general
---
--- In general, all [f]inding commands are started with ,f. What comes next decides what exactly
--- is to be found. In addition to that, we offer a friendly picker with ,F.
+-- FZF + ripgrep on ,fr
 
--- The picker options
-local picker_options = {
-    G = { hint = "[G]it commits (ALL)", cmd = ":Commits" },
-    a = { hint = "[a]ll files", cmd = ":Files"},
-    b = { hint = "[b]uffers", cmd = ":Buffers" },
-    c = { hint = "[c]ommands", cmd = ":Commands" },
-    f = { hint = "git ls-[f]iles", cmd = ":GFiles" },
-    g = { hint = "[g]it commits (buffer)", cmd = ":BCommits" },
-    l = { hint = "[l]ines in this buffer", cmd = ":BLines" },
-    L = { hint = "lines in AL[L] buffers", cmd = ":Lines" },
-    r = { hint = "[r]ipgrep", cmd = ":lua require'fzf'.rg()" },
-}
-
-for k,v in pairs(picker_options) do
-    vim.api.nvim_set_keymap('n', '<Leader>f'..k, v.cmd.."<CR>", { noremap = true })
-    v["action"] = function () vim.cmd(v.cmd) end
-end
-
--- Open custom FZF picker on ,F
-finder_picker = require'picker'.mk_picker(picker_options)
-vim.api.nvim_set_keymap('n', '<Leader>F', ':lua finder_picker()<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>fr', ":lua require'fzf'.rg()<CR>", { noremap = true })
 
 -- Misc
 

@@ -6,7 +6,6 @@ let
 
       cp -a ${inputs.nvim-tree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
       cp -a ${inputs.vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
-      cp -a ${inputs.fzf-vim}/. $out/pack/nix-is-an-addiction/start/fzf.vim
       cp -a ${inputs.fugitive}/. $out/pack/nix-is-an-addiction/start/fugitive
       cp -a ${inputs.vim-surround}/. $out/pack/nix-is-an-addiction/start/vim-surround
       cp -a ${inputs.vim-svelte}/. $out/pack/nix-is-an-addiction/start/vim-svelte
