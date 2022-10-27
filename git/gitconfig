@@ -13,6 +13,8 @@
     rb = !git fetch && git rebase $(git rev-parse --abbrev-ref origin/HEAD)
     # [d]i[f]f: Diff against last common ancestor with default branch
     df = !git diff $(git merge-base HEAD $(git rev-parse --abbrev-ref origin/HEAD))
+    # Add everything and amend
+    amen = !git add -A && git commit --amend
 
     # Fast config setup
     dfn = config user.email nicolas.mattia@dfinity.org
