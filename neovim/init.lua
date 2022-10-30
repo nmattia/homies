@@ -80,7 +80,7 @@ vim.api.nvim_set_keymap('n', '<Leader>w', ':call TrimWhitespace()<CR>', { norema
 -- search
 
 -- Stop highlighting search on C-/
-vim.api.nvim_set_keymap('n', '<C-_>', ':noh<CR>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<C-/>', ':noh<CR>', { noremap = true })
 
 -- Case insensitive search with ,/
 vim.api.nvim_set_keymap('n', '<Leader>/', '/\\c', { noremap = true })

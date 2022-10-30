@@ -19,7 +19,8 @@ let
         if [ -d doc ]
         then
           chmod -R +w .
-          XDG_DATA_HOME=$PWD nvim -u NONE -c ":helptags doc" -c q
+          # Set home & al so that nvim can create swapfiles
+          XDG_DATA_HOME=$PWD HOME=$PWD nvim -u NONE -c ":helptags doc" -c q
         fi
       done
     '';
