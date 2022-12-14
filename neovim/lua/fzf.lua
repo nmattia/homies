@@ -27,6 +27,26 @@ local function tmpdir()
     return filename
 end
 
+-- Function that removes repeated empty strings
+local function remove_repeated_blanks(values)
+    local filtered = {}
+    local empty_previous = true
+
+    for k,v in pairs(values) do
+        local empty = v == ""
+        if (empty) then
+            if (not empty_previous) then
+                table.insert(filtered, v)
+            end
+        else
+            table.insert(filtered, v)
+        end
+        empty_previous = empty
+    end
+
+    return filtered
+end
+
 local get_buf_by_name = function(name)
     for k,v in pairs(api.nvim_list_bufs()) do
         if(api.nvim_buf_get_name(v) == name) then
@@ -170,7 +190,7 @@ local terms = function()
         local buf_nr = terms[k]
         local filename = terms_dir..[[/]]..tostring(buf_nr)
         local content = api.nvim_buf_get_lines(buf_nr,0, -1, false)
-        write_file(filename, content)
+        write_file(filename, remove_repeated_blanks(content))
     end
 
     -- file used to retrieve fzf's selection
