@@ -2,11 +2,29 @@ local api = vim.api
 local pp = vim.pretty_print
 local cmd = vim.cmd
 
-function read_file(file)
-    local f = assert(io.open(file, "rb"))
+local function read_file(filename)
+    local f = assert(io.open(filename, "rb"))
     local content = f:read("*all")
     f:close()
     return content
+end
+
+-- write the lines in table 'content' to 'filename
+local function write_file(filename, content)
+    local f = assert(io.open(filename, "a"))
+    for k in pairs(content) do
+        f:write(content[k], "\n")
+    end
+    f:close()
+end
+
+local function tmpdir()
+    local out = os.tmpname()
+    os.execute([[mktemp -d >]]..out)
+    local filename = read_file(out)
+    filename = string.gsub(filename, '\n$', '')
+    os.remove(out)
+    return filename
 end
 
 local get_buf_by_name = function(name)
@@ -130,25 +148,51 @@ local terms = function()
 
     local new_buf_nr = api.nvim_get_current_buf()
 
-    -- file used to give buffer names to fzf
-    -- populated with all buffer numbers
-    local stdin_filename = os.tmpname()
-    local f = assert(io.open(stdin_filename, "a"))
+    -- A temporary directory within which each filename
+    -- is a buffer number, and each file contains a preview
+    -- of the buffer.
+    local terms_dir = tmpdir()
+
     local bufs = vim.api.nvim_list_bufs()
+
+    -- get a list of all the terms' buffer numbers
+    local terms = {}
     for k in pairs(bufs) do
         local buf_nr = bufs[k]
         local buf_name = vim.api.nvim_buf_get_name(buf_nr)
         if(string.find(buf_name, "term://")) then
-            f:write(buf_nr, "\n")
+            table.insert(terms, buf_nr)
         end
     end
-    f:close()
+
+    -- for each term, create the preview file
+    for k in pairs(terms) do
+        local buf_nr = terms[k]
+        local filename = terms_dir..[[/]]..tostring(buf_nr)
+        local content = api.nvim_buf_get_lines(buf_nr,0, -1, false)
+        write_file(filename, content)
+    end
 
     -- file used to retrieve fzf's selection
     local stdout_filename = os.tmpname()
 
+    local fzf_bindings = mk_fzf_bindings{
+        ['ctrl-c'] = 'cancel',
+        ['ctrl-u'] = 'preview-half-page-up',
+        ['ctrl-d'] = 'preview-half-page-down',
+    }
+
+    local preview_cmd = 'cat '..terms_dir..'/{}'
+
+    local fzf_opts = {
+        [[--preview-window follow]], -- basically 'tail -f', used to show the bottom of the file
+        [[--preview ']]..preview_cmd..[[']], -- specify how the currently selected file should be previewed
+        [[--bind ']]..fzf_bindings..[[']],
+    }
+
     -- Make the actual command
-    local term_cmd = [[fzf <]]..stdin_filename..[[ >]]..stdout_filename
+    local term_cmd = [[ls ]]..terms_dir..[[ | fzf ]]..table.concat(fzf_opts, " ")..[[ >]]..stdout_filename
+    log(term_cmd)
 
     vim.fn.termopen(term_cmd, {
         on_exit = function()
@@ -167,7 +211,12 @@ local terms = function()
                 vim.api.nvim_set_current_buf(buf_nr)
             end)
 
-            os.remove(stdin_filename)
+            for k in pairs(terms) do
+                local buf_nr = terms[k]
+                os.remove(terms_dir..[[/]]..buf_nr)
+            end
+
+            os.remove(terms_dir)
             os.remove(stdout_filename)
 
             if(not status) then
