@@ -104,6 +104,7 @@ end
 -- FZF + ripgrep on ,fr
 
 vim.api.nvim_set_keymap('n', '<Leader>fr', ":lua require'fzf'.rg()<CR>", { noremap = true })
+vim.api.nvim_set_keymap('n', '<Leader>ft', ":lua require'fzf'.terms()<CR>", { noremap = true })
 
 -- Misc
 

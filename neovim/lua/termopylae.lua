@@ -17,7 +17,7 @@ local enter_term = function()
     -- Before we move to the new window, we record the current window so that
     -- we can come back to it
     M.previous_win_nr = vim.api.nvim_get_current_win()
-    -- ... or the previous buffer if the window isn't valid anymore
+    -- ... and the previous buffer (used if the window isn't valid anymore)
     M.previous_buf_nr = vim.api.nvim_get_current_buf()
 
     -- Iterate over the windows and, if the buffer is a terminal,

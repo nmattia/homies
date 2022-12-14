@@ -123,4 +123,61 @@ local rg = function()
     vim.cmd("startinsert")
 end
 
-return { rg = rg }
+local terms = function()
+    local previous_win_nr = vim.api.nvim_get_current_win()
+
+    vim.cmd("new")
+
+    local new_buf_nr = api.nvim_get_current_buf()
+
+    -- file used to give buffer names to fzf
+    -- populated with all buffer numbers
+    local stdin_filename = os.tmpname()
+    local f = assert(io.open(stdin_filename, "a"))
+    local bufs = vim.api.nvim_list_bufs()
+    for k in pairs(bufs) do
+        local buf_nr = bufs[k]
+        local buf_name = vim.api.nvim_buf_get_name(buf_nr)
+        if(string.find(buf_name, "term://")) then
+            f:write(buf_nr, "\n")
+        end
+    end
+    f:close()
+
+    -- file used to retrieve fzf's selection
+    local stdout_filename = os.tmpname()
+
+    -- Make the actual command
+    local term_cmd = [[fzf <]]..stdin_filename..[[ >]]..stdout_filename
+
+    vim.fn.termopen(term_cmd, {
+        on_exit = function()
+            local status, err = pcall(function ()
+                -- Avoid "Process exited with ..."
+                -- (buffer is still valid iff it wasn't somehow deleted already)
+                if api.nvim_buf_is_valid(new_buf_nr) then
+                    api.nvim_buf_delete(new_buf_nr, {})
+                end
+
+                -- Read buffer number out
+                local buf_nr = tonumber(read_file(stdout_filename))
+
+                -- Go back to previous window and open buffer
+                vim.api.nvim_set_current_win(previous_win_nr)
+                vim.api.nvim_set_current_buf(buf_nr)
+            end)
+
+            os.remove(stdin_filename)
+            os.remove(stdout_filename)
+
+            if(not status) then
+                log("Error caught when opening term")
+                log(err)
+            end
+        end
+
+    })
+    vim.cmd("startinsert")
+end
+
+return { rg = rg, terms = terms }
