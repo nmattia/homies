@@ -1,36 +1,51 @@
 { runCommand, lib, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, inputs, ripgrep }:
 let
-  plugins = [
-    inputs.nvim-tree
-    inputs.vim-nix
-    inputs.fugitive
-    inputs.vim-surround
-    inputs.vim-svelte
-    "${fzf}/share/vim-plugins/fzf"
-  ];
+  plugins = {
+    inherit (inputs)
+      fugitive
+      nvim-tree
+      vim-nix
+      vim-surround
+      vim-svelte
+      nvim-treesitter;
+    fzf = "${fzf}/share/vim-plugins/fzf";
+  };
+
+  plugins' = lib.mapAttrsToList (k: v: "${k} ${v}") plugins;
+  plugins'' = lib.concatStringsSep "\n" plugins';
 
   pluginsDir = runCommand "mk-plugins" { nativeBuildInputs = [ neovim-unwrapped ]; }
     ''
-      mkdir -p $out/pack/nix-is-an-addiction/start
+      plugins_dir="$out/pack/nix-is-an-addiction/start"
 
-      for plugin in ${lib.concatStringsSep " " plugins}
+      mkdir -p "$plugins_dir"
+
+      # loop over plugins, using FD 10 to avoid polluting stdin
+      # (trips nvim otherwise)
+      while read -u 10 plug_name plugin
       do
-        plug_dest="$out/pack/nix-is-an-addiction/start/$(basename $plugin)"
+        plug_dest="$plugins_dir/$plug_name"
 
-        # install plugin
+        echo installing plugin
+        echo "   " name "'$plug_name'"
+        echo "   " source "'$plugin'"
+        echo "   " destination "'$plug_dest'"
+
         cp -a "$plugin/." "$plug_dest"
-        pushd "$plug_dest"
 
         # build doc/helptags if necessary
+        pushd "$plug_dest" >/dev/null
         if [ -d doc ]
         then
+          echo installing doc
           chmod -R +w .
           # Set home & al so that nvim can create swapfiles
           XDG_DATA_HOME=$PWD HOME=$PWD nvim -u NONE -c ":helptags doc" -c q
         fi
-        popd
-      done
+        popd >/dev/null
+      done 10<<< $(echo -n "${plugins''}")
     '';
+
   extraBins = [
       ripgrep # used by fzf.vim for `:Rg`
       coreutils
