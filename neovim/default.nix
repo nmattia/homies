@@ -1,27 +1,34 @@
 { runCommand, lib, makeWrapper, coreutils, neovim-unwrapped, symlinkJoin, fzf, inputs, ripgrep }:
 let
+  plugins = [
+    inputs.nvim-tree
+    inputs.vim-nix
+    inputs.fugitive
+    inputs.vim-surround
+    inputs.vim-svelte
+    "${fzf}/share/vim-plugins/fzf"
+  ];
+
   pluginsDir = runCommand "mk-plugins" { nativeBuildInputs = [ neovim-unwrapped ]; }
     ''
       mkdir -p $out/pack/nix-is-an-addiction/start
 
-      cp -a ${inputs.nvim-tree}/. $out/pack/nix-is-an-addiction/start/nvim-tree
-      cp -a ${inputs.vim-nix}/. $out/pack/nix-is-an-addiction/start/vim-nix
-      cp -a ${inputs.fugitive}/. $out/pack/nix-is-an-addiction/start/fugitive
-      cp -a ${inputs.vim-surround}/. $out/pack/nix-is-an-addiction/start/vim-surround
-      cp -a ${inputs.vim-svelte}/. $out/pack/nix-is-an-addiction/start/vim-svelte
-
-      mkdir -p $out/pack/fzf/start
-      ln -s ${fzf}/share/vim-plugins/fzf $out/pack/fzf/start/fzf
-
-      for plugin in $out/pack/nix-is-an-addiction/start/*
+      for plugin in ${lib.concatStringsSep " " plugins}
       do
-        cd "$plugin"
+        plug_dest="$out/pack/nix-is-an-addiction/start/$(basename $plugin)"
+
+        # install plugin
+        cp -a "$plugin/." "$plug_dest"
+        pushd "$plug_dest"
+
+        # build doc/helptags if necessary
         if [ -d doc ]
         then
           chmod -R +w .
           # Set home & al so that nvim can create swapfiles
           XDG_DATA_HOME=$PWD HOME=$PWD nvim -u NONE -c ":helptags doc" -c q
         fi
+        popd
       done
     '';
   extraBins = [
