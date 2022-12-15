@@ -6,8 +6,7 @@ let
       nvim-tree
       vim-nix
       vim-surround
-      vim-svelte
-      nvim-treesitter;
+      vim-svelte;
     fzf = "${fzf}/share/vim-plugins/fzf";
   };
 

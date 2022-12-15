@@ -110,22 +110,6 @@
         "type": "github"
       }
     },
-    "nvim-treesitter": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1671112515,
-        "narHash": "sha256-s9KpidoBmA7BN9gy6I+7yJAUl0yqPN5ERX6L8kHiu78=",
-        "owner": "nvim-treesitter",
-        "repo": "nvim-treesitter",
-        "rev": "507527711fdd8f701544024aeb1a9a068f986d89",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nvim-treesitter",
-        "repo": "nvim-treesitter",
-        "type": "github"
-      }
-    },
     "root": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -135,7 +119,6 @@
         "niv-src": "niv-src",
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
-        "nvim-treesitter": "nvim-treesitter",
         "vim-nix": "vim-nix",
         "vim-surround": "vim-surround",
         "vim-svelte": "vim-svelte"

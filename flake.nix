@@ -31,9 +31,6 @@
   inputs.vim-surround.url = github:tpope/vim-surround;
   inputs.vim-surround.flake = false;
 
-  inputs.nvim-treesitter.url = github:nvim-treesitter/nvim-treesitter;
-  inputs.nvim-treesitter.flake = false;
-
   outputs =
     inputs@{ self
     , nixpkgs
