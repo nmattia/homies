@@ -5,9 +5,7 @@ let
       fugitive
       nvim-tree
       vim-nix
-      vim-surround
-      vim-svelte;
-    fzf = "${fzf}/share/vim-plugins/fzf";
+      vim-surround;
   };
 
   plugins' = lib.mapAttrsToList (k: v: "${k} ${v}") plugins;
