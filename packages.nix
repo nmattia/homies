@@ -30,7 +30,7 @@ let
       ];
   };
 
-  nix = pkgs.callPackage ./nix {};
+  nix = pkgs.callPackage ./nix { };
 
   neovim = pkgs.callPackage ./neovim { inherit inputs; };
 
@@ -44,7 +44,7 @@ let
     });
 
   # Tmux with a custom tmux.conf baked in
-  tmux = pkgs.callPackage ./tmux {};
+  tmux = pkgs.callPackage ./tmux { };
 
   # Vim with a custom vimrc and set of packages
   vim = pkgs.callPackage ./vim

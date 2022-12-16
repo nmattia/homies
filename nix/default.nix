@@ -8,5 +8,5 @@ symlinkJoin {
   postBuild = ''
     wrapProgram $out/bin/nix \
       --set NIX_USER_CONF_FILES ${./nix.conf}
-    '';
+  '';
 }

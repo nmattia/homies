@@ -44,9 +44,9 @@ let
     '';
 
   extraBins = [
-      ripgrep # used by fzf.vim for `:Rg`
-      coreutils
-    ];
+    ripgrep # used by fzf.lua for rg
+    coreutils
+  ];
 in
 
 symlinkJoin {
