@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 require'nvim-tree'.setup({ git = { ignore = false }})
 
 -- Toggle filetree on ,o
-vim.api.nvim_set_keymap('n', '<Leader>o', ':NvimTreeToggle<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>o', ':NvimTreeToggle<CR>', { noremap = true })
 
 -- Remove trailing whitespaces
 vim.api.nvim_command([[
@@ -75,62 +75,63 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 ]])
-vim.api.nvim_set_keymap('n', '<Leader>w', ':call TrimWhitespace()<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>w', ':call TrimWhitespace()<CR>', { noremap = true })
 
 -- search
 
 -- Stop highlighting search on C-/
-vim.api.nvim_set_keymap('n', '<C-/>', ':noh<CR>', { noremap = true })
+vim.keymap.set('n', '<C-/>', ':noh<CR>', { noremap = true })
 
 -- Case insensitive search with ,/
-vim.api.nvim_set_keymap('n', '<Leader>/', '/\\c', { noremap = true })
+vim.keymap.set('n', '<Leader>/', '/\\c', { noremap = true })
 
 -- E[x]it with ,x
-vim.api.nvim_set_keymap('n', '<Leader>x', ':x<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>x', ':x<CR>', { noremap = true })
 
 -- Navigation across windows
 
 -- Simplify navigator across windows; C-{hjkl} moves to other window
 for _,key in pairs{ 'H', 'J', 'K', 'L' } do
-    vim.api.nvim_set_keymap('n', '<C-'..key..'>', '<C-W><C-'..key..'>', { noremap = true })
+    vim.keymap.set('n', '<C-'..key..'>', '<C-W><C-'..key..'>', { noremap = true })
 end
 
 -- Same, in insert mode (uses C-O which runs a command and then re-enters
 -- insert mode)
 for _,key in pairs{ 'H', 'J', 'K', 'L' } do
-    vim.api.nvim_set_keymap('i', '<C-'..key..'>', '<C-O><C-W><C-'..key..'>', { noremap = true })
+    vim.keymap.set('i', '<C-'..key..'>', '<C-O><C-W><C-'..key..'>', { noremap = true })
 end
 
 -- FZF + ripgrep on ,fr
 
-vim.api.nvim_set_keymap('n', '<Leader>fr', ":lua require'fzf'.rg()<CR>", { noremap = true })
-vim.api.nvim_set_keymap('n', '<Leader>ft', ":lua require'fzf'.terms()<CR>", { noremap = true })
+local fzf = require'fzf'
+vim.keymap.set('n', '<Leader>fr', fzf.rg, { noremap = true })
+vim.keymap.set('n', '<Leader>ft', fzf.terms, { noremap = true })
 
 -- Misc
 
 -- Wrap selected lines with Q
-vim.api.nvim_set_keymap('n', 'Q', 'gq', { noremap = true })
+vim.keymap.set('n', 'Q', 'gq', { noremap = true })
 
 -- Yank til end of line (consistent with C and D)
-vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
+vim.keymap.set('n', 'Y', 'y$', { noremap = true })
 
 -- Select the whole file with <C-G>
-vim.api.nvim_set_keymap('n', '<C-G>', 'ggVG<CR>', { noremap = true })
+vim.keymap.set('n', '<C-G>', 'ggVG<CR>', { noremap = true })
 
 -- Start a git command with ,g
-vim.api.nvim_set_keymap('n', '<Leader>g', ':G ', { noremap = true })
+vim.keymap.set('n', '<Leader>g', ':G ', { noremap = true })
 
 -- In Visual, sort with <C-S>
-vim.api.nvim_set_keymap('v', '<C-S>', ':sort<CR>', { noremap = true })
+vim.keymap.set('v', '<C-S>', ':sort<CR>', { noremap = true })
 
 -- TERMINAL
 
 -- Open a terminal in the current window
-vim.api.nvim_set_keymap('n', '<Leader>t', ':terminal<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>t', ':terminal<CR>', { noremap = true })
 
 -- Exit terminal through Ctrl+hjkl
 for _,key in pairs{ 'H', 'J', 'K', 'L' } do
-    vim.api.nvim_set_keymap('t', '<C-'..key..'>', '<C-\\><C-N><C-W><C-'..key..'>', { noremap = true })
+    vim.keymap.set('t', '<C-'..key..'>', '<C-\\><C-N><C-W><C-'..key..'>', { noremap = true })
 end
 
 -- Close the terminal buffer if the terminal exits with 0
@@ -139,16 +140,14 @@ vim.api.nvim_create_autocmd('TermClose', {
 })
 
 -- Go to terminal on <C-Space>
-termopylae = require'termopylae'
-termopylae_enter_term = termopylae.enter_term
-termopylae_leave_term = termopylae.leave_term
-vim.api.nvim_set_keymap('n', '<C-Space>', ':lua termopylae_enter_term()<CR>', { noremap = true })
+local termopylae = require'termopylae'
+vim.keymap.set('n', '<C-Space>', termopylae.enter_term, { noremap = true })
 
 -- Exit terminal and go back to previous window with <C-Space>
-vim.api.nvim_set_keymap('t', '<C-Space>', '<C-\\><C-N>:lua termopylae_leave_term()<CR>', { noremap = true })
+vim.keymap.set('t', '<C-Space>', termopylae.leave_term, { noremap = true })
 -- Simply exit terminal with <C-\>
-vim.api.nvim_set_keymap('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
+vim.keymap.set('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
 -- In general, go to normal mode with <C-\> (in addition to the default <C-[>)
-vim.api.nvim_set_keymap('i', '<C-\\>', '<Esc>', { noremap = true })
+vim.keymap.set('i', '<C-\\>', '<Esc>', { noremap = true })
 -- Map it for normal mode as well, because of muscle memory. Otherwise vim expects other keys.
-vim.api.nvim_set_keymap('n', '<C-\\>', '<Esc>', { noremap = true })
+vim.keymap.set('n', '<C-\\>', '<Esc>', { noremap = true })
