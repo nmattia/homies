@@ -47,6 +47,15 @@ local function remove_repeated_blanks(values)
     return filtered
 end
 
+-- split the string on newline chars
+local string_lines = function(text)
+    lines = {}
+    for s in text:gmatch("[^\n]+") do
+        table.insert(lines,s)
+    end
+    return lines
+end
+
 local get_buf_by_name = function(name)
     for k,v in pairs(api.nvim_list_bufs()) do
         if(api.nvim_buf_get_name(v) == name) then
@@ -68,9 +77,17 @@ local get_log_buf = function()
 end
 
 local log = function(text)
-    local log_buf = get_log_buf()
-    api.nvim_buf_set_lines(log_buf, -1, -1, false, {os.date()})
-    api.nvim_buf_set_lines(log_buf, -1, -1, false, {vim.inspect(text)})
+    local success, err = pcall(function()
+        local log_buf = get_log_buf()
+        local lines = { os.date() }
+        for _, v in pairs(string_lines(vim.inspect(text))) do
+            table.insert(lines, v)
+        end
+        api.nvim_buf_set_lines(log_buf, -1, -1, false, lines)
+    end)
+    if(not success) then
+        api.nvim_buf_set_lines(get_log_buf(), -1, -1, false, {"warning: log() failed"})
+    end
 end
 
 local rg_filename_and_lineno = function(line)
@@ -164,7 +181,7 @@ end
 local terms = function()
     local previous_win_nr = vim.api.nvim_get_current_win()
 
-    vim.cmd("new")
+    vim.cmd("new") -- create a new window where fzf will be shown
 
     local new_buf_nr = api.nvim_get_current_buf()
 
@@ -173,9 +190,8 @@ local terms = function()
     -- of the buffer.
     local terms_dir = tmpdir()
 
-    local bufs = vim.api.nvim_list_bufs()
-
     -- get a list of all the terms' buffer numbers
+    local bufs = vim.api.nvim_list_bufs()
     local terms = {}
     for k in pairs(bufs) do
         local buf_nr = bufs[k]
@@ -212,7 +228,6 @@ local terms = function()
 
     -- Make the actual command
     local term_cmd = [[ls ]]..terms_dir..[[ | fzf ]]..table.concat(fzf_opts, " ")..[[ >]]..stdout_filename
-    log(term_cmd)
 
     vim.fn.termopen(term_cmd, {
         on_exit = function()
@@ -224,11 +239,14 @@ local terms = function()
                 end
 
                 -- Read buffer number out
-                local buf_nr = tonumber(read_file(stdout_filename))
+                local buf_nr = read_file(stdout_filename)
+                local buf_nr = string.sub(buf_nr,0,-2) -- remove trailing newline
+                local buf_nr = tonumber(buf_nr)
 
                 -- Go back to previous window and open buffer
                 vim.api.nvim_set_current_win(previous_win_nr)
                 vim.api.nvim_set_current_buf(buf_nr)
+                vim.api.nvim_input("i") -- note: for some reason startinsert doesn't work here
             end)
 
             for k in pairs(terms) do
