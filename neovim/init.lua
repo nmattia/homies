@@ -63,7 +63,7 @@ vim.api.nvim_create_autocmd('TermOpen', {
 require'nvim-tree'.setup({ git = { ignore = false }})
 
 -- Toggle filetree on ,o
-vim.keymap.set('n', '<Leader>o', ':NvimTreeToggle<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>o', vim.cmd.NvimTreeToggle, { noremap = true })
 
 -- Remove trailing whitespaces
 vim.api.nvim_command([[
@@ -75,18 +75,18 @@ fun! TrimWhitespace()
     call winrestview(l:save)
 endfun
 ]])
-vim.keymap.set('n', '<Leader>w', ':call TrimWhitespace()<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>w', vim.fn.TrimWhitespace, { noremap = true })
 
 -- search
 
 -- Stop highlighting search on C-/
-vim.keymap.set('n', '<C-/>', ':noh<CR>', { noremap = true })
+vim.keymap.set('n', '<C-/>', vim.cmd.noh, { noremap = true })
 
 -- Case insensitive search with ,/
 vim.keymap.set('n', '<Leader>/', '/\\c', { noremap = true })
 
 -- E[x]it with ,x
-vim.keymap.set('n', '<Leader>x', ':x<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>x', vim.cmd.x, { noremap = true })
 
 -- Navigation across windows
 
@@ -130,7 +130,7 @@ vim.keymap.set('v', '<C-S>', ':sort<CR>', { noremap = true })
 -- TERMINAL
 
 -- Open a terminal in the current window
-vim.keymap.set('n', '<Leader>t', ':terminal<CR>', { noremap = true })
+vim.keymap.set('n', '<Leader>t', vim.cmd.terminal, { noremap = true })
 
 -- Exit terminal through Ctrl+hjkl
 for _,key in pairs{ 'H', 'J', 'K', 'L' } do
