@@ -10,7 +10,7 @@ local function read_file(filename)
 end
 
 -- write the lines in table 'content' to 'filename
-local function write_file(filename, content)
+local function append_file(filename, content)
     local f = assert(io.open(filename, "a"))
     for k in pairs(content) do
         f:write(content[k], "\n")
@@ -178,6 +178,93 @@ local rg = function()
     vim.cmd("startinsert")
 end
 
+local function find_last_command(lines)
+    for i=1, #lines do
+       local line = lines[#lines + 1 - i]
+       local match = string.find(line, "%$")
+       if(match ~= nil) then
+           local match = string.sub(line, match + 2)
+           if(string.match(match, "%w")) then
+               return match
+           end
+       end
+    end
+
+    return nil
+end
+
+local function term_get_pid(buf_nr)
+    local term_name = vim.api.nvim_buf_get_name(buf_nr)
+    local pid = string.match(term_name, "%d+") -- check for nil
+    return tonumber(pid) -- this doesn't error out; worst case it returns nil
+end
+
+-- pid is a number
+local function get_proc_child(pid)
+    local ok, data = pcall(function() return vim.api.nvim_get_proc_children(pid) end)
+    if(not ok) then
+        return nil
+    end
+
+    local children = data
+    if(children == nil) then
+        log("Unexpected nil children")
+        return nil
+    end
+    if(#children == 0) then return nil end
+
+    return children[1]
+end
+
+local function execute_stdout(command)
+    local out = os.tmpname()
+    os.execute(command.. " >"..out)
+    local stdout = read_file(out)
+    os.remove(out)
+    return stdout
+end
+
+local function get_proc_command(pid)
+    local full = execute_stdout("ps -o command -p "..tostring(pid))
+    local full = string_lines(full)
+    if(not (#full >= 2)) then return nil end
+    return full[2]
+end
+
+local function term_get_running_command(buf_nr)
+    local pid = term_get_pid(buf_nr)
+    if (pid == nil) then return nil end
+
+    for i=1, 10 do
+        pid = get_proc_child(pid)
+        if (pid == nil) then return nil end
+
+        local command = get_proc_command(pid)
+        if(command == nil) then return nil end
+
+        if(not (string.match(command, "/bin/bash")))then
+            return command
+        end
+    end
+
+    return nil
+end
+
+local function lines_infer_last_command(lines)
+    for i=1, #lines do
+       local line = lines[#lines + 1 - i]
+       local match = string.find(line, "%$")
+       if(match ~= nil) then
+           local match = string.sub(line, match + 2)
+           if(string.match(match, "%w")) then
+               return match
+           end
+       end
+    end
+
+    return nil
+end
+
 local terms = function()
     local previous_win_nr = vim.api.nvim_get_current_win()
 
@@ -201,12 +288,20 @@ local terms = function()
         end
     end
 
-    -- for each term, create the preview file
+    -- file used to tell fzf about candidates
+    local stdin_filename = os.tmpname()
+
+    -- for each term, create the preview file, and add the term
+    -- to the list of candidates
     for k in pairs(terms) do
         local buf_nr = terms[k]
         local filename = terms_dir..[[/]]..tostring(buf_nr)
         local content = api.nvim_buf_get_lines(buf_nr,0, -1, false)
-        write_file(filename, remove_repeated_blanks(content))
+        local content = remove_repeated_blanks(content)
+        append_file(filename, content)
+        local last_command = term_get_running_command(buf_nr) or lines_infer_last_command(content) or " ? "
+        --local last_command = lines_infer_last_command(content) or " ? "
+        append_file(stdin_filename, { tostring(buf_nr).." "..last_command })
     end
 
     -- file used to retrieve fzf's selection
@@ -218,7 +313,9 @@ local terms = function()
         ['ctrl-d'] = 'preview-half-page-down',
     }
 
-    local preview_cmd = 'cat '..terms_dir..'/{}'
+    -- the preview command where {1} represents the first "field index expression"
+    -- (i.e. "42" in "42 <some command>")
+    local preview_cmd = 'cat '..terms_dir..'/{1}'
 
     local fzf_opts = {
         [[--preview-window follow]], -- basically 'tail -f', used to show the bottom of the file
@@ -227,7 +324,7 @@ local terms = function()
     }
 
     -- Make the actual command
-    local term_cmd = [[ls ]]..terms_dir..[[ | fzf ]]..table.concat(fzf_opts, " ")..[[ >]]..stdout_filename
+    local term_cmd = [[fzf <]]..stdin_filename..[[ ]]..table.concat(fzf_opts, " ")..[[ >]]..stdout_filename
 
     vim.fn.termopen(term_cmd, {
         on_exit = function()
@@ -239,9 +336,9 @@ local terms = function()
                 end
 
                 -- Read buffer number out
-                local buf_nr = read_file(stdout_filename)
-                local buf_nr = string.sub(buf_nr,0,-2) -- remove trailing newline
-                local buf_nr = tonumber(buf_nr)
+                local buf_entry = read_file(stdout_filename)
+                local buf_nr = string.match(buf_entry, "^%d+")
+                buf_nr = tonumber(buf_nr)
 
                 -- Go back to previous window and open buffer
                 vim.api.nvim_set_current_win(previous_win_nr)
@@ -255,6 +352,7 @@ local terms = function()
             end
 
             os.remove(terms_dir)
+            os.remove(stdin_filename)
             os.remove(stdout_filename)
 
             if(not status) then
