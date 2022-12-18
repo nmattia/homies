@@ -11,7 +11,6 @@ Install with `nix profile install`. Make sure to update your `.bashrc` or `.bash
 ``` shell
 $ echo 'if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi' >> ~/.bashrc
 ```
-
 The homies will be available in all subsequent shells, including the
 customizations (vim with my favorite plugins, tmux with my customized
 configuration, etc). See the [introduction blog post][post] for an overview.
@@ -47,4 +46,12 @@ Deleting old configurations:
 
 ``` shell
 $ nix profile wipe-history
+```
+
+Ensure build is sandboxed:
+```
+# /etc/nix/nix.conf
+build-users-group = nixbld
+sandbox-paths = /bin/bash /bin /usr/bin
+sandbox = true
 ```
