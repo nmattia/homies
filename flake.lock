@@ -63,6 +63,22 @@
         "type": "github"
       }
     },
+    "luafun": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1653039147,
+        "narHash": "sha256-lqWTPn1HPQxhfkUFvEUCbS05IkkroaykgYehJqQ0+lw=",
+        "owner": "luafun",
+        "repo": "luafun",
+        "rev": "cb6a7e25d4b55d9578fd371d1474b00e47bd29f3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "luafun",
+        "repo": "luafun",
+        "type": "github"
+      }
+    },
     "niv-src": {
       "flake": false,
       "locked": {
@@ -116,6 +132,7 @@
         "flake-utils": "flake-utils",
         "fugitive": "fugitive",
         "git-src": "git-src",
+        "luafun": "luafun",
         "niv-src": "niv-src",
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",

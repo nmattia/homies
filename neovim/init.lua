@@ -1,5 +1,8 @@
 -- First, make sure the Lua modules can be "require"d
-package.path = package.path .. ";" .. vim.env.NEOVIM_LUA_PATH .. "/?.lua"
+package.path = package.path .. ";" .. vim.env.NEOVIM_LUA_PATH
+
+-- Initialize functional lua
+require'fun'()
 
 -- Set the mapleader
 vim.g.mapleader = ","

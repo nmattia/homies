@@ -12,19 +12,21 @@ end
 -- write the lines in table 'content' to 'filename
 local function append_file(filename, content)
     local f = assert(io.open(filename, "a"))
-    for k in pairs(content) do
-        f:write(content[k], "\n")
-    end
+    iter(content):each(function(line) f:write(line, "\n") end)
     f:close()
 end
 
-local function tmpdir()
+local function execute_stdout(command)
     local out = os.tmpname()
-    os.execute([[mktemp -d >]]..out)
-    local filename = read_file(out)
-    filename = string.gsub(filename, '\n$', '')
+    os.execute(command.. " >"..out)
+    local stdout = read_file(out)
     os.remove(out)
-    return filename
+    return stdout
+end
+
+local function tmpdir()
+    local filename = execute_stdout("mktemp -d")
+    return string.gsub(filename, '\n$', '')
 end
 
 -- Function that removes repeated empty strings
@@ -32,7 +34,7 @@ local function remove_repeated_blanks(values)
     local filtered = {}
     local empty_previous = true
 
-    for k,v in pairs(values) do
+    iter(values):each(function(v)
         local empty = v == ""
         if (empty) then
             if (not empty_previous) then
@@ -42,7 +44,7 @@ local function remove_repeated_blanks(values)
             table.insert(filtered, v)
         end
         empty_previous = empty
-    end
+    end)
 
     return filtered
 end
@@ -57,11 +59,9 @@ local string_lines = function(text)
 end
 
 local get_buf_by_name = function(name)
-    for k,v in pairs(api.nvim_list_bufs()) do
-        if(api.nvim_buf_get_name(v) == name) then
-            return v
-        end
-    end
+    return iter(api.nvim_list_bufs()):filter(function(buf_nr)
+        return api.nvim_buf_get_name(buf_nr) == name
+    end):nth(1)
 end
 
 local log_buf_name = "log://custom-fzf"
@@ -80,9 +80,9 @@ local log = function(text)
     local success, err = pcall(function()
         local log_buf = get_log_buf()
         local lines = { os.date() }
-        for _, v in pairs(string_lines(vim.inspect(text))) do
-            table.insert(lines, v)
-        end
+        iter(string_lines(vim.inspect(text))):each(function(v)
+            table.insert(lines,v)
+        end)
         api.nvim_buf_set_lines(log_buf, -1, -1, false, lines)
     end)
     if(not success) then
@@ -102,11 +102,8 @@ local rg_filename_and_lineno = function(line)
 end
 
 local mk_fzf_bindings = function(bindings)
-    local acc = {}
-    for k,v in pairs(bindings) do
-        acc[#acc +1] = k..":"..v
-    end
-    return table.concat(acc, ",")
+    local kvs = iter(bindings):map(function(k,v) return k..":"..v end):totable()
+    return table.concat(kvs, ",")
 end
 
 local rg = function()
@@ -150,7 +147,7 @@ local rg = function()
     }
 
     -- Make the actual command
-    local fzf = [[fzf ]]..table.concat(fzf_opts, " ")..[[ >]]..stdout_filename
+    local fzf = 'fzf '..table.concat(fzf_opts, ' ')..' >'..stdout_filename
     local term_cmd = rg..' | '..fzf
 
     vim.fn.termopen(term_cmd, {
@@ -166,7 +163,7 @@ local rg = function()
             local filename, lineno = rg_filename_and_lineno(content)
 
             -- open file at line
-            vim.cmd("e ".."+"..lineno.." "..filename)
+            vim.cmd('e '..'+'..lineno..' '..filename)
 
             -- center
             vim.cmd'zz'
@@ -175,22 +172,7 @@ local rg = function()
         end
 
     })
-    vim.cmd("startinsert")
-end
-
-local function find_last_command(lines)
-    for i=1, #lines do
-       local line = lines[#lines + 1 - i]
-       local match = string.find(line, "%$")
-       if(match ~= nil) then
-           local match = string.sub(line, match + 2)
-           if(string.match(match, "%w")) then
-               return match
-           end
-       end
-    end
-
-    return nil
+    vim.cmd'startinsert'
 end
 
 local function term_get_pid(buf_nr)
@@ -216,14 +198,6 @@ local function get_proc_child(pid)
     return children[1]
 end
 
-local function execute_stdout(command)
-    local out = os.tmpname()
-    os.execute(command.. " >"..out)
-    local stdout = read_file(out)
-    os.remove(out)
-    return stdout
-end
-
 local function get_proc_command(pid)
     local full = execute_stdout("ps -o command -p "..tostring(pid))
     local full = string_lines(full)
@@ -235,7 +209,7 @@ local function term_get_running_command(buf_nr)
     local pid = term_get_pid(buf_nr)
     if (pid == nil) then return nil end
 
-    for i=1, 10 do
+    range(10):each(function()
         pid = get_proc_child(pid)
         if (pid == nil) then return nil end
 
@@ -245,7 +219,7 @@ local function term_get_running_command(buf_nr)
         if(not (string.match(command, "/bin/bash")))then
             return command
         end
-    end
+    end)
 
     return nil
 end
@@ -268,7 +242,7 @@ end
 local terms = function()
     local previous_win_nr = vim.api.nvim_get_current_win()
 
-    vim.cmd("new") -- create a new window where fzf will be shown
+    vim.cmd'new' -- create a new window where fzf will be shown
 
     local new_buf_nr = api.nvim_get_current_buf()
 
@@ -277,32 +251,27 @@ local terms = function()
     -- of the buffer.
     local terms_dir = tmpdir()
 
-    -- get a list of all the terms' buffer numbers
-    local bufs = vim.api.nvim_list_bufs()
-    local terms = {}
-    for k in pairs(bufs) do
-        local buf_nr = bufs[k]
+    local terms = iter(vim.api.nvim_list_bufs()):filter(function(buf_nr)
         local buf_name = vim.api.nvim_buf_get_name(buf_nr)
-        if(string.find(buf_name, "term://")) then
-            table.insert(terms, buf_nr)
-        end
-    end
+        return string.find(buf_name, "term://")
+    end)
 
     -- file used to tell fzf about candidates
     local stdin_filename = os.tmpname()
 
     -- for each term, create the preview file, and add the term
     -- to the list of candidates
-    for k in pairs(terms) do
-        local buf_nr = terms[k]
-        local filename = terms_dir..[[/]]..tostring(buf_nr)
+    terms:each(function(buf_nr)
+        local filename = terms_dir..'/'..tostring(buf_nr)
         local content = api.nvim_buf_get_lines(buf_nr,0, -1, false)
         local content = remove_repeated_blanks(content)
         append_file(filename, content)
-        local last_command = term_get_running_command(buf_nr) or lines_infer_last_command(content) or " ? "
-        --local last_command = lines_infer_last_command(content) or " ? "
+        local last_command =
+            term_get_running_command(buf_nr) or
+            lines_infer_last_command(content) or
+            " ? "
         append_file(stdin_filename, { tostring(buf_nr).." "..last_command })
-    end
+    end)
 
     -- file used to retrieve fzf's selection
     local stdout_filename = os.tmpname()
@@ -318,13 +287,13 @@ local terms = function()
     local preview_cmd = 'cat '..terms_dir..'/{1}'
 
     local fzf_opts = {
-        [[--preview-window follow]], -- basically 'tail -f', used to show the bottom of the file
+        "--preview-window follow", -- basically 'tail -f', used to show the bottom of the file
         [[--preview ']]..preview_cmd..[[']], -- specify how the currently selected file should be previewed
         [[--bind ']]..fzf_bindings..[[']],
     }
 
     -- Make the actual command
-    local term_cmd = [[fzf <]]..stdin_filename..[[ ]]..table.concat(fzf_opts, " ")..[[ >]]..stdout_filename
+    local term_cmd = 'fzf <'..stdin_filename..' '..table.concat(fzf_opts, " ")..' >'..stdout_filename
 
     vim.fn.termopen(term_cmd, {
         on_exit = function()
@@ -346,10 +315,9 @@ local terms = function()
                 vim.api.nvim_input("i") -- note: for some reason startinsert doesn't work here
             end)
 
-            for k in pairs(terms) do
-                local buf_nr = terms[k]
-                os.remove(terms_dir..[[/]]..buf_nr)
-            end
+            terms:each(function(buf_nr)
+                os.remove(terms_dir..'/'..buf_nr)
+            end)
 
             os.remove(terms_dir)
             os.remove(stdin_filename)

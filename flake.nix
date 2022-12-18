@@ -31,6 +31,9 @@
   inputs.vim-surround.url = github:tpope/vim-surround;
   inputs.vim-surround.flake = false;
 
+  inputs.luafun.url = github:luafun/luafun;
+  inputs.luafun.flake = false;
+
   outputs =
     inputs@{ self
     , nixpkgs
