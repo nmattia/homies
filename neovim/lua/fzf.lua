@@ -1,6 +1,4 @@
 local api = vim.api
-local pp = vim.pretty_print
-local cmd = vim.cmd
 
 local function read_file(filename)
     local f = assert(io.open(filename, "rb"))
@@ -51,7 +49,7 @@ end
 
 -- split the string on newline chars
 local string_lines = function(text)
-    lines = {}
+    local lines = {}
     for s in text:gmatch("[^\n]+") do
         table.insert(lines,s)
     end
@@ -77,7 +75,7 @@ local get_log_buf = function()
 end
 
 local log = function(text)
-    local success, err = pcall(function()
+    local success = pcall(function()
         local log_buf = get_log_buf()
         local lines = { os.date() }
         iter(string_lines(vim.inspect(text))):each(function(v)
@@ -129,7 +127,6 @@ local rg = function()
 
     -- fzf's preview command, that shows the file (with the selected line highlighted)
     local preview_cmd = 'cat {1} | '..add_linenos..' | '..highlight_line
-    local preview_opt = [[--preview ']]..preview_cmd..[[']]
 
     local fzf_bindings = mk_fzf_bindings{
         ['ctrl-p'] = 'toggle-preview',
@@ -200,8 +197,8 @@ end
 
 local function get_proc_command(pid)
     local full = execute_stdout("ps -o command -p "..tostring(pid))
-    local full = string_lines(full)
-    if(not (#full >= 2)) then return nil end
+    full = string_lines(full)
+    if (#full < 2)  then return nil end
     return full[2]
 end
 
@@ -227,11 +224,11 @@ end
 local function lines_infer_last_command(lines)
     for i=1, #lines do
        local line = lines[#lines + 1 - i]
-       local match = string.find(line, "%$")
-       if(match ~= nil) then
-           local match = string.sub(line, match + 2)
-           if(string.match(match, "%w")) then
-               return match
+       local idx = string.find(line, "%$")
+       if(idx ~= nil) then
+           local rest = string.sub(line, idx + 2)
+           if(string.match(rest, "%w")) then
+               return rest
            end
        end
     end
@@ -264,7 +261,7 @@ local terms = function()
     terms:each(function(buf_nr)
         local filename = terms_dir..'/'..tostring(buf_nr)
         local content = api.nvim_buf_get_lines(buf_nr,0, -1, false)
-        local content = remove_repeated_blanks(content)
+        content = remove_repeated_blanks(content)
         append_file(filename, content)
         local last_command =
             term_get_running_command(buf_nr) or
