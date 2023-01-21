@@ -52,6 +52,9 @@ Ensure build is sandboxed:
 ```
 # /etc/nix/nix.conf
 build-users-group = nixbld
-sandbox-paths = /bin/bash /bin /usr/bin
+# /Library: cc is installed in /Library/Developer (and used from /usr/bin
+/cc and others)
+# /System/Library: needed for system-wide Perl
+sandbox-paths = /bin/bash /bin /usr/bin /usr/sbin /Library /System/Librar
 sandbox = true
 ```
