@@ -136,9 +136,25 @@
         "niv-src": "niv-src",
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
+        "vim-astro": "vim-astro",
         "vim-nix": "vim-nix",
-        "vim-surround": "vim-surround",
-        "vim-svelte": "vim-svelte"
+        "vim-surround": "vim-surround"
+      }
+    },
+    "vim-astro": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1661391168,
+        "narHash": "sha256-HyQ4i/T1uQmGurBqCpo8+ESVSVPsTrLQBxLe2OEYjcY=",
+        "owner": "wuelnerdotexe",
+        "repo": "vim-astro",
+        "rev": "34732be5e9a5c28c2409f4490edf92d46d8b55a9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "wuelnerdotexe",
+        "repo": "vim-astro",
+        "type": "github"
       }
     },
     "vim-nix": {
@@ -170,22 +186,6 @@
       "original": {
         "owner": "tpope",
         "repo": "vim-surround",
-        "type": "github"
-      }
-    },
-    "vim-svelte": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1666888764,
-        "narHash": "sha256-sZcHLBCGvCk8px1FlIU+JwDbHS1e7neeXMMQLPoCYe8=",
-        "owner": "evanleck",
-        "repo": "vim-svelte",
-        "rev": "0e93ec53c3667753237282926fec626785622c1c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "evanleck",
-        "repo": "vim-svelte",
         "type": "github"
       }
     }

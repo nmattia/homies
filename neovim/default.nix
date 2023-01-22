@@ -4,6 +4,7 @@ let
     inherit (inputs)
       fugitive
       nvim-tree
+      vim-astro
       vim-nix
       vim-surround;
   };

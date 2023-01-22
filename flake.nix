@@ -25,8 +25,8 @@
   inputs.fugitive.url = "github:tpope/vim-fugitive";
   inputs.fugitive.flake = false;
 
-  inputs.vim-svelte.url = "github:evanleck/vim-svelte";
-  inputs.vim-svelte.flake = false;
+  inputs.vim-astro.url = "github:wuelnerdotexe/vim-astro";
+  inputs.vim-astro.flake = false;
 
   inputs.vim-surround.url = github:tpope/vim-surround;
   inputs.vim-surround.flake = false;
