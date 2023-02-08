@@ -11,19 +11,17 @@ let
       [
         bashrc
         git
-        tmux
         nix
+        niv
         neovim
 
         pkgs.curl
         pkgs.direnv
         pkgs.nixpkgs-fmt
-        pkgs.niv
         pkgs.fzf
         pkgs.htop
         pkgs.jq
         pkgs.less
-        pkgs.python
         pkgs.haskellPackages.wai-app-static
         pkgs.shellcheck
         pkgs.shfmt
@@ -43,15 +41,14 @@ let
       inherit git-src;
     });
 
-  # Tmux with a custom tmux.conf baked in
-  tmux = pkgs.callPackage ./tmux { };
-
-  # Vim with a custom vimrc and set of packages
-  vim = pkgs.callPackage ./vim
-    {
-      inherit
-        git
-        tmux;
-    };
+  niv =
+    let
+      # Workaround for https://github.com/NixOS/nixpkgs/issues/140774
+      fixCyclicReference = drv:
+        pkgs.haskell.lib.overrideCabal drv (_: {
+          enableSeparateBinOutput = false;
+        });
+    in
+    fixCyclicReference pkgs.haskellPackages.niv;
 in
 { inherit homies bashrc; }
