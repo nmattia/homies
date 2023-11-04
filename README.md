@@ -30,7 +30,19 @@ Installing the package set:
 $ nix profile install
 ```
 
-Upgrading:
+Updating the packages:
+
+```shell
+$ nix flake update
+```
+
+Try out the new packages:
+
+```shell
+$ nix-shell
+```
+
+Upgrading to the new profile:
 
 ``` shell
 $ nix profile upgrade X # find X with "nix profile list"
