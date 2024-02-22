@@ -23,6 +23,7 @@ shopt -s checkwinsize
 alias gti="git"
 alias :e="nvim"
 alias gd="git diff"
+alias gdw="git diff --word-diff"
 alias tmp='cd $(mktemp -d)'
 alias ll='ls -alF'
 alias la='ls -A'
