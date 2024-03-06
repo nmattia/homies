@@ -6,7 +6,8 @@ let
       nvim-tree
       vim-astro
       vim-nix
-      vim-surround;
+      vim-surround
+      vim-svelte;
   };
 
   plugins' = lib.mapAttrsToList (k: v: "${k} ${v}") plugins;

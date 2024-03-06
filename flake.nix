@@ -13,6 +13,9 @@
   inputs.vim-nix.url = "github:LnL7/vim-nix";
   inputs.vim-nix.flake = false;
 
+  inputs.vim-svelte.url = "github:evanleck/vim-svelte";
+  inputs.vim-svelte.flake = false;
+
   inputs.nvim-tree.url = "github:kyazdani42/nvim-tree.lua";
   inputs.nvim-tree.flake = false;
 
