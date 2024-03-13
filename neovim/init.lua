@@ -39,6 +39,9 @@ local opts = {
 
     -- Make sure :terminal loads bash profile
     shell = "bash -l",
+
+    -- Large scrollback in terminal (default: 10_000)
+    scrollback = 100000,
 }
 
 -- This reads all the "opts" and sets the corresponding vim opt. This takes
