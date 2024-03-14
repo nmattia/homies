@@ -42,6 +42,9 @@ local opts = {
 
     -- Large scrollback in terminal (default: 10_000)
     scrollback = 100000,
+
+    -- Enables 24-bit RGB color
+    termguicolors = true,
 }
 
 -- This reads all the "opts" and sets the corresponding vim opt. This takes
