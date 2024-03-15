@@ -25,6 +25,7 @@ let
         pkgs.haskellPackages.wai-app-static
         pkgs.shellcheck
         pkgs.shfmt
+        pkgs.tree
       ];
   };
 
