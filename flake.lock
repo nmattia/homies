@@ -142,7 +142,8 @@
         "vim-astro": "vim-astro",
         "vim-nix": "vim-nix",
         "vim-surround": "vim-surround",
-        "vim-svelte": "vim-svelte"
+        "vim-svelte": "vim-svelte",
+        "vim-terraform": "vim-terraform"
       }
     },
     "systems": {
@@ -221,6 +222,22 @@
       "original": {
         "owner": "evanleck",
         "repo": "vim-svelte",
+        "type": "github"
+      }
+    },
+    "vim-terraform": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1707849495,
+        "narHash": "sha256-uva6NXM/u0n0LARJqfEOWVYLiD3KCl88jAMm2zS25q4=",
+        "owner": "hashivim",
+        "repo": "vim-terraform",
+        "rev": "21f756b933cd11ac5990a6046fdc7c4e2a6c0aee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hashivim",
+        "repo": "vim-terraform",
         "type": "github"
       }
     }

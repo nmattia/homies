@@ -7,7 +7,8 @@ let
       vim-astro
       vim-nix
       vim-surround
-      vim-svelte;
+      vim-svelte
+      vim-terraform;
   };
 
   plugins' = lib.mapAttrsToList (k: v: "${k} ${v}") plugins;
