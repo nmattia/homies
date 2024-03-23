@@ -140,6 +140,7 @@
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
         "vim-astro": "vim-astro",
+        "vim-glsl": "vim-glsl",
         "vim-nix": "vim-nix",
         "vim-surround": "vim-surround",
         "vim-svelte": "vim-svelte",
@@ -174,6 +175,22 @@
       "original": {
         "owner": "wuelnerdotexe",
         "repo": "vim-astro",
+        "type": "github"
+      }
+    },
+    "vim-glsl": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1652211403,
+        "narHash": "sha256-dpdvjEtDnD72Sn+9wGrsKa0X8HcMsY1j5eAXWEt6F1s=",
+        "owner": "tikhomirov",
+        "repo": "vim-glsl",
+        "rev": "bfd330a271933c3372fcfa8ce052970746c8e9dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tikhomirov",
+        "repo": "vim-glsl",
         "type": "github"
       }
     },

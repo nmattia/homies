@@ -19,6 +19,9 @@
   inputs.vim-terraform.url = "github:hashivim/vim-terraform";
   inputs.vim-terraform.flake = false;
 
+  inputs.vim-glsl.url = "github:tikhomirov/vim-glsl";
+  inputs.vim-glsl.flake = false;
+
   inputs.nvim-tree.url = "github:kyazdani42/nvim-tree.lua";
   inputs.nvim-tree.flake = false;
 

@@ -5,6 +5,7 @@ let
       fugitive
       nvim-tree
       vim-astro
+      vim-glsl
       vim-nix
       vim-surround
       vim-svelte
