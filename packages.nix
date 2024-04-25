@@ -17,6 +17,7 @@ let
 
         pkgs.curl
         pkgs.direnv
+        pkgs.gnupg
         pkgs.nixpkgs-fmt
         pkgs.fzf
         pkgs.htop
