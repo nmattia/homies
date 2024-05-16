@@ -48,6 +48,17 @@ Upgrading to the new profile:
 $ nix profile upgrade X # find X with "nix profile list"
 ```
 
+Syncing apps for Spotlight indexing:
+
+```
+$ rsync --archive --checksum --delete --chmod=-w ~/.nix-profile/Applications/ ~/Applications/homies-apps/
+```
+
+> **Note**
+> We copy the app to make sure Spotlight picks it up. Creating a (Finder) alias does work too, but
+> the alias is given much lower priority in Spotlight search and the app appears way below e.g.
+> online searches, files, etc.
+
 Listing the previous and current configurations:
 
 ``` shell

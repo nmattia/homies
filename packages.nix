@@ -11,6 +11,7 @@ let
       [
         bashrc
         git
+        kitty
         nix
         niv
         neovim
@@ -33,6 +34,8 @@ let
   nix = pkgs.callPackage ./nix { };
 
   neovim = pkgs.callPackage ./neovim { inherit inputs; };
+
+  kitty = pkgs.callPackage ./kitty { };
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc { inherit nixpkgs-src; };
