@@ -66,6 +66,22 @@
         "type": "github"
       }
     },
+    "kitty-icon": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1696432667,
+        "narHash": "sha256-AXU1KOXaEiAMTkgkR+yVc8g4FZq8TqXj9imswCHhNKc=",
+        "owner": "k0nserv",
+        "repo": "kitty-icon",
+        "rev": "7f631a61bcbdfb268cdf1c97992a5c077beec9d6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "k0nserv",
+        "repo": "kitty-icon",
+        "type": "github"
+      }
+    },
     "luafun": {
       "flake": false,
       "locked": {
@@ -135,6 +151,7 @@
         "flake-utils": "flake-utils",
         "fugitive": "fugitive",
         "git-src": "git-src",
+        "kitty-icon": "kitty-icon",
         "luafun": "luafun",
         "niv-src": "niv-src",
         "nixpkgs": "nixpkgs",

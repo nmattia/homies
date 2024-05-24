@@ -13,6 +13,9 @@
   inputs.vim-nix.url = "github:LnL7/vim-nix";
   inputs.vim-nix.flake = false;
 
+  inputs.kitty-icon.url = "github:k0nserv/kitty-icon";
+  inputs.kitty-icon.flake = false;
+
   inputs.vim-svelte.url = "github:evanleck/vim-svelte";
   inputs.vim-svelte.flake = false;
 

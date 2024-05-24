@@ -35,7 +35,7 @@ let
 
   neovim = pkgs.callPackage ./neovim { inherit inputs; };
 
-  kitty = pkgs.callPackage ./kitty { };
+  kitty = pkgs.callPackage ./kitty { inherit inputs; };
 
   # A custom '.bashrc' (see bashrc/default.nix for details)
   bashrc = pkgs.callPackage ./bashrc { inherit nixpkgs-src; };
