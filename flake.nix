@@ -55,32 +55,30 @@
     , niv-src
     , ...
     }:
+    flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" ] (system:
     let
-      lib = nixpkgs.lib;
-      mkOutputsFor = system:
-        let
-          pkgs = nixpkgs.legacyPackages.${system};
-          packages = import ./packages.nix {
-            nixpkgs-src = nixpkgs;
-            inherit
-              pkgs
-              inputs
-              git-src
-              niv-src;
-          };
-
-        in
-        {
-          devShell = pkgs.mkShell {
-            nativeBuildInputs = [ packages.homies ];
-            shellHook = ''
-              $(bashrc)
-              PS1=" $PS1"
-            '';
-          };
-
-          defaultPackage = packages.homies;
-        };
+      pkgs = nixpkgs.legacyPackages.${system};
+      homies = import ./homies.nix {
+        nixpkgs-src = nixpkgs;
+        inherit
+          pkgs
+          inputs
+          git-src
+          niv-src;
+      };
     in
-    flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" ] mkOutputsFor;
+    {
+      devShells.default = pkgs.mkShell {
+        nativeBuildInputs = [ homies ];
+        # XXX: because we use a shell hook we cannot use `nix shell`, but
+        # only `nix develop`.
+        shellHook = ''
+          $(bashrc)
+          PS1=" $PS1"
+        '';
+      };
+
+      packages.default = homies;
+    }
+    );
 }

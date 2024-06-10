@@ -33,13 +33,13 @@ $ nix profile install
 Updating the packages:
 
 ```shell
-$ nix flake update
+$ nix flake update # alternative: nix flake lock --update-input <my-input>
 ```
 
 Try out the new packages:
 
 ```shell
-$ nix-shell
+$ nix develop
 ```
 
 Upgrading to the new profile:

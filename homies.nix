@@ -2,34 +2,6 @@
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
-  # The "homies", which is a buildEnv where bin/ contains all the executables.
-  # The manpages are in share/man, which are auto-discovered by man (because
-  # it's close to bin/ which is on the PATH).
-  homies = pkgs.buildEnv {
-    name = "homies";
-    paths =
-      [
-        bashrc
-        git
-        kitty
-        nix
-        niv
-        neovim
-
-        pkgs.curl
-        pkgs.direnv
-        pkgs.gnupg
-        pkgs.nixpkgs-fmt
-        pkgs.fzf
-        pkgs.htop
-        pkgs.jq
-        pkgs.less
-        pkgs.haskellPackages.wai-app-static
-        pkgs.shellcheck
-        pkgs.shfmt
-        pkgs.tree
-      ];
-  };
 
   nix = pkgs.callPackage ./nix { };
 
@@ -56,4 +28,32 @@ let
     in
     fixCyclicReference pkgs.haskellPackages.niv;
 in
-{ inherit homies bashrc; }
+
+# The "homies", which is a buildEnv where bin/ contains all the executables.
+  # The manpages are in share/man, which are auto-discovered by man (because
+  # it's close to bin/ which is on the PATH).
+pkgs.buildEnv {
+  name = "homies";
+  paths =
+    [
+      bashrc
+      git
+      kitty
+      nix
+      niv
+      neovim
+
+      pkgs.curl
+      pkgs.direnv
+      pkgs.gnupg
+      pkgs.nixpkgs-fmt
+      pkgs.fzf
+      pkgs.htop
+      pkgs.jq
+      pkgs.less
+      pkgs.haskellPackages.wai-app-static
+      pkgs.shellcheck
+      pkgs.shfmt
+      pkgs.tree
+    ];
+}
