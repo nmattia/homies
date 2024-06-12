@@ -45,28 +45,14 @@ function n {
         local dest="$1"
         if [ -d "$dest" ]
         then
-            cd "$dest" || exit
+            pushd "$dest"
             nvim
-        else
-            cd "$(dirname "$dest")" || exit
-            nvim "$(basename "$dest")"
+            popd
         fi
     else
         echo "expected 0 or 1 arguments, got $#"
-        exit 1
+        return
     fi
-}
-
-# GHC(i) with custom set of packages
-
-ghc-shell() {
-  nix-shell -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])"
-}
-
-ghci-with() {
-  nix-shell \
-    -p "haskellPackages.ghcWithPackages (ps: with ps; [ $* ])" \
-    --run ghci
 }
 
 ##
