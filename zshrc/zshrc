@@ -1,0 +1,79 @@
+# Add e.g. timestamps to zsh history
+setopt EXTENDED_HISTORY
+
+# Save command history
+HISTFILE=${HOME}/.zsh_history
+HISTSIZE=5000
+SAVEHIST=$HISTSIZE
+
+# share history across multiple zsh sessions
+setopt SHARE_HISTORY
+# append to history
+setopt APPEND_HISTORY
+# adds commands as they are typed, not at shell exit
+setopt INC_APPEND_HISTORY
+
+# we keep all duplicates (incl. timestamps) in case we need
+# to look them up, but we don't show them when using Ctrl+R
+
+# expire duplicates first
+setopt HIST_EXPIRE_DUPS_FIRST
+# ignore duplicates when searching
+setopt HIST_FIND_NO_DUPS
+# removes blank lines from history
+setopt HIST_REDUCE_BLANKS
+
+# Enable prompt correction
+setopt CORRECT
+setopt CORRECT_ALL
+
+alias gti="git"
+alias :e="nvim"
+alias gd="git diff"
+alias gdw="git diff --word-diff"
+alias tmp='cd $(mktemp -d)'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+
+# Open nvim, do different things depending on the dest
+function n {
+    if [ "$#" -eq 0 ]
+    then
+        nvim
+    elif [ "$#" -eq 1 ]
+    then
+        local dest="$1"
+        if [ -d "$dest" ]
+        then
+            pushd "$dest"
+            nvim
+            popd
+        fi
+    else
+        echo "expected 0 or 1 arguments, got $#"
+        return
+    fi
+}
+
+# Partial completion (/fo/bar -> /foo/bar)
+zstyle ':completion:*' list-suffixes
+zstyle ':completion:*' expand prefix suffix
+
+# Prompt that shows current dir and red (and status code) on
+# error (unless 130, from Ctrl+C).
+# %B %b: bold
+# %F{...} %f: color
+# %#: A ‘#’ if the shell is running with privileges, a ‘%’ if not.
+# %(n?..): ternary operator on %? (return code)
+# %{ ... }: literal (used to include a newline to have status code above prompt)
+# ref: https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html#Conditional-Substrings-in-Prompts
+PS1="%(?..%(130?..%B%?%b%{
+%}))%B%F{blue}%~%f%b%(?.%#.%F{red}%#%f%B%b) "
+
+# Direnv
+eval "$(direnv hook zsh)"
+
+# Initialize completion
+autoload -Uz compinit && compinit

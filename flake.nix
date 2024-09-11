@@ -28,9 +28,6 @@
   inputs.nvim-tree.url = "github:kyazdani42/nvim-tree.lua";
   inputs.nvim-tree.flake = false;
 
-  inputs.git-src.url = "github:git/git";
-  inputs.git-src.flake = false;
-
   inputs.niv-src.url = "github:nmattia/niv";
   inputs.niv-src.flake = false;
 
@@ -51,7 +48,6 @@
     , nixpkgs
     , flake-compat
     , flake-utils
-    , git-src
     , niv-src
     , ...
     }:
@@ -63,21 +59,10 @@
         inherit
           pkgs
           inputs
-          git-src
           niv-src;
       };
     in
     {
-      devShells.default = pkgs.mkShell {
-        nativeBuildInputs = [ homies ];
-        # XXX: because we use a shell hook we cannot use `nix shell`, but
-        # only `nix develop`.
-        shellHook = ''
-          $(bashrc)
-          PS1=" $PS1"
-        '';
-      };
-
       packages.default = homies;
     }
     );

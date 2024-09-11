@@ -50,22 +50,6 @@
         "type": "github"
       }
     },
-    "git-src": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1715791975,
-        "narHash": "sha256-HLK5kL+UzN6w/J43l0Ou0haRKUnDOTaJJLiPjCCDiio=",
-        "owner": "git",
-        "repo": "git",
-        "rev": "19fe900cfce8096b7645ec9611a0b981f6bbd154",
-        "type": "github"
-      },
-      "original": {
-        "owner": "git",
-        "repo": "git",
-        "type": "github"
-      }
-    },
     "kitty-icon": {
       "flake": false,
       "locked": {
@@ -150,7 +134,6 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "fugitive": "fugitive",
-        "git-src": "git-src",
         "kitty-icon": "kitty-icon",
         "luafun": "luafun",
         "niv-src": "niv-src",

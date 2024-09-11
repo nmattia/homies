@@ -6,21 +6,17 @@ Reproducible set of dotfiles and packages for Linux and macOS
 
 ---
 
-Install with `nix profile install`. Make sure to update your `.bashrc` or `.bash_profile`:
+Install with `nix profile install`. Update your `~/.zshrc`:
 
-``` shell
-$ echo 'if [ -x "$(command -v bashrc)" ]; then $(bashrc); fi' >> ~/.bashrc
+``` zsh
+if [ -f $HOME/.nix-profile/share/zshrc/zshrc ]; then source $HOME/.nix-profile/share/zshrc/zshrc; fi
 ```
+
 The homies will be available in all subsequent shells, including the
 customizations (vim with my favorite plugins, tmux with my customized
 configuration, etc). See the [introduction blog post][post] for an overview.
 
 [post]: http://nmattia.com/posts/2018-03-21-nix-reproducible-setup-linux-macos.html
-
-## Fonts
-
-Make sure to [install](https://www.nerdfonts.com/font-downloads) a font with
-icons (e.g. Inconsolata) in iterm2 and tell iterm2 to "Use powerline glyphs".
 
 ## How-To
 

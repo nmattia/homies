@@ -37,9 +37,6 @@ local opts = {
         and vim.env.NEOVIM_PLUGINS_PATH
         or vim.env.NEOVIM_PLUGINS_PATH .. "," .. vim.opt.packpath,
 
-    -- Make sure :terminal loads bash profile
-    shell = "bash -l",
-
     -- Large scrollback in terminal (default: 10_000)
     scrollback = 100000,
 

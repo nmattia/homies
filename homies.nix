@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-src, inputs, git-src, niv-src }:
+{ pkgs, nixpkgs-src, inputs, niv-src }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
@@ -9,14 +9,11 @@ let
 
   kitty = pkgs.callPackage ./kitty { inherit inputs; };
 
-  # A custom '.bashrc' (see bashrc/default.nix for details)
-  bashrc = pkgs.callPackage ./bashrc { inherit nixpkgs-src; };
+  # A custom '.zshrc' (see zshrc/default.nix for details)
+  zshrc = pkgs.callPackage ./zshrc { inherit nixpkgs-src; };
 
   # Git with config baked in
-  git = pkgs.callPackage ./git (
-    {
-      inherit git-src;
-    });
+  git = pkgs.callPackage ./git {};
 in
 
 # The "homies", which is a buildEnv where bin/ contains all the executables.
@@ -26,7 +23,7 @@ pkgs.buildEnv {
   name = "homies";
   paths =
     [
-      bashrc
+      zshrc
       git
       kitty
       nix
