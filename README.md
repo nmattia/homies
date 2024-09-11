@@ -78,6 +78,6 @@ build-users-group = nixbld
 # /Library: cc is installed in /Library/Developer (and used from /usr/bin
 /cc and others)
 # /System/Library: needed for system-wide Perl
-sandbox-paths = /bin/bash /bin /usr/bin /usr/sbin /Library /System/Librar
+sandbox-paths = /bin/bash /bin /usr/bin /usr/sbin /Library /System/Library
 sandbox = true
 ```
