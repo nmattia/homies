@@ -27,6 +27,9 @@ setopt HIST_REDUCE_BLANKS
 setopt CORRECT
 setopt CORRECT_ALL
 
+# Enable vi-mode command editing
+bindkey -v
+
 alias gti="git"
 alias :e="nvim"
 alias gd="git diff"
