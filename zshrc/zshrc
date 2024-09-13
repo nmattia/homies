@@ -25,6 +25,9 @@ setopt HIST_REDUCE_BLANKS
 
 # Enable vi-mode command editing
 bindkey -v
+# Restore Ctrl+A & Ctrl+E, which don't otherwise work in vi-mode
+bindkey "^A" vi-beginning-of-line
+bindkey "^E" vi-end-of-line
 
 alias gti="git"
 alias :e="nvim"
