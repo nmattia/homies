@@ -23,10 +23,6 @@ setopt HIST_FIND_NO_DUPS
 # removes blank lines from history
 setopt HIST_REDUCE_BLANKS
 
-# Enable prompt correction
-setopt CORRECT
-setopt CORRECT_ALL
-
 # Enable vi-mode command editing
 bindkey -v
 
