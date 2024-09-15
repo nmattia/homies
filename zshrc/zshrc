@@ -6,6 +6,9 @@ HISTFILE=${HOME}/.zsh_history
 HISTSIZE=5000
 SAVEHIST=$HISTSIZE
 
+# Allow #... comments on prompt (and not just in scripts)
+setopt interactivecomments
+
 # share history across multiple zsh sessions
 setopt SHARE_HISTORY
 # append to history
