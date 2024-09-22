@@ -28,9 +28,20 @@ setopt HIST_REDUCE_BLANKS
 
 # Enable vi-mode command editing
 bindkey -v
+
+# The commands below set some key bindings. To figure out the code for a particular
+# key binding, use 'cat':
+# % cat
+# ^A^C
+
 # Restore Ctrl+A & Ctrl+E, which don't otherwise work in vi-mode
-bindkey "^A" vi-beginning-of-line
-bindkey "^E" vi-end-of-line
+bindkey -M vicmd "^A" vi-beginning-of-line
+bindkey -M vicmd "^E" vi-end-of-line
+
+# Ensure "del" key deletes the next char
+# (needed if terminal doesn't handle it directly)
+bindkey "^[[3~" delete-char
+bindkey -M vicmd "^[[3~" vi-delete-char
 
 alias gti="git"
 alias :e="nvim"
