@@ -19,7 +19,7 @@ let
     #!/usr/bin/env bash
 
     export KITTY_CONFIG_DIRECTORY=${kittyConfDir}
-    exec ${kitty}/bin/kitty --start-as=fullscreen
+    exec ${kitty}/bin/kitty --start-as=fullscreen "$@"
   '';
 
 
