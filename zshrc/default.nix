@@ -9,15 +9,16 @@ let
     url = "https://raw.githubusercontent.com/git/git/3c20acdf465ba211978108ca8507d41e62a016fd/contrib/completion/git-completion.zsh";
     sha256 = "sha256:0cifmyc0rsf1pn0lr4qpkgwcb2l7dxk8nqbd7xdc9ij3jq34ijnf";
   };
-  git-completion-zsh = runCommand "git-completion-zsh" {} ''
+  git-completion-zsh = runCommand "git-completion-zsh" { } ''
     mkdir -p $out/git-completion.zsh/
     cat <${git-completion-zsh-src} > $out/git-completion.zsh/_git
-    '';
+  '';
 
   # Write .zshrc to share/zshrc/zshrc
   zshrc = writeText "zshrc"
     (lib.concatStringsSep "\n"
-      [ # Set up nix autocomplete
+      [
+        # Set up nix autocomplete
         ''
           fpath+=(${nix}/share/zsh/site-functions)
           fpath+=(${git-completion-zsh}/git-completion.zsh)

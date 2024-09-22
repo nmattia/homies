@@ -13,7 +13,7 @@ let
   zshrc = pkgs.callPackage ./zshrc { inherit nixpkgs-src; };
 
   # Git with config baked in
-  git = pkgs.callPackage ./git {};
+  git = pkgs.callPackage ./git { };
 in
 
 # The "homies", which is a buildEnv where bin/ contains all the executables.
