@@ -28,9 +28,6 @@
   inputs.nvim-tree.url = "github:kyazdani42/nvim-tree.lua";
   inputs.nvim-tree.flake = false;
 
-  inputs.niv-src.url = "github:nmattia/niv";
-  inputs.niv-src.flake = false;
-
   inputs.fugitive.url = "github:tpope/vim-fugitive";
   inputs.fugitive.flake = false;
 
@@ -48,7 +45,6 @@
     , nixpkgs
     , flake-compat
     , flake-utils
-    , niv-src
     , ...
     }:
     flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" ] (system:
@@ -58,8 +54,7 @@
         nixpkgs-src = nixpkgs;
         inherit
           pkgs
-          inputs
-          niv-src;
+          inputs;
       };
     in
     {

@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-src, inputs, niv-src }:
+{ pkgs, nixpkgs-src, inputs }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
