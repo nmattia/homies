@@ -37,6 +37,9 @@
   inputs.vim-surround.url = github:tpope/vim-surround;
   inputs.vim-surround.flake = false;
 
+  inputs.multicursor-nvim.url = github:jake-stewart/multicursor.nvim;
+  inputs.multicursor-nvim.flake = false;
+
   inputs.luafun.url = github:luafun/luafun;
   inputs.luafun.flake = false;
 

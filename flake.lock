@@ -82,6 +82,22 @@
         "type": "github"
       }
     },
+    "multicursor-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727256310,
+        "narHash": "sha256-QDRESYS03mbHXqw2wVOQl22LLgTCN2N3YAacHVnNuhQ=",
+        "owner": "jake-stewart",
+        "repo": "multicursor.nvim",
+        "rev": "860e3a93ba2bfed537dd32db647dbb2d088aa2a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jake-stewart",
+        "repo": "multicursor.nvim",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1727215036,
@@ -120,6 +136,7 @@
         "fugitive": "fugitive",
         "kitty-icon": "kitty-icon",
         "luafun": "luafun",
+        "multicursor-nvim": "multicursor-nvim",
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
         "vim-astro": "vim-astro",

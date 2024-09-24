@@ -3,6 +3,7 @@ let
   plugins = {
     inherit (inputs)
       fugitive
+      multicursor-nvim
       nvim-tree
       vim-astro
       vim-glsl

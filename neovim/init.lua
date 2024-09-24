@@ -148,7 +148,18 @@ vim.api.nvim_create_autocmd('TermClose', {
     command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif"
 })
 
--- In general, go to normal mode with <C-\> (in addition to the default <C-[>)
-vim.keymap.set('i', '<C-\\>', '<Esc>', { noremap = true })
--- Map it for normal mode as well, because of muscle memory. Otherwise vim expects other keys.
-vim.keymap.set('n', '<C-\\>', '<Esc>', { noremap = true })
+-- Multi-cursor edit (enabled only in normal mode to avoid clash with
+-- <C-S> in visual mode)
+local mc = require("multicursor-nvim")
+mc.setup()
+-- Add a cursor and jump to the next word under cursor.
+vim.keymap.set({'n'}, '<C-N>', function() mc.addCursor("*") end)
+-- Skip word under cursor
+vim.keymap.set({'n'}, '<C-S>', function() mc.skipCursor("*") end)
+
+-- Clear all cursors
+vim.keymap.set({'n', 'v'}, '<C-\\>', function()
+    if mc.hasCursors() then
+        mc.clearCursors()
+    end
+end)
