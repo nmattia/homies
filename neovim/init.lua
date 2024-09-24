@@ -148,14 +148,6 @@ vim.api.nvim_create_autocmd('TermClose', {
     command = "if !v:event.status | exe 'bdelete! '..expand('<abuf>') | endif"
 })
 
--- Go to terminal on <C-Space>
-local termopylae = require'termopylae'
-vim.keymap.set('n', '<C-Space>', termopylae.enter_term, { noremap = true })
-
--- Exit terminal and go back to previous window with <C-Space>
-vim.keymap.set('t', '<C-Space>', termopylae.leave_term, { noremap = true })
--- Simply exit terminal with <C-\>
-vim.keymap.set('t', '<C-\\>', '<C-\\><C-N>', { noremap = true })
 -- In general, go to normal mode with <C-\> (in addition to the default <C-[>)
 vim.keymap.set('i', '<C-\\>', '<Esc>', { noremap = true })
 -- Map it for normal mode as well, because of muscle memory. Otherwise vim expects other keys.

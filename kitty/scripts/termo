@@ -1,0 +1,78 @@
+#!/usr/bin/python3
+"""A kitten that allows jumping back and forth between windows"""
+
+import json
+import subprocess
+from time import time
+
+
+def kitten(cmd):
+    """Run kitten command and return value"""
+
+    # close_fds: KITTY_LISTEN_ON uses file descriptors, so can't close FDs
+    out = subprocess.Popen(
+        ["kitten", "@"] + cmd,
+        stdin=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        close_fds=False,
+    )
+
+    out.wait()
+    output = out.stdout.read()
+
+    if len(output) == 0:
+        return None
+
+    return json.loads(output)
+
+
+def get_focused_ids():
+    """Get OS window, tab & window ID of the focused window"""
+
+    obj = kitten(["ls", "--match=state:focused"])
+    os_win = obj[0]
+    os_win_id = os_win["id"]
+    tab = os_win["tabs"][0]
+    tab_id = tab["id"]
+    win = tab["windows"][0]
+    win_id = win["id"]
+
+    return {"os_win_id": os_win_id, "tab_id": tab_id, "win_id": win_id}
+
+
+def get_tab_info(os_win_id, tab_id):
+    """Read tab object"""
+
+    os_wins = kitten(["ls"])
+    os_win = [os_win for os_win in os_wins if os_win["id"] == os_win_id][0]
+    tab = [tab for tab in os_win["tabs"] if tab["id"] == tab_id][0]
+
+    return tab
+
+
+focused_ids = get_focused_ids()
+focused_tab_id = focused_ids["tab_id"]
+focused_os_win_id = focused_ids["os_win_id"]
+focused_win_id = focused_ids["win_id"]
+
+focused_tab = get_tab_info(focused_os_win_id, focused_tab_id)
+focused_win = [win for win in focused_tab["windows"] if win["id"] == focused_win_id][0]
+
+
+# All windows we may go to (excludes currently focused window)
+target_candidates = [
+    win for win in focused_tab["windows"] if win["id"] != focused_win_id
+]
+
+# Figure out where to go to
+next_win_id = None
+if len(target_candidates) < 1:
+    # If there only a single window, then create a second one and go there
+    focused_cwd = focused_win["cwd"]
+    next_win_id = kitten(["launch", "--dont-take-focus", "--cwd=last_reported"])
+else:
+    # Otherwise, grab the oldest window
+    next_win_id = target_candidates[0]["id"]
+
+assert next_win_id is not None
+kitten(["focus-window", "--match=id:" + str(next_win_id)])
