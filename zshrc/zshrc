@@ -52,6 +52,8 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 
+# Add default FZF options to move up/down with jk
+export FZF_DEFAULT_OPTS='--bind alt-k:up,alt-j:down'
 
 # Open nvim, do different things depending on the dest
 function n {
