@@ -27,7 +27,7 @@ let
         # Set up fzf terminal bindings
         ''
           source ${fzf}/share/fzf/completion.zsh
-          source ${fzf}/share/fzf/key-bindings.zsh
+          source ${./fzf-key-bindings.zsh}
         ''
         # Set up useful env vars (NIX_PATH to have a set nixpkgs,
         # and SSL_CERT_FILE make sure https works)
