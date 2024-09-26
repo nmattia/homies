@@ -144,17 +144,38 @@ fi
 #
 # - $FZF_ALT_G_OPTS
 
-# ALT-G - Paste the selected git branch(es) into the command line
+# ALT-G - Paste the selected git branch(es) into the command line. If the LBUFFER
+# is empty, run a git checkout of the branch.
 fzf-git-br-widget() {
   setopt localoptions pipefail no_aliases 2> /dev/null
   local cmd="git for-each-ref --format='%(refname:short)' refs/heads/"
+  local fzf_opts="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_G_OPTS"
+
+  if [ -n "${LBUFFER}" ]; then
+      fzf_opts="${fzf_opts} --multi"
+  fi
+
   local brs=()
-  local br
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_G_OPTS" $(__fzfcmd) --multi | while read -r br; do
+  eval "$cmd" | FZF_DEFAULT_OPTS="$fzf_opts" $(__fzfcmd) | while read -r br; do
     brs+=("$br")
   done
-  local ret=$?
-  LBUFFER="${LBUFFER}${(j[ ])brs}"
+
+  if [ -z "$brs" ]; then
+    zle redisplay
+    return 0
+  fi
+
+  local res="${(j[ ])brs}"
+  local ret="0"
+  if [ -n "${LBUFFER}" ]; then
+    # if a command exists, just append
+    LBUFFER="${LBUFFER}${res}"
+  else
+    # if there's no command, run git checkout
+    BUFFER="git checkout ${res}"
+    zle accept-line
+    ret=$?
+  fi
   zle reset-prompt
   return $ret
 }
