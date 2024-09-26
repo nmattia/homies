@@ -142,15 +142,15 @@ fi
 ### start of custom homies key bindings
 # extra opts:
 #
-# - $FZF_ALT_B_OPTS
+# - $FZF_ALT_G_OPTS
 
-# ALT-B - Paste the selected git branch(es) into the command line
+# ALT-G - Paste the selected git branch(es) into the command line
 fzf-git-br-widget() {
   setopt localoptions pipefail no_aliases 2> /dev/null
   local cmd="git for-each-ref --format='%(refname:short)' refs/heads/"
   local brs=()
   local br
-  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_B_OPTS" $(__fzfcmd) --multi | while read -r br; do
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_G_OPTS" $(__fzfcmd) --multi | while read -r br; do
     brs+=("$br")
   done
   local ret=$?
@@ -160,9 +160,9 @@ fzf-git-br-widget() {
 }
 
 zle     -N             fzf-git-br-widget
-bindkey -M emacs '^[b' fzf-git-br-widget
-bindkey -M vicmd '^[b' fzf-git-br-widget
-bindkey -M viins '^[b' fzf-git-br-widget
+bindkey -M emacs '^[g' fzf-git-br-widget
+bindkey -M vicmd '^[g' fzf-git-br-widget
+bindkey -M viins '^[g' fzf-git-br-widget
 
 ### end of custom homies key bindings
 
