@@ -152,7 +152,9 @@ fzf-git-br-widget() {
   local fzf_opts="--height ${FZF_TMUX_HEIGHT:-40%} --reverse --bind=ctrl-z:ignore $FZF_DEFAULT_OPTS $FZF_ALT_G_OPTS"
 
   if [ -n "${LBUFFER}" ]; then
-      fzf_opts="${fzf_opts} --multi"
+      fzf_opts="${fzf_opts} --multi --header='insert branch(es)' --prompt='$LBUFFER'"
+  else
+      fzf_opts="${fzf_opts} --header='change branch' --prompt='git switch '"
   fi
 
   local brs=()
@@ -171,8 +173,8 @@ fzf-git-br-widget() {
     # if a command exists, just append
     LBUFFER="${LBUFFER}${res}"
   else
-    # if there's no command, run git checkout
-    BUFFER="git checkout ${res}"
+    # if there's no command, run git switch
+    BUFFER="git switch ${res}"
     zle accept-line
     ret=$?
   fi
