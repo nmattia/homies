@@ -79,16 +79,13 @@ function n {
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
 
-# Prompt that shows current dir and red (and status code) on
-# error (unless 130, from Ctrl+C).
+# Prompt that shows current dir and red on error.
 # %B %b: bold
 # %F{...} %f: color
 # %#: A ‘#’ if the shell is running with privileges, a ‘%’ if not.
-# %(n?..): ternary operator on %? (return code)
-# %{ ... }: literal (used to include a newline to have status code above prompt)
+# %(n?..): ternary operator on %? (n is optional return code)
 # ref: https://zsh.sourceforge.io/Doc/Release/Prompt-Expansion.html#Conditional-Substrings-in-Prompts
-PS1="%(?..%(130?..%B%?%b%{
-%}))%B%F{blue}%~%f%b%(?.%#.%F{red}%#%f%B%b) "
+PS1="%B%F{blue}%~%f%b%(?.%#.%F{red}%#%f%B%b) "
 
 # Direnv
 eval "$(direnv hook zsh)"
