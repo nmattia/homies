@@ -111,7 +111,6 @@ end
 
 local fzf = require'fzf'
 vim.keymap.set('n', '<Leader>fr', fzf.rg, { noremap = true })
-vim.keymap.set('n', '<Leader>ft', fzf.terms, { noremap = true })
 
 -- Misc
 
