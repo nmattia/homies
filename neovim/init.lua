@@ -4,8 +4,10 @@ package.path = package.path .. ";" .. vim.env.NEOVIM_LUA_PATH
 -- Initialize functional lua
 require'fun'()
 
--- Set the mapleader
-vim.g.mapleader = ","
+-- Set the mapleader (space)
+-- note: we remap space to ensure there's no existing mapping: https://stackoverflow.com/a/446293
+vim.keymap.set('n', ' ', '<Nop>', { silent = true, remap = false })
+vim.g.mapleader = ' '
 
 local opts = {
 
