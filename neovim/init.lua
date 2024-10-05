@@ -163,3 +163,6 @@ vim.keymap.set({'n', 'v'}, '<C-\\>', function()
         mc.clearCursors()
     end
 end)
+
+-- Set up bufferline: https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file#usage
+require("bufferline").setup{}

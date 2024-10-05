@@ -40,6 +40,13 @@
   inputs.multicursor-nvim.url = github:jake-stewart/multicursor.nvim;
   inputs.multicursor-nvim.flake = false;
 
+  # dependency of bufferline-nvim
+  inputs.nvim-web-devicons.url = github:nvim-tree/nvim-web-devicons;
+  inputs.nvim-web-devicons.flake = false;
+
+  inputs.bufferline-nvim.url = github:akinsho/bufferline.nvim;
+  inputs.bufferline-nvim.flake = false;
+
   inputs.luafun.url = github:luafun/luafun;
   inputs.luafun.flake = false;
 
