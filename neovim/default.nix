@@ -10,6 +10,7 @@ let
       vim-astro
       vim-glsl
       vim-nix
+      vim-submode
       vim-surround
       vim-svelte
       vim-terraform;

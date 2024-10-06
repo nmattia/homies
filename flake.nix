@@ -47,6 +47,9 @@
   inputs.bufferline-nvim.url = github:akinsho/bufferline.nvim;
   inputs.bufferline-nvim.flake = false;
 
+  inputs.vim-submode.url = github:kana/vim-submode;
+  inputs.vim-submode.flake = false;
+
   inputs.luafun.url = github:luafun/luafun;
   inputs.luafun.flake = false;
 

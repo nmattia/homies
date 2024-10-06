@@ -176,6 +176,7 @@
         "vim-astro": "vim-astro",
         "vim-glsl": "vim-glsl",
         "vim-nix": "vim-nix",
+        "vim-submode": "vim-submode",
         "vim-surround": "vim-surround",
         "vim-svelte": "vim-svelte",
         "vim-terraform": "vim-terraform"
@@ -241,6 +242,22 @@
       "original": {
         "owner": "LnL7",
         "repo": "vim-nix",
+        "type": "github"
+      }
+    },
+    "vim-submode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1499687652,
+        "narHash": "sha256-5zLztAk3HHi/UIZYPpcWb+q78ad422ZC4n7sJb3PwOE=",
+        "owner": "kana",
+        "repo": "vim-submode",
+        "rev": "d29de4f55c40a7a03af1d8134453a703d6affbd2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kana",
+        "repo": "vim-submode",
         "type": "github"
       }
     },

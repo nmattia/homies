@@ -26,9 +26,6 @@ local opts = {
     shiftwidth = 4,
     softtabstop = 4,
 
-    -- move to pane with buffer with :sbuffer
-    switchbuf = "useopen",
-
     -- Set the width of \t to 4. It's still a TAB, but displayed as wide as 4
     -- chars.
     tabstop = 4,
@@ -134,10 +131,6 @@ vim.keymap.set('n', '<Leader>g', ':G ', { noremap = true })
 -- [r]efresh buffers
 vim.keymap.set('n', '<Leader>r', ':checktime<CR> ', { noremap = true })
 
--- switch to previous/next buffer
-vim.keymap.set('n', '<Leader>l', ':sbnext<CR> ', { noremap = true })
-vim.keymap.set('n', '<Leader>h', ':sbprevious<CR> ', { noremap = true })
-
 -- In Visual, sort with <C-S>
 vim.keymap.set('v', '<C-S>', ':sort<CR>', { noremap = true })
 
@@ -174,3 +167,12 @@ end)
 
 -- Set up bufferline: https://github.com/akinsho/bufferline.nvim?tab=readme-ov-file#usage
 require("bufferline").setup{}
+
+-- switch to previous/next buffer (and enter submode for quick repeat with h/l)
+vim.api.nvim_command([[
+call submode#enter_with('switchbuf', 'n', '', '<Leader>h', ':bprevious<CR>')
+call submode#enter_with('switchbuf', 'n', '', '<Leader>l', ':bnext<CR>')
+call submode#leave_with('switchbuf', 'n', '', '<Esc>')
+call submode#map('switchbuf', 'n', '', 'h', ':bprevious<CR>')
+call submode#map('switchbuf', 'n', '', 'l', ':bnext<CR>')
+]])
