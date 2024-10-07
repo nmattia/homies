@@ -96,6 +96,9 @@ vim.keymap.set('n', '<Leader>/', '/\\c', { noremap = true })
 -- E[x]it with ,x
 vim.keymap.set('n', '<Leader>x', vim.cmd.x, { noremap = true })
 
+-- [d]elete buffer with ,d
+vim.keymap.set('n', '<Leader>d', vim.cmd.bdelete, { noremap = true })
+
 -- Navigation across windows
 
 -- Simplify navigator across windows; C-{hjkl} moves to other window
