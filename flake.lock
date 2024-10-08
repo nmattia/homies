@@ -1,5 +1,21 @@
 {
   "nodes": {
+    "bufdelete-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1708814161,
+        "narHash": "sha256-ljUNfmpImtxFCS19HC9kFlaLlqaPDltKtnx1+/6Y33U=",
+        "owner": "famiu",
+        "repo": "bufdelete.nvim",
+        "rev": "f6bcea78afb3060b198125256f897040538bcb81",
+        "type": "github"
+      },
+      "original": {
+        "owner": "famiu",
+        "repo": "bufdelete.nvim",
+        "type": "github"
+      }
+    },
     "bufferline-nvim": {
       "flake": false,
       "locked": {
@@ -163,6 +179,7 @@
     },
     "root": {
       "inputs": {
+        "bufdelete-nvim": "bufdelete-nvim",
         "bufferline-nvim": "bufferline-nvim",
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",

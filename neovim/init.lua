@@ -97,7 +97,9 @@ vim.keymap.set('n', '<Leader>/', '/\\c', { noremap = true })
 vim.keymap.set('n', '<Leader>x', vim.cmd.x, { noremap = true })
 
 -- [d]elete buffer with ,d
-vim.keymap.set('n', '<Leader>d', vim.cmd.bdelete, { noremap = true })
+-- note: this uses 'bufdelete' which ensures that nvim-tree doesn't end up as fullscreen
+-- when it's the last buffer
+vim.keymap.set('n', '<Leader>d', require'bufdelete'.bufdelete, { noremap = true })
 
 -- Navigation across windows
 

@@ -3,6 +3,7 @@ let
   plugins = {
     inherit (inputs)
       fugitive
+      bufdelete-nvim
       bufferline-nvim
       multicursor-nvim
       nvim-tree
