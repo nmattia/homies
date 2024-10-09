@@ -1,4 +1,4 @@
-{ kitty, inputs, runCommand, writeText, writeScriptBin }:
+{ inputs, runCommand, writeText, writeScriptBin, _7zz }:
 
 # Wrapped kitty terminal emulator, different from stock:
 #  * We create a dummy macos bundle with a custom icon. The bundle points to
@@ -7,7 +7,22 @@
 #     configuration (kitty.conf, startup args)
 
 let
-  kittyConfDir = runCommand "kitty-conf" { } ''
+
+  # NOTE: we use the official kitty build because it is signed & notarized by the author. Unless signed,
+  # kitty can't trigger notifications on macOS.
+  version = "0.36.4";
+  sha256 = "sha256:0297bcfmaigrbi73nj44051alf275lcx6isalixbkk8f9r15q6k7";
+  kittyDmg = builtins.fetchurl {
+    url = "https://github.com/kovidgoyal/kitty/releases/download/v${version}/kitty-${version}.dmg";
+    inherit sha256;
+  };
+  kitty = runCommand "kitty" { nativeBuildInputs = [ _7zz ]; } ''
+    mkdir -p "$out/Applications"
+    cd $out/Applications
+    7zz x ${kittyDmg}
+  '';
+
+  kittyConfDir = runCommand "kitty-conf" { nativeBuildInputs = [ _7zz ]; } ''
     mkdir -p $out
     cp ${./kitty.conf} $out/kitty.conf
   '';
@@ -20,7 +35,7 @@ let
 
     export KITTY_CONFIG_DIRECTORY=${kittyConfDir}
     export HOMIES_KITTY_SCRIPTS=${./scripts}
-    exec ${kitty}/bin/kitty --start-as=fullscreen "$@"
+    exec ${kitty}/Applications/kitty.app/Contents/MacOS/kitty --start-as=fullscreen "$@"
   '';
 
 
