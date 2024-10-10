@@ -75,6 +75,17 @@ function n {
     fi
 }
 
+# Send a notification when the command has completed
+function ntfy {
+    if eval "$@"; then
+        kitten notify "Success 🟩" "$(basename $PWD): $@"
+    else
+        ret="$?"
+        kitten notify "Failure 🟥 ($ret)" "$(basename $PWD): $@"
+        return "$ret"
+    fi
+}
+
 # Partial completion (/fo/bar -> /foo/bar)
 zstyle ':completion:*' list-suffixes
 zstyle ':completion:*' expand prefix suffix
