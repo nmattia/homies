@@ -181,3 +181,7 @@ call submode#leave_with('switchbuf', 'n', '', '<Esc>')
 call submode#map('switchbuf', 'n', '', 'h', ':bprevious<CR>')
 call submode#map('switchbuf', 'n', '', 'l', ':bnext<CR>')
 ]])
+
+-- Make vim sees the leaving key when exiting a submode (similar to
+-- e.g. opt+key when emulating Esc)
+vim.g.submode_keep_leaving_key = true
