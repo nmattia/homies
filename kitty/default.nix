@@ -10,8 +10,8 @@ let
 
   # NOTE: we use the official kitty build because it is signed & notarized by the author. Unless signed,
   # kitty can't trigger notifications on macOS.
-  version = "0.36.4";
-  sha256 = "sha256:0297bcfmaigrbi73nj44051alf275lcx6isalixbkk8f9r15q6k7";
+  version = "0.37.0";
+  sha256 = "sha256:1acbaw5gan1x2v4axbm7pcpy8w34ha8h95z9329da7sz47ydg34y";
   kittyDmg = builtins.fetchurl {
     url = "https://github.com/kovidgoyal/kitty/releases/download/v${version}/kitty-${version}.dmg";
     inherit sha256;
