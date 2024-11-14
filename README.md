@@ -47,7 +47,7 @@ $ nix profile upgrade X # find X with "nix profile list"
 Syncing apps for Spotlight indexing:
 
 ```
-$ rsync --archive --checksum --delete --chmod=-w ~/.nix-profile/Applications/ ~/Applications/homies-apps/
+$ rsync --archive --checksum --delete --chmod=-w ~/.nix-profile/Applications/ ~/Applications/homies-apps/ && chmod -R +w ~/Applications/homies-apps && codesign --remove-signature ~/Applications/homies-apps/kitty.app && codesign --force --deep --sign - ~/Applications/homies-apps/kitty.app
 ```
 
 > **Note**

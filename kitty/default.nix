@@ -40,12 +40,13 @@ let
 
 
   # Actual runner injected in the bundle
+  # NOTE: KITTY_LAUNCHED_BY_LAUNCH_SERVICES=1 tells kitty to change dir to HOME
   kittyProfileRunner = writeText "kittyexe" ''
     #!/usr/bin/env bash
     kitty_exe="$HOME/.nix-profile/bin/kitty"
 
     if ! [ -e "$kitty_exe" ]; then echo "kitty not found"; exit 1; fi
-    exec -a kitty $kitty_exe
+    exec -a kitty env KITTY_LAUNCHED_BY_LAUNCH_SERVICES=1 $kitty_exe
   '';
 
   bundle = runCommand "kitty-0" { } ''
@@ -53,8 +54,7 @@ let
     mkdir -p $bundle
 
     mkdir -p $bundle/Contents
-    cat <${kitty}/Applications/kitty.app/Contents/Info.plist \
-      > $bundle/Contents/Info.plist
+    cat <${./Info.plist} > $bundle/Contents/Info.plist
 
     mkdir -p $bundle/Contents/MacOS
     cat <${kittyProfileRunner} > $bundle/Contents/MacOS/kitty
