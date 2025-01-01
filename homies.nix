@@ -41,6 +41,7 @@ pkgs.buildEnv {
       pkgs.htop
       pkgs.jq
       pkgs.less
+      pkgs.mpremote
       pkgs.scc
       pkgs.shellcheck
       pkgs.shfmt
