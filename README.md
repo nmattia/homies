@@ -41,7 +41,7 @@ $ nix develop
 Upgrading to the new profile:
 
 ``` shell
-$ nix profile upgrade X # find X with "nix profile list"
+$ nix profile upgrade homies # or list more with "nix profile list"
 ```
 
 Syncing apps for Spotlight indexing:
