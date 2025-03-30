@@ -34,10 +34,7 @@ local opts = {
     expandtab = true,
 
     -- NEOVIM_PLUGINS_PATH should be set to a dir containing plugins
-    packpath =
-        vim.opt.packpath ~= ""
-        and vim.env.NEOVIM_PLUGINS_PATH
-        or vim.env.NEOVIM_PLUGINS_PATH .. "," .. vim.opt.packpath,
+    packpath = vim.opt.packpath + { vim.env.NEOVIM_PLUGINS_PATH },
 
     -- Large scrollback in terminal (default: 10_000)
     scrollback = 100000,

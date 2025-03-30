@@ -67,12 +67,18 @@ local rg = function()
     local term_cmd = rg..' | '..fzf
 
     vim.fn.termopen(term_cmd, {
-        on_exit = function()
+        on_exit = function(job_id, exit_code)
+
 
             -- Avoid "Process exited with ..."
             -- (buffer is still valid iff it wasn't somehow deleted already)
             if api.nvim_buf_is_valid(new_buf_nr) then
                 api.nvim_buf_delete(new_buf_nr, {})
+            end
+
+            if(exit_code ~= 0) then
+                -- most likely ^C
+                return
             end
 
             local content = read_file(stdout_filename)
@@ -82,7 +88,7 @@ local rg = function()
             vim.cmd('e '..'+'..lineno..' '..filename)
 
             -- center
-            vim.cmd'zz'
+            vim.api.nvim_feedkeys("zz", "n", false)
 
             os.remove(stdout_filename)
         end
