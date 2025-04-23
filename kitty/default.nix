@@ -34,7 +34,6 @@ let
     #!/usr/bin/env bash
 
     export KITTY_CONFIG_DIRECTORY=${kittyConfDir}
-    export HOMIES_KITTY_SCRIPTS=${./scripts}
     exec ${kitty}/Applications/kitty.app/Contents/MacOS/kitty --start-as=fullscreen "$@"
   '';
 
