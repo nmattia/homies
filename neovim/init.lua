@@ -136,6 +136,15 @@ vim.keymap.set('n', '<Leader>r', ':checktime<CR> ', { noremap = true })
 -- In Visual, sort with <C-S>
 vim.keymap.set('v', '<C-S>', ':sort<CR>', { noremap = true })
 
+-- Create a scratch buffer with leader + s
+vim.keymap.set('n', '<Leader>s', function()
+  vim.cmd('enew')  -- empty unnamed buffer
+  vim.bo.buftype = 'nofile'
+  vim.bo.bufhidden = 'hide'
+  vim.bo.swapfile = false
+  vim.bo.filetype = 'markdown'
+end, { noremap = true, desc = "New scratch buffer" })
+
 -- TERMINAL
 
 -- Open a terminal in the current window
