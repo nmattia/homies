@@ -111,10 +111,13 @@ for _,key in pairs{ 'H', 'J', 'K', 'L' } do
     vim.keymap.set('i', '<C-'..key..'>', '<C-O><C-W><C-'..key..'>', { noremap = true })
 end
 
--- FZF + ripgrep on ,fr
-
 local fzf = require'fzf'
+
+-- FZF + ripgrep on ,fr
 vim.keymap.set('n', '<Leader>fr', fzf.rg, { noremap = true })
+
+-- FZF in file on ,ff
+vim.keymap.set('n', '<Leader>ff', fzf.infile, { noremap = true })
 
 -- Misc
 
