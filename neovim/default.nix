@@ -8,6 +8,7 @@ let
       multicursor-nvim
       nvim-tree
       nvim-web-devicons
+      openingh
       vim-astro
       vim-glsl
       vim-nix

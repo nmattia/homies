@@ -177,6 +177,22 @@
         "type": "github"
       }
     },
+    "openingh": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1746139196,
+        "narHash": "sha256-/FlNLWOSIrOYiWzAcgOdu9//QTorCDV1KWb+h6eqLwk=",
+        "owner": "Almo7aya",
+        "repo": "openingh.nvim",
+        "rev": "7cc8c897cb6b34d8ed28e99d95baccef609ed251",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Almo7aya",
+        "repo": "openingh.nvim",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "bufdelete-nvim": "bufdelete-nvim",
@@ -190,6 +206,7 @@
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
         "nvim-web-devicons": "nvim-web-devicons",
+        "openingh": "openingh",
         "vim-astro": "vim-astro",
         "vim-glsl": "vim-glsl",
         "vim-nix": "vim-nix",

@@ -40,6 +40,9 @@
   inputs.multicursor-nvim.url = github:jake-stewart/multicursor.nvim;
   inputs.multicursor-nvim.flake = false;
 
+  inputs.openingh.url = github:Almo7aya/openingh.nvim;
+  inputs.openingh.flake = false;
+
   # dependency of bufferline-nvim
   inputs.nvim-web-devicons.url = github:nvim-tree/nvim-web-devicons;
   inputs.nvim-web-devicons.flake = false;
