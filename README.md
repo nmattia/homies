@@ -6,7 +6,7 @@ Reproducible set of dotfiles and packages for Linux and macOS
 
 ---
 
-Install with `nix profile install`. Update your `~/.zshrc`:
+Install with `nix profile add github:nmattia/homies` and update your `~/.zshrc`:
 
 ``` zsh
 if [ -f $HOME/.nix-profile/share/zshrc/zshrc ]; then source $HOME/.nix-profile/share/zshrc/zshrc; fi
