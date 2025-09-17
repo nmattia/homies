@@ -24,9 +24,9 @@ pkgs.buildEnv {
   paths =
     [
       zshrc
-      git
-      kitty.wrapper
-      kitty.bundle
+      #git
+      #kitty.wrapper
+      #kitty.bundle
       nix
       neovim
 
