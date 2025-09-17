@@ -66,18 +66,20 @@
     , flake-utils
     , ...
     }:
-    flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" ] (system:
+    flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" ] (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
-      homies = import ./homies.nix {
+      homies = { headless ? false }: import ./homies.nix {
         nixpkgs-src = nixpkgs;
         inherit
           pkgs
-          inputs;
+          inputs
+          headless;
       };
     in
     {
-      packages.default = homies;
+      packages.default = homies { };
+      packages.headless = homies { headless = true; };
     }
     );
 }
