@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-src, inputs }:
+{ pkgs, nixpkgs-src, inputs, headless ? false }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
@@ -12,8 +12,8 @@ let
   # A custom '.zshrc' (see zshrc/default.nix for details)
   zshrc = pkgs.callPackage ./zshrc { inherit nixpkgs-src; };
 
-  # Git with config baked in
-  git = pkgs.callPackage ./git { };
+  # Global gitconfig
+  gitconfig = pkgs.callPackage ./gitconfig { };
 in
 
 # The "homies", which is a buildEnv where bin/ contains all the executables.
@@ -24,16 +24,13 @@ pkgs.buildEnv {
   paths =
     [
       zshrc
-      git
-      kitty.wrapper
-      kitty.bundle
+      gitconfig
       nix
       neovim
 
       pkgs.curl
       pkgs.direnv
       pkgs.entr
-      pkgs.git-lfs
       pkgs.gnupg
       pkgs.nixpkgs-fmt
       pkgs.niv
@@ -46,5 +43,9 @@ pkgs.buildEnv {
       pkgs.shellcheck
       pkgs.shfmt
       pkgs.tree
-    ];
+    ] ++ (pkgs.lib.optionals (!headless) [
+      kitty.wrapper
+      kitty.bundle
+    ])
+  ;
 }

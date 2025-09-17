@@ -6,10 +6,19 @@ Reproducible set of dotfiles and packages for Linux and macOS
 
 ---
 
-Install with `nix profile add github:nmattia/homies` and update your `~/.zshrc`:
+Install with `nix profile add github:nmattia/homies`.
+
+Then update your `~/.zshrc`:
 
 ``` zsh
 if [ -f $HOME/.nix-profile/share/zshrc/zshrc ]; then source $HOME/.nix-profile/share/zshrc/zshrc; fi
+```
+
+Then update your `~/.gitconfig`:
+
+```
+[include]
+    path = ~/.nix-profile/share/git/gitconfig
 ```
 
 The homies will be available in all subsequent shells, including the
