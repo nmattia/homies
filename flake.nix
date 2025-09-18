@@ -69,17 +69,36 @@
     flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" ] (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
-      homies = { headless ? false }: import ./homies.nix {
+      homies = import ./homies.nix {
         nixpkgs-src = nixpkgs;
+        # on Darwin, we assume the macos bundles are meant to
+        # be installed as well
+        headless = !pkgs.stdenv.isDarwin;
         inherit
           pkgs
-          inputs
-          headless;
+          inputs;
       };
     in
     {
-      packages.default = homies { };
-      packages.headless = homies { headless = true; };
+      packages.default = homies;
+      packages.homies = homies;
+      packages.init = pkgs.writeScriptBin "homies-init" ''
+        #!/usr/bin/env bash
+
+        set -euo pipefail
+
+        echo 'setting up homies'
+        set -x
+
+        nix profile add github:nmattia/homies
+
+        printf "if [ -f ~/.nix-profile/share/zshrc/zshrc ]; then source ~/.nix-profile/share/zshrc/zshrc; fi\n" > ~/.zshrc
+        printf "[include]\n\tpath = ~/.nix-profile/share/git/gitconfig\n" > ~/.gitconfig
+
+        set +x
+
+        echo 'done setting up homies'
+      '';
     }
     );
 }
