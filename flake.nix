@@ -92,8 +92,8 @@
 
         nix profile add github:nmattia/homies
 
-        printf "if [ -f ~/.nix-profile/share/zshrc/zshrc ]; then source ~/.nix-profile/share/zshrc/zshrc; fi\n" > ~/.zshrc
-        printf "[include]\n\tpath = ~/.nix-profile/share/git/gitconfig\n" > ~/.gitconfig
+        printf "if [ -f ~/.nix-profile/share/zshrc/zshrc ]; then source ~/.nix-profile/share/zshrc/zshrc; fi\n" >> ~/.zshrc
+        printf "[include]\n\tpath = ~/.nix-profile/share/git/gitconfig\n" >> ~/.gitconfig
 
         set +x
 
