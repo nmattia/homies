@@ -31,6 +31,7 @@ pkgs.buildEnv {
       pkgs.curl
       pkgs.direnv
       pkgs.entr
+      pkgs.git
       pkgs.gnupg
       pkgs.nixpkgs-fmt
       pkgs.niv
