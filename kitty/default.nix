@@ -10,8 +10,8 @@ let
 
   # NOTE: we use the official kitty build because it is signed & notarized by the author. Unless signed,
   # kitty can't trigger notifications on macOS.
-  version = "0.41.1";
-  sha256 = "sha256:10j445iif392l0srhlqjm1vg8vkmqmcpl7cpwm10j7dy9wlvbv4j";
+  version = "0.43.1";
+  sha256 = "sha256:1al7m5p9p9v93gvqrh368vgdglhp7zmsbv5r9ygb99xs7h7qyvg3";
   kittyDmg = builtins.fetchurl {
     url = "https://github.com/kovidgoyal/kitty/releases/download/v${version}/kitty-${version}.dmg";
     inherit sha256;
@@ -19,7 +19,7 @@ let
   kitty = runCommand "kitty" { nativeBuildInputs = [ _7zz ]; } ''
     mkdir -p "$out/Applications"
     cd $out/Applications
-    7zz x ${kittyDmg}
+    7zz x -snld ${kittyDmg} # -snld: required to allow internal symlinks
   '';
 
   kittyConfDir = runCommand "kitty-conf" { nativeBuildInputs = [ _7zz ]; } ''
