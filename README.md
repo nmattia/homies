@@ -31,7 +31,7 @@ $ nix flake update # alternative: nix flake lock --update-input <my-input>
 Try out the new packages:
 
 ```shell
-$ nix develop
+$ nix build .#homies
 ```
 
 Upgrading to the new profile:
