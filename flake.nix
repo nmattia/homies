@@ -69,6 +69,7 @@
     flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" ] (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
+      sources = builtins.fromJSON (builtins.readFile ./nix/sources.json);
       homies = import ./homies.nix {
         nixpkgs-src = nixpkgs;
         # on Darwin, we assume the macos bundles are meant to
@@ -76,6 +77,7 @@
         headless = !pkgs.stdenv.isDarwin;
         inherit
           pkgs
+          sources
           inputs;
       };
     in

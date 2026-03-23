@@ -1,4 +1,4 @@
-{ inputs, runCommand, writeText, writeScriptBin, _7zz }:
+{ inputs, sources, runCommand, writeText, writeScriptBin, _7zz }:
 
 # Wrapped kitty terminal emulator, different from stock:
 #  * We create a dummy macos bundle with a custom icon. The bundle points to
@@ -10,10 +10,10 @@ let
 
   # NOTE: we use the official kitty build because it is signed & notarized by the author. Unless signed,
   # kitty can't trigger notifications on macOS.
-  version = "0.46.1";
-  sha256 = "sha256:12jk4vya54xggimzh16pip8zwhnygfsp5qmx94zj673gq74rcyd2";
+  version = sources.kitty-darwin.version;
+  sha256 = sources.kitty-darwin.sha256;
   kittyDmg = builtins.fetchurl {
-    url = "https://github.com/kovidgoyal/kitty/releases/download/v${version}/kitty-${version}.dmg";
+    url = sources.kitty-darwin.url;
     inherit sha256;
   };
   kitty = runCommand "kitty" { nativeBuildInputs = [ _7zz ]; } ''

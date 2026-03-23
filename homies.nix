@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-src, inputs, headless ? false }:
+{ pkgs, nixpkgs-src, inputs, sources, headless ? false }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
@@ -7,7 +7,7 @@ let
 
   neovim = pkgs.callPackage ./neovim { inherit inputs; };
 
-  kitty = pkgs.callPackage ./kitty { inherit inputs; };
+  kitty = pkgs.callPackage ./kitty { inherit inputs sources; };
 
   # A custom '.zshrc' (see zshrc/default.nix for details)
   zshrc = pkgs.callPackage ./zshrc { inherit nixpkgs-src; };
