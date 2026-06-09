@@ -13,9 +13,7 @@ let
       vim-glsl
       vim-nix
       vim-submode
-      vim-surround
-      vim-svelte
-      vim-terraform;
+      vim-surround;
   };
 
   plugins' = lib.mapAttrsToList (k: v: "${k} ${v}") plugins;

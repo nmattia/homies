@@ -69,11 +69,11 @@
     "fugitive": {
       "flake": false,
       "locked": {
-        "lastModified": 1752614839,
-        "narHash": "sha256-u39oObHCXk8uew5HyVdV1Z69Viilv3B7x1SUJxYXYLo=",
+        "lastModified": 1772910953,
+        "narHash": "sha256-vXSOXq3Tj5g0jUwQEZ0RRlon1OEX+jv1dgofUl4QcQg=",
         "owner": "tpope",
         "repo": "vim-fugitive",
-        "rev": "61b51c09b7c9ce04e821f6cf76ea4f6f903e3cf4",
+        "rev": "3b753cf8c6a4dcde6edee8827d464ba9b8c4a6f0",
         "type": "github"
       },
       "original": {
@@ -117,11 +117,11 @@
     "multicursor-nvim": {
       "flake": false,
       "locked": {
-        "lastModified": 1766406880,
-        "narHash": "sha256-0/IVK3USgfF+k6+G+iTaTksYvJYrPnsob4e1xhLnvHM=",
+        "lastModified": 1774329557,
+        "narHash": "sha256-JHl8Z7ESrWus2I6Pe+6gmdgCAZOzAKX7kimy71sAoe4=",
         "owner": "jake-stewart",
         "repo": "multicursor.nvim",
-        "rev": "c982cc8375f062e9f98e96a408e0f7ad0c80d4db",
+        "rev": "704b99f10a72cc05d370cfeb294ff83412a8ab55",
         "type": "github"
       },
       "original": {
@@ -132,11 +132,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1768931776,
-        "narHash": "sha256-5DGDJtNGvYn4sRALPRRzzT45HcfjdArRR4DhFz8Rkwk=",
+        "lastModified": 1781033489,
+        "narHash": "sha256-6tcLzrgiHOTiSZe32TmB9ohBOOtj04CkbfNFqzmHQcM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0fae44bd1dd1182261097ee35e3fefad2cd4f55f",
+        "rev": "a42b80a5634e247f864f82a3ab8286c86ff1e021",
         "type": "github"
       },
       "original": {
@@ -148,11 +148,11 @@
     "nvim-tree": {
       "flake": false,
       "locked": {
-        "lastModified": 1768373078,
-        "narHash": "sha256-ps4JPO4LHRL9VKAelSuZ0MtvkGMDMIKTyIWRpIf9Yuk=",
+        "lastModified": 1780893159,
+        "narHash": "sha256-JfOkJkTGVWPw7dhcbDNPsyeNbidrtIvzJhPYUQJ1NoY=",
         "owner": "kyazdani42",
         "repo": "nvim-tree.lua",
-        "rev": "ca8d82fff26cb12ced239713e3222f4a9dcd0da0",
+        "rev": "82f58063d67defc620e1ef8be606fc62a7b5dc1e",
         "type": "github"
       },
       "original": {
@@ -164,11 +164,11 @@
     "nvim-web-devicons": {
       "flake": false,
       "locked": {
-        "lastModified": 1768089403,
-        "narHash": "sha256-x1ujwUXnRolP9SRUD7/Pb4/AZu+3YpC6CfGuq3Bn6Ew=",
+        "lastModified": 1779834979,
+        "narHash": "sha256-pcU69LrhXFgXcvxbsBqLkUhgYEVGjMUDmEjaKZTSv+0=",
         "owner": "nvim-tree",
         "repo": "nvim-web-devicons",
-        "rev": "803353450c374192393f5387b6a0176d0972b848",
+        "rev": "dfbfaa967a6f7ec50789bead7ef87e336c1fa63c",
         "type": "github"
       },
       "original": {
@@ -211,9 +211,7 @@
         "vim-glsl": "vim-glsl",
         "vim-nix": "vim-nix",
         "vim-submode": "vim-submode",
-        "vim-surround": "vim-surround",
-        "vim-svelte": "vim-svelte",
-        "vim-terraform": "vim-terraform"
+        "vim-surround": "vim-surround"
       }
     },
     "systems": {
@@ -308,38 +306,6 @@
       "original": {
         "owner": "tpope",
         "repo": "vim-surround",
-        "type": "github"
-      }
-    },
-    "vim-svelte": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1748581036,
-        "narHash": "sha256-0dyK0ei8QklZqN199jyM2dSALcIrr8z7ZLAuiPaDUc8=",
-        "owner": "evanleck",
-        "repo": "vim-svelte",
-        "rev": "f6df955ad86583e9751487eb7550fae9e53d2d6b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "evanleck",
-        "repo": "vim-svelte",
-        "type": "github"
-      }
-    },
-    "vim-terraform": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1748114242,
-        "narHash": "sha256-MVsAR8lfsgMJHGnJ/ILevB2lrr20IAvetCFOvMVZ9Dk=",
-        "owner": "hashivim",
-        "repo": "vim-terraform",
-        "rev": "520498fab16a3a11f2ae1b8cb65e0a1684bc317a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hashivim",
-        "repo": "vim-terraform",
         "type": "github"
       }
     }
