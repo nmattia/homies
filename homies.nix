@@ -1,4 +1,4 @@
-{ pkgs, nixpkgs-src, inputs, sources, headless ? false }:
+{ pkgs, nixpkgs-src, inputs, sources, headless ? false, system }:
 # The main homies file, where homies are defined. See the README.md for
 # instructions.
 let
@@ -28,6 +28,8 @@ pkgs.buildEnv {
       nix
       neovim
 
+      inputs.niv.packages.${system}.niv
+
       pkgs.curl
       pkgs.direnv
       pkgs.entr
@@ -35,7 +37,6 @@ pkgs.buildEnv {
       pkgs.gh
       pkgs.gnupg
       pkgs.nixpkgs-fmt
-      pkgs.niv
       pkgs.fzf
       pkgs.htop
       pkgs.jq

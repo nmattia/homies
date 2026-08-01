@@ -6,6 +6,10 @@
     flake = false;
   };
 
+  inputs.niv.url = github:nmattia/niv;
+  inputs.niv.inputs.nixpkgs.follows = "nixpkgs";
+  inputs.niv.inputs.flake-utils.follows = "flake-utils";
+
   inputs.nixpkgs.url = github:NixOS/nixpkgs;
 
   inputs.flake-utils.url = github:numtide/flake-utils;
@@ -72,7 +76,8 @@
         inherit
           pkgs
           sources
-          inputs;
+          inputs
+          system;
       };
     in
     {

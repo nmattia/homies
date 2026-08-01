@@ -130,6 +130,29 @@
         "type": "github"
       }
     },
+    "niv": {
+      "inputs": {
+        "flake-utils": [
+          "flake-utils"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785178392,
+        "narHash": "sha256-qCdEZTlBPmQl7ceaeTBvvZDvLxgzeX8t4S5XpQHSv0o=",
+        "owner": "nmattia",
+        "repo": "niv",
+        "rev": "a4e2e12c8e7e3ec7e1a12a5191201cbedb03f583",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nmattia",
+        "repo": "niv",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1781033489,
@@ -203,6 +226,7 @@
         "kitty-icon": "kitty-icon",
         "luafun": "luafun",
         "multicursor-nvim": "multicursor-nvim",
+        "niv": "niv",
         "nixpkgs": "nixpkgs",
         "nvim-tree": "nvim-tree",
         "nvim-web-devicons": "nvim-web-devicons",
