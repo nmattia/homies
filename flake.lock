@@ -140,11 +140,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786135009,
-        "narHash": "sha256-L9mtF8OVu/Qv9ofF5GSsCVhsx1zH38fbWwD1sUvMcaw=",
+        "lastModified": 1786472891,
+        "narHash": "sha256-m5DBWQ7jci2LUhP0+ZtfOgo/YfZOafB8fEO4wufEKzk=",
         "owner": "nmattia",
         "repo": "niv",
-        "rev": "d9593c7b0b5793ccf66cee5583cbe1520fa122de",
+        "rev": "48bc1ff155c98416178e2f85bae09e03020ef1a8",
         "type": "github"
       },
       "original": {
