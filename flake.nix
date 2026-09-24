@@ -64,7 +64,7 @@
     , flake-utils
     , ...
     }:
-    flake-utils.lib.eachSystem [ "x86_64-darwin" "aarch64-darwin" "x86_64-linux" ] (system:
+    flake-utils.lib.eachSystem [ "aarch64-darwin" "x86_64-linux" ] (system:
     let
       pkgs = nixpkgs.legacyPackages.${system};
       sources = builtins.fromJSON (builtins.readFile ./nix/sources.json);
@@ -72,7 +72,7 @@
         nixpkgs-src = nixpkgs;
         # on Darwin, we assume the macos bundles are meant to
         # be installed as well
-        headless = !pkgs.stdenv.isDarwin;
+        headless = !pkgs.stdenv.hostPlatform.isDarwin;
         inherit
           pkgs
           sources

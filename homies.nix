@@ -34,7 +34,6 @@ pkgs.buildEnv {
       pkgs.direnv
       pkgs.entr
       pkgs.git
-      pkgs.gh
       pkgs.gnupg
       pkgs.nixpkgs-fmt
       pkgs.fzf
