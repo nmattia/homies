@@ -1,9 +1,9 @@
 {
     "kitty-darwin": {
-        "sha256": "0fh5yawmnrvma93kil4kd9x6mpvc9isv6mbc8nyajrhqmgfbcn6j",
+        "sha256": "1xyfnx944xxa8i53hl8xlfzmdbln25lskqw4nmvcp2ax2jabh975",
         "type": "file",
-        "url": "https://github.com/kovidgoyal/kitty/releases/download/v0.49.1/kitty-0.49.1.dmg",
+        "url": "https://github.com/kovidgoyal/kitty/releases/download/v0.49.2/kitty-0.49.2.dmg",
         "url_template": "https://github.com/kovidgoyal/kitty/releases/download/v<version>/kitty-<version>.dmg",
-        "version": "0.49.1"
+        "version": "0.49.2"
     }
 }
