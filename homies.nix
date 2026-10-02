@@ -3,8 +3,6 @@
 # instructions.
 let
 
-  nix = pkgs.callPackage ./nix { };
-
   neovim = pkgs.callPackage ./neovim { inherit inputs; };
 
   kitty = pkgs.callPackage ./kitty { inherit inputs sources; };
@@ -25,7 +23,6 @@ pkgs.buildEnv {
     [
       zshrc
       gitconfig
-      nix
       neovim
 
       inputs.niv.packages.${system}.niv
