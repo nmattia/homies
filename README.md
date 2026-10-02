@@ -16,34 +16,52 @@ configuration, etc). See the [introduction blog post][post] for an overview.
 
 ## How-To
 
-Installing the package set:
+Install the package set from GitHub:
 
-``` shell
-$ nix profile install
+```bash
+nix profile add github:nmattia/homies
 ```
 
-Updating the packages:
+Alternatively, install from a local checkout:
+
+```bash
+nix profile add
+```
+
+Create the supporting dotfiles:
+
+```bash
+printf "if [ -f ~/.nix-profile/share/zshrc/zshrc ]; then source ~/.nix-profile/share/zshrc/zshrc; fi\n" >> ~/.zshrc
+printf "[include]\n\tpath = ~/.nix-profile/share/git/gitconfig\n" >> ~/.gitconfig
+
+[ -d ~/.config/kitty ] && { echo "cannot create symlink for kitty config dir "; exit 1; }
+ln -s ~/.config/kitty ~/.nix-profile/share/kitty
+```
+
+
+When necessary, update the packages:
 
 ```shell
-$ nix flake update # alternative: nix flake lock --update-input <my-input>
+nix flake update # update all inputs
+nix flake update <input> # update specific input
 ```
 
 Try out the new packages:
 
 ```shell
-$ nix build .#homies
+nix build .#homies
 ```
 
-Upgrading to the new profile:
+Upgrade your system to the new profile when happy:
 
 ``` shell
-$ nix profile upgrade homies # or list more with "nix profile list"
+nix profile upgrade homies # or list more with "nix profile list"
 ```
 
-Syncing apps for Spotlight indexing:
+Install applications:
 
 ```
-$ rsync --archive --checksum --delete --chmod=-w ~/.nix-profile/Applications/ ~/Applications/homies-apps/ && chmod -R +w ~/Applications/homies-apps && codesign --remove-signature ~/Applications/homies-apps/kitty.app && codesign --force --deep --sign - ~/Applications/homies-apps/kitty.app
+rsync --archive --checksum --delete --chmod=-w ~/.nix-profile/Applications/ ~/Applications/homies-apps/ && chmod -R +w ~/Applications/homies-apps
 ```
 
 > **Note**
@@ -60,7 +78,7 @@ $ nix profile history
 Deleting old configurations:
 
 ``` shell
-$ nix profile wipe-history
+nix profile wipe-history
 ```
 
 Ensure build is sandboxed:

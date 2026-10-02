@@ -46,8 +46,8 @@ pkgs.buildEnv {
       pkgs.shfmt
       pkgs.tree
     ] ++ (pkgs.lib.optionals (!headless) [
-      kitty.wrapper
-      kitty.bundle
+      kitty.appBundle
+      kitty.conf
     ])
   ;
 }

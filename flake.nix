@@ -83,23 +83,6 @@
     {
       packages.default = homies;
       packages.homies = homies;
-      packages.init = pkgs.writeScriptBin "homies-init" ''
-        #!/usr/bin/env bash
-
-        set -euo pipefail
-
-        echo 'setting up homies'
-        set -x
-
-        nix profile add github:nmattia/homies
-
-        printf "if [ -f ~/.nix-profile/share/zshrc/zshrc ]; then source ~/.nix-profile/share/zshrc/zshrc; fi\n" >> ~/.zshrc
-        printf "[include]\n\tpath = ~/.nix-profile/share/git/gitconfig\n" >> ~/.gitconfig
-
-        set +x
-
-        echo 'done setting up homies'
-      '';
     }
     );
 }
