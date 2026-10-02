@@ -4,6 +4,7 @@
     editor = nvim
 [user]
     name = Nicolas Mattia
+    email = nicolas@nmattia.com
 [alias]
     co = checkout
     br = branch
@@ -15,10 +16,6 @@
     df = !git diff $(git merge-base HEAD $(git rev-parse --abbrev-ref origin/HEAD))
     # Add everything and amend
     amen = !git add -A && git commit --amend
-
-    # Fast config setup
-    dfn = config user.email nicolas.mattia@dfinity.org
-    me = config user.email nicolas@nmattia.com
 
     alias = config --get-regexp alias
     head = rev-parse HEAD
