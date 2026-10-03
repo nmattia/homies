@@ -81,10 +81,9 @@ Deleting old configurations:
 nix profile wipe-history
 ```
 
-Ensure build is sandboxed:
+Ensure builds are sandboxed:
 ```
-# /etc/nix/nix.conf
-build-users-group = nixbld
+# /etc/nix/nix.conf (or /etc/nix/nix.custom.conf, depending on installer)
 # /Library: cc is installed in /Library/Developer (and used from /usr/bin
 /cc and others)
 # /System/Library: needed for system-wide Perl
