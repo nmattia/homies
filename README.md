@@ -35,7 +35,7 @@ printf "if [ -f ~/.nix-profile/share/zshrc/zshrc ]; then source ~/.nix-profile/s
 printf "[include]\n\tpath = ~/.nix-profile/share/git/gitconfig\n" >> ~/.gitconfig
 
 [ -d ~/.config/kitty ] && { echo "cannot create symlink for kitty config dir "; exit 1; }
-ln -s ~/.config/kitty ~/.nix-profile/share/kitty
+ln -s ~/.nix-profile/share/kitty ~/.config/kitty
 ```
 
 
