@@ -1,5 +1,5 @@
 {
-  description = "my project description";
+  description = "nmattia's homies";
 
   inputs.flake-compat = {
     url = github:edolstra/flake-compat;
