@@ -29,6 +29,7 @@ let
   conf = runCommand "kitty-share" { } ''
     mkdir -p $out/share/kitty
     cat ${./kitty.conf} > $out/share/kitty/kitty.conf
+    cp -r ${./shaders} $out/share/kitty/shaders
     echo '--start-as=fullscreen' > $out/share/kitty/macos-launch-services-cmdline
   '';
 

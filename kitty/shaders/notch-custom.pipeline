@@ -1,0 +1,8 @@
+startgroup
+    animation_toggle user:toggle-notch
+    animation_duration 600
+    animation_reverse yes
+    animation_curve ease
+
+    shaders notch
+endgroup
