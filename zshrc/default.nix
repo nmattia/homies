@@ -14,6 +14,17 @@ let
     cat <${git-completion-zsh-src} > $out/git-completion.zsh/_git
   '';
 
+  # updated cacert with blacklist until it's updated upstream:
+  # https://github.com/NixOS/nixpkgs/issues/576485
+  cacert_ = cacert.override {
+    blacklist = [
+      "Comodo AAA Services root"
+      "emSign ECC Root CA - G3"
+      "emSign Root CA - C1"
+      "emSign Root CA - G1"
+    ];
+  };
+
   # Write .zshrc to share/zshrc/zshrc
   zshrc = writeText "zshrc"
     (lib.concatStringsSep "\n"
@@ -29,11 +40,15 @@ let
           source ${fzf}/share/fzf/completion.zsh
           source ${./fzf-key-bindings.zsh}
         ''
-        # Set up useful env vars (NIX_PATH to have a set nixpkgs,
-        # and SSL_CERT_FILE make sure https works)
+        # Set up useful env vars (NIX_PATH to have a set nixpkgs)
         ''
           export NIX_PATH=nixpkgs=${nixpkgs-src}
-          export SSL_CERT_FILE=${cacert}/etc/ssl/certs/ca-bundle.crt
+        ''
+
+        # some tools use SSL_CERT_FILE, some others use NIX_SSL_CERT_FILE, some use both.
+        ''
+          export SSL_CERT_FILE=${cacert_}/etc/ssl/certs/ca-bundle.crt
+          export NIX_SSL_CERT_FILE=${cacert_}/etc/ssl/certs/ca-bundle.crt
         ''
       ]
     );
