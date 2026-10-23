@@ -1,7 +1,7 @@
 # Because the path of the zshrc changes upon rebuild, we cannot source it
 # directly from the (vanilla) ~/.zshrc.
 # Instead we read it from ~/.nix-profile.
-{ lib, runCommand, writeText, writeScriptBin, fzf, nix, cacert, nixpkgs-src }:
+{ lib, stdenv, runCommand, writeText, writeScriptBin, fzf, nix, nixpkgs-src }:
 let
 
   # official git completion, better & faster than the zsh defaults
@@ -14,21 +14,10 @@ let
     cat <${git-completion-zsh-src} > $out/git-completion.zsh/_git
   '';
 
-  # updated cacert with blacklist until it's updated upstream:
-  # https://github.com/NixOS/nixpkgs/issues/576485
-  cacert_ = cacert.override {
-    blacklist = [
-      "Comodo AAA Services root"
-      "emSign ECC Root CA - G3"
-      "emSign Root CA - C1"
-      "emSign Root CA - G1"
-    ];
-  };
-
   # Write .zshrc to share/zshrc/zshrc
   zshrc = writeText "zshrc"
     (lib.concatStringsSep "\n"
-      [
+      ([
         # Set up nix autocomplete
         ''
           fpath+=(${nix}/share/zsh/site-functions)
@@ -45,12 +34,12 @@ let
           export NIX_PATH=nixpkgs=${nixpkgs-src}
         ''
 
-        # some tools use SSL_CERT_FILE, some others use NIX_SSL_CERT_FILE, some use both.
-        ''
-          export SSL_CERT_FILE=${cacert_}/etc/ssl/certs/ca-bundle.crt
-          export NIX_SSL_CERT_FILE=${cacert_}/etc/ssl/certs/ca-bundle.crt
-        ''
-      ]
+      ] ++
+      # some tools use SSL_CERT_FILE, some others use NIX_SSL_CERT_FILE, some use both. In general, use the system certs as source of truth.
+      lib.optional stdenv.hostPlatform.isDarwin ''
+        export SSL_CERT_FILE=/etc/ssl/cert.pem
+        export NIX_SSL_CERT_FILE=/etc/ssl/cert.pem
+      '')
     );
 in
 
