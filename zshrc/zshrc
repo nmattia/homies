@@ -25,6 +25,8 @@ setopt HIST_EXPIRE_DUPS_FIRST
 setopt HIST_FIND_NO_DUPS
 # removes blank lines from history
 setopt HIST_REDUCE_BLANKS
+# don't record commands with a leading space (similar to bash)
+setopt HIST_IGNORE_SPACE
 
 # Enable vi-mode command editing
 bindkey -v
