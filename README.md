@@ -58,10 +58,13 @@ Upgrade your system to the new profile when happy:
 nix profile upgrade homies # or list more with "nix profile list"
 ```
 
-Install applications:
+Install kitty:
 
 ```
-rsync --archive --checksum --delete --chmod=-w ~/.nix-profile/Applications/ ~/Applications/homies-apps/ && chmod -R +w ~/Applications/homies-apps
+mkdir -p ~/Applications/homies-apps \
+  && rm -rf ~/Applications/homies-apps/kitty.app \
+  && cp -RH ~/.nix-profile/Applications/kitty.app ~/Applications/homies-apps/ \
+  && chmod -R u+w ~/Applications/homies-apps/kitty.app
 ```
 
 > **Note**
