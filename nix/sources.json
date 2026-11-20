@@ -1,4 +1,11 @@
 {
+    "apple-container": {
+        "sha256": "15ss1yw30px7xwy8r0s1g5faf80la8rdyzhsiykm7jj77nprqwxn",
+        "type": "file",
+        "url": "https://github.com/apple/container/releases/download/1.7.1/container-1.7.1-installer-signed.pkg",
+        "url_template": "https://github.com/apple/container/releases/download/<version>/container-<version>-installer-signed.pkg",
+        "version": "1.7.1"
+    },
     "kitty-darwin": {
         "sha256": "13b3g5vwlmq3n1vgh6mvv430wlsrxgvvciqnwvzg53wpy74ixmg7",
         "type": "file",

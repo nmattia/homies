@@ -6,6 +6,7 @@ let
   neovim = pkgs.callPackage ./neovim { inherit inputs; };
 
   kitty = pkgs.callPackage ./kitty { inherit inputs sources; };
+  apple-container = pkgs.callPackage ./apple-container { inherit inputs sources; };
 
   # A custom '.zshrc' (see zshrc/default.nix for details)
   zshrc = pkgs.callPackage ./zshrc { inherit nixpkgs-src; };
@@ -45,6 +46,9 @@ pkgs.buildEnv {
     ] ++ (pkgs.lib.optionals (!headless) [
       kitty.appBundle
       kitty.conf
-    ])
+    ]) ++ (pkgs.lib.optionals pkgs.stdenv.hostPlatform.isDarwin [
+      apple-container
+    ]
+    )
   ;
 }
